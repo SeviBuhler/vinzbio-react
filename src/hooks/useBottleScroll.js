@@ -5,7 +5,6 @@ const useBottleScroll = () => {
     // Add a delay to ensure DOM is fully loaded
     setTimeout(() => {
       const bottle = document.querySelector('.animated-bottle');
-      console.log('Bottle element found:', bottle); // Debug log
       
       if (!bottle) {
         console.error('Bottle element not found!');
@@ -18,41 +17,114 @@ const useBottleScroll = () => {
         console.error('Snap container not found!');
         return;
       }
+
+      // Define animations for each section
+      const sectionAnimations = {
+        header: {
+          transform: (scrollY, viewportHeight, progress) => {
+            // Header section: bottle stays centered with slight movement
+            const rotation = scrollY * 0.05;
+            const horizontalShift = Math.sin(scrollY * 0.01) * 20;
+            return `translate(-50%, -50%) translateX(${horizontalShift}px) rotate(${rotation}deg)`;
+          },
+          scale: (scrollY, viewportHeight) => {
+            return 1; // Default scale for header section
+          },
+          opacity: 1
+        },
+        
+        vinzOriginal: {
+          transform: (scrollY, viewportHeight, progress) => {
+            // VinzOriginal section: bottle moves to the right side
+            const baseTransform = `translate(-50%, -50%)`;
+            const rotation = 5 + Math.sin(progress * Math.PI) * 10; // Gentle rocking
+            return `${baseTransform} rotate(${rotation}deg)`;
+          },
+          scale: (scrollY, viewportHeight) => {
+            return 0.7; // Slightly smaller in product section
+          },
+          opacity: 1
+        },
+        
+        vinzLocation: {
+          transform: (scrollY, viewportHeight, progress) => {
+            // Location section: bottle moves to the left with different angle
+            const baseTransform = `translate(50%, -40%)`;
+            const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10; // Different rotation
+            return `${baseTransform} rotate(${rotation}deg)`;
+          },
+          scale: (scrollY, viewportHeight) => {
+            return 0.7; // Even smaller in location section
+          },
+        }
+      };
       
       const handleScroll = () => {
         const scrollY = snapContainer.scrollTop;
-        //console.log('Scrolling, Y position:', scrollY);
-        
         const viewportHeight = window.innerHeight;
         
-        // More noticeable effects for testing
-        const rotation = scrollY * 0.05; // Increased from 0.02
-        const horizontalShift = Math.sin(scrollY * 0.01) * 20; // More pronounced movement
+        // Determine which section is currently visible
+        let currentSection;
+        let progress = 0;
         
-        // Apply transforms with more dramatic effect for testing
-        const transform = `translate(-50%, -50%) translateX(${horizontalShift}px) rotate(${rotation}deg)`;
-        //console.log('Setting transform:', transform); // Debug log
-        
-        bottle.style.transform = transform;
-        
-        // Scale effect
-        if (scrollY > viewportHeight * 0.5) { // Changed from 0.8 to make it more noticeable
-          const scale = Math.max(0.7, 1 - (scrollY - viewportHeight * 0.5) / viewportHeight);
-          bottle.style.transform += ` scale(${scale})`;
+        if (scrollY < viewportHeight * 0.5) {
+          currentSection = 'header';
+          progress = scrollY / (viewportHeight * 0.5);
+        } else if (scrollY < viewportHeight * 1.5) {
+          currentSection = 'vinzOriginal';
+          progress = (scrollY - viewportHeight * 0.5) / viewportHeight;
+        } else {
+          currentSection = 'vinzLocation';
+          progress = (scrollY - viewportHeight * 1.5) / viewportHeight;
         }
+        
+        // Get the animation for the current section
+        const animation = sectionAnimations[currentSection];
+        
+        // During transitions, blend between sections for smoother effect
+        let transform, scale, opacity;
+        
+        if (progress > 0.8 && progress < 1.0 && currentSection !== 'vinzLocation') {
+          // Transitioning to next section
+          const nextSection = currentSection === 'header' ? 'vinzOriginal' : 'vinzLocation';
+          const nextAnimation = sectionAnimations[nextSection];
+          
+          // Calculate blend factor (0 to 1)
+          const blend = (progress - 0.8) * 5; // Map 0.8-1.0 to 0-1
+          
+          // Blend transform (just use next section's transform for simplicity)
+          transform = nextAnimation.transform(scrollY, viewportHeight, 0);
+          
+          // Blend scale
+          const currentScale = animation.scale(scrollY, viewportHeight);
+          const nextScale = nextAnimation.scale(scrollY, viewportHeight);
+          scale = currentScale * (1 - blend) + nextScale * blend;
+          
+          // Blend opacity
+          opacity = animation.opacity * (1 - blend) + nextAnimation.opacity * blend;
+        } else {
+          // Within a section
+          transform = animation.transform(scrollY, viewportHeight, progress);
+          scale = animation.scale(scrollY, viewportHeight);
+          opacity = animation.opacity;
+        }
+        
+        // Apply the transform and scale
+        bottle.style.transform = `${transform} scale(${scale})`;
+        bottle.style.opacity = opacity;
       };
       
       // Make sure the scroll handler runs once at start
       handleScroll();
       
-      // Add event listener to snapContainer instead of window
+      // Add event listener to snapContainer
       snapContainer.addEventListener('scroll', handleScroll);
       
       // Cleanup
       return () => {
         snapContainer.removeEventListener('scroll', handleScroll);
       };
-    }, 1000); // 1 second delay to ensure DOM is ready
+    }, 500); // Reduced delay to 500ms for faster initialization
   }, []);
 };
 

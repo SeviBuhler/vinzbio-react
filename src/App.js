@@ -1,11 +1,14 @@
 import React, { useState, useEffect, createContext } from 'react';
 import './App.css';
+
+/* komponente */
 import Header from './ComponentsMainPage/Header/header';
 import VinzOriginal from './ComponentsMainPage/Original/vinzOriginal.js';
 import Banner from './ComponentsMainPage/Banner/banner.js';
 import BackgroundWaves from './ComponentsMainPage/Background/backgroundWaves.js';
 import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
 
+/* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
 import useBottleScroll from './hooks/useBottleScroll';
 
