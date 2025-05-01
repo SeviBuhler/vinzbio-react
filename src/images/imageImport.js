@@ -13,6 +13,12 @@ import Welle1 from './logo/Welle Blau Eck dick.png'
 import Welle2 from './logo/Welle Blau dick.png'
 import Welle3 from './logo/Welle Blau fein.png'
 
+/* info elemnte */
+import Bio from './info-elements/csm_EU-Bio-Logo_weiss_9d5eff1b3f.jpg'
+import LowCalorie from './info-elements/low calorie.png'
+import Natural from './info-elements/natural.png'
+import NoSugar from './info-elements/no sugar.png'
+
 /* Prduktbilder */
 import vinzFlasche from './produkt-bilder/produkt-ohne-hintergrund.png'
 
@@ -31,6 +37,12 @@ const Images = {
     Welle1,
     Welle2,
     Welle3,
+
+    /* info elemente */
+    Bio,
+    LowCalorie,
+    Natural,
+    NoSugar,
 
     /* Prduktbilder */
     vinzFlasche

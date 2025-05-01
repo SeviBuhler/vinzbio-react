@@ -12,4 +12,139 @@
   max-width: 1200px;
   width: 100%;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  height: 100%;
+}
+
+/* VinzOriginal Container */
+.vinz-original-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 15%;
+  width: 100%;
+  left: -5%;
+}
+
+.vinz-original-container {
+  text-align: left;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 70%;
+  background-color: #EBF2FF;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  max-width: 500px;
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Info Elements */
+.info-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+  bottom: 2%;
+  left: -10%;
+  z-index: 5;
+}
+
+.info-element {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: transparent;
+  opacity: 0;
+  transform: translate(120%, -150px) scale(0.5);
+  transform-origin: center;
+}
+
+@keyframes comeFromBottle {
+  0% {
+    opacity: 0;
+    transform: translate(120%, -150px) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* Apply animation only when animation has started */
+.info-container.animation-started .info-element {
+  animation: comeFromBottle 1.2s forwards;
+}
+
+.info-element:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition only for hover */
+}
+
+.info-image-container {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.info-text {
+  text-align: center;
+}
+
+.info-text h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.info-text p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .info-container {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .info-element {
+    width: 100%;
+    max-width: 300px;
+  }
 }
