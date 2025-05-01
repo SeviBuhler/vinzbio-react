@@ -37,7 +37,7 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  width: 70%;
+  width: 75%;
   background-color: #EBF2FF;
   padding: 20px;
   border-radius: 8px;
@@ -57,6 +57,27 @@
   color: #333;
   line-height: 1.6;
 }
+
+.shop-button {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background-color: #E9760C; /* Orange color to match the orange dot in your header */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shop-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 
 /* Info Elements */
 .info-container {
@@ -96,7 +117,7 @@
 
 /* Apply animation only when animation has started */
 .info-container.animation-started .info-element {
-  animation: comeFromBottle 1.2s forwards;
+  animation: comeFromBottle 1s forwards;
 }
 
 .info-element:hover {

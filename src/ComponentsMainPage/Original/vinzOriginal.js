@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './vinzOriginalStyles.css';
 import Images from '../../images/imageImport.js';
+import { AnimationContext } from '../../App.js';
 
 const VinzOriginal = ({ id }) => {
   const [animationStarted, setAnimationStarted] = useState(false);
+  const { allowSectionAnimations } = useContext(AnimationContext);
+
   const infoElements = [
     {
       id: 'bio',
@@ -37,6 +40,11 @@ const VinzOriginal = ({ id }) => {
 
   // Animation for info elements
   useEffect(() => {
+    if (!allowSectionAnimations) {
+      setAnimationStarted(false);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -58,7 +66,7 @@ const VinzOriginal = ({ id }) => {
         observer.unobserve(section);
       }
     };
-  }, [id]);
+  }, [id, allowSectionAnimations]);
 
   return (
     <section id={id} className="section">
@@ -72,6 +80,14 @@ const VinzOriginal = ({ id }) => {
 
             Also erfrisch di mit vinz. – Fühlsch es?
             </p>
+            <a
+              href='https://vinz.sumupstore.com/'
+              className='shop-button'
+              target='_blank'
+              rel='noreferrer'
+            >
+              Bestell jetzt
+            </a>
           </div>
         </div>
         

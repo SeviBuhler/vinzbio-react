@@ -37,6 +37,13 @@ const Header = () => {
 
   // Animation for the bottle, arch and orange dot
   useEffect(() => {
+    // Check if we're already scrolled down
+    const snapContainer = document.querySelector('.snap-container');
+    if (snapContainer && snapContainer.scrollTop > window.innerHeight * 0.5) {
+      // Skip ingredient animations if we're not at the top
+      return;
+    }
+
     const bottle = bottleRef.current;
     const blauerBogen = blauerBogenRef.current;
     const orangerPunkt = orangerPunktRef.current;
