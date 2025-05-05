@@ -57,6 +57,8 @@
 
 .vinzlocation-title .black-text {
   color: #000000;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3rem;
 }
 
 .location-shop-button {

@@ -1,0 +1,126 @@
+.vinz-feelings-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    background-color: transparent;
+}
+  
+.vinz-feelings-section-content {
+    max-width: 1500px;
+    max-height: 800px;
+    padding: 0 20px;
+    overflow: hidden;
+    
+}
+
+.vinz-feelings-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.vinz-feelings-container {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background-color: #EBF2FF;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-height: 600px;
+    position: relative;
+    margin-top: 90px;
+}
+
+.vinz-feelings-image-column {
+    flex: 0 0 30%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.vinzinhand-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vinz-feelings-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.vinz-feelings-section-title  {
+    color: #000;
+    font-size: 3rem;
+    margin-right: 15px;
+    margin-bottom: 0;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.vinz-feelings-section-subtitle {
+    color: #3965B5;
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.vinz-feelings-text-column {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 40px;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.vinz-feelings-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #3965B5;
+    text-align: left;
+    max-width: 550px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.vinz-feelings-text p {
+    margin-bottom: 16px;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.vinz-feelings-text strong,
+.vinz-brand {
+    color: #3965B5;
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .vinz-feelings-container {
+        flex-direction: column;
+    }
+    
+    .vinz-feelings-image-column,
+    .vinz-feelings-text-column {
+        flex: 0 0 100%;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .vinz-feelings-text {
+        font-size: 0.9rem;
+    }
+}

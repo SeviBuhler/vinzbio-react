@@ -1,4 +1,4 @@
-.section {
+.original-section {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -8,7 +8,7 @@
   background-color: transparent;
 }
 
-.section-content {
+.original-section-content {
   max-width: 1200px;
   width: 100%;
   padding: 0 20px;
@@ -44,7 +44,7 @@
 }
 
 
-.section-title {
+.original-section-title {
   font-size: 2.5rem;
   margin-bottom: 10px;
   color: #000;

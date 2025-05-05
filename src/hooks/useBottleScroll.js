@@ -28,7 +28,7 @@ const useBottleScroll = () => {
             return `translate(-50%, -50%) translateX(${horizontalShift}px) rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
-            return 1; // Default scale for header section
+            return 1;
           },
           opacity: 1
         },
@@ -56,6 +56,17 @@ const useBottleScroll = () => {
           scale: (scrollY, viewportHeight) => {
             return 0.7; // Even smaller in location section
           },
+        },
+
+        vinzFeelings: {
+          transform: (scrollY, viewportHeigth, progress) => {
+            const baseTransform = `translate(250%, -40%)`;
+            const rotation = 5 + Math.sin(progress * Math.PI * 2) * 10;
+            return `${baseTransform} rotate(${rotation}deg)`;
+          },
+          scale: (scrollY, viewportHeight) => {
+            return 0.7; // Even smaller in location section
+          },
         }
       };
       
@@ -73,9 +84,12 @@ const useBottleScroll = () => {
         } else if (scrollY < viewportHeight * 1.5) {
           currentSection = 'vinzOriginal';
           progress = (scrollY - viewportHeight * 0.5) / viewportHeight;
-        } else {
+        } else if (scrollY < viewportHeight * 2.5){
           currentSection = 'vinzLocation';
           progress = (scrollY - viewportHeight * 1.5) / viewportHeight;
+        } else {
+          currentSection = 'vinzFeelings';
+          progress = (scrollY - viewportHeight * 2.5) / viewportHeight;
         }
         
         // Get the animation for the current section

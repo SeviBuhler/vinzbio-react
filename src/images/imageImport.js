@@ -21,6 +21,7 @@ import NoSugar from './info-elements/no sugar.png'
 
 /* Prduktbilder */
 import vinzFlasche from './produkt-bilder/produkt-ohne-hintergrund.png'
+import vinzInHand from './produkt-bilder/vinz-in-hand.jpeg'
 
 const Images = {
     /* Ingredients */
@@ -45,7 +46,8 @@ const Images = {
     NoSugar,
 
     /* Prduktbilder */
-    vinzFlasche
+    vinzFlasche,
+    vinzInHand
 }
 
 export default Images;
