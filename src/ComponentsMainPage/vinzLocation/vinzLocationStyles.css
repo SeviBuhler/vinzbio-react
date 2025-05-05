@@ -1,15 +1,98 @@
-.vinz-location-container {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    scroll-snap-align: start;
-    background-color: transparent;
+.section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  background-color: transparent;
+}
+
+.vinzlocation-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.vinzlocation-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  position: relative;
+}
+
+/* Map container (left side) */
+.vinzlocation-map {
+  flex: 1;
+  max-width: 60%;
+  margin-top: 140px;
+  margin-left: -40px;
+  position: relative;
+  left: -5%;
+}
+
+/* Text content (right side) */
+.vinzlocation-text {
+  flex: 1;
+  max-width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.vinzlocation-title {
+  font-size: 2.5rem;
+  margin-bottom: 4px;
+  color: #000;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  z-index: 10;
+}
+
+.vinzlocation-title .blue-text {
+  color: #426CB8;
+}
+
+.vinzlocation-title .black-text {
+  color: #000000;
+}
+
+.location-shop-button {
+  background-color: #E9760C;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.location-shop-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .vinzlocation-wrapper {
+    flex-direction: column;
+    gap: 30px;
   }
   
-  .vinz-location-content {
-    max-width: 1200px;
-    width: 100%;
-    padding: 0 20px;
+  .vinzlocation-map,
+  .vinzlocation-text {
+    max-width: 100%;
   }
+  
+  .vinzlocation-title {
+    font-size: 2rem;
+  }
+  
+  .vinzlocation-description {
+    font-size: 1rem;
+  }
+}

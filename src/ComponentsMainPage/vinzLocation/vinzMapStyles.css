@@ -1,0 +1,77 @@
+.map-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 800px;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.map.ctrl-pressed {
+  cursor: grab;
+}
+
+.map-tip {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.map-tip.hidden {
+  opacity: 0;
+}
+
+.map-error {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  color: #666;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+/* Animation classes */
+.slide-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}

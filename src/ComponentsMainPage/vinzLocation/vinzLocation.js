@@ -1,18 +1,27 @@
 import React from 'react';
 import './vinzLocationStyles.css';
+import VinzMap from './VinzMap';
 
-const VinzLocation = () => {
+const VinzLocation = ({ id }) => {
   return (
-    <div className="vinz-location-container">
-      <div className="vinz-location-content">
-        <h2>Vinz Location</h2>
-        <p>Discover our locations and find the nearest Vinz store to you.</p>
-        <div className="location-map">
-          {/* Map or location details can be added here */}
+    <section id={id} className="section">
+      <div className="vinzlocation-content">
+        <div className="vinzlocation-wrapper">
+          {/* Map on the left side */}
+          <div className="vinzlocation-map">
+            <VinzMap />
+          </div>
+          
+          {/* Text content on the right side */}
+          <div className="vinzlocation-text">
+          <h2 className="vinzlocation-title">
+            <span className="blue-text">Wo git's</span> <span className="black-text">vinz.?</span>
+          </h2>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default VinzLocation;
