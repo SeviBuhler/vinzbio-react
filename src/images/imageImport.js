@@ -22,6 +22,9 @@ import NoSugar from './info-elements/no sugar.png'
 /* Prduktbilder */
 import vinzFlasche from './produkt-bilder/produkt-ohne-hintergrund.png'
 import vinzInHand from './produkt-bilder/vinz-in-hand.jpeg'
+import vinzShop from './produkt-bilder/vinz-shop.jpeg'
+import vinzShop2 from './produkt-bilder/vinz-mit-hintergrund.jpeg'
+import vinzGeländer from './produkt-bilder/vinzAufGeländer.jpeg'
 
 const Images = {
     /* Ingredients */
@@ -47,7 +50,10 @@ const Images = {
 
     /* Prduktbilder */
     vinzFlasche,
-    vinzInHand
+    vinzInHand,
+    vinzShop,
+    vinzShop2,
+    vinzGeländer,
 }
 
 export default Images;

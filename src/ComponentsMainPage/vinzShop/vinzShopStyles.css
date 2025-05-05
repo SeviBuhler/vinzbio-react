@@ -1,0 +1,273 @@
+.vinz-shop-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    background-color: transparent;
+}
+
+.vinz-shop-section-content {
+    max-width: 1500px;
+    max-height: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.vinz-shop-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Main container settings */
+.vinz-shop-container {
+    display: grid;
+    grid-template-areas:
+        "image title title"
+        "image products button";
+    grid-template-columns: 25% 1fr auto;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    width: 90%; /* Match feelings container width */
+    background-color: #EBF2FF;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: 550px; /* Match feelings container height better */
+    position: relative;
+    margin-top: 90px; /* Match feelings container margin */
+    padding: 0; /* Remove padding for better image placement */
+}
+
+/* Header section with title, intro and shop button */
+.vinz-shop-header {
+    grid-area: title;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 30px 30px 0 30px;
+}
+
+/* Left side of the header */
+.vinz-shop-header-left {
+    flex: 0 0 60%;
+}
+
+/* Right side of the header with CTA button */
+.vinz-shop-header-right {
+    grid-area: button;
+    flex: 0 0 35%;
+    display: flex;
+    justify-content: flex-end;
+    align-self: end;
+    padding: 0 30px 30px 0;
+}
+
+/* Title styling */
+.vinz-shop-title {
+    color: #000;
+    font-size: 2.3rem;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Intro text styling */
+.vinz-shop-intro {
+    text-align: left; 
+    margin-bottom: 0;
+    max-width: 600px;
+    font-size: 1.1rem;
+}
+
+/* Call to action container - right aligned */
+.vinz-shop-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+}
+
+/* Button styling */
+.vinz-shop-button {
+    background-color: #E9760C;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, scale 0.5s ease, box-shadow 0.3s ease;
+}
+
+.vinz-shop-button:hover {
+    transform: translateY(-5px);
+    scale: 1.05;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Product display - at the bottom */
+.vinz-product-display {
+    grid-area: products;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-self: end;
+    width: 100%;
+    padding: 0 0 30px 20px;
+}
+
+/* Product card styling */
+.vinz-product-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    flex: 0 0 260px; /* Fixed width but using flex */
+    max-width: 260px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, scale 0.5s ease;
+    text-decoration: none;
+}
+
+.vinz-product-card:hover {
+    transform: translateY(-5px);
+    scale: 1.05;
+}
+
+.vinz-product-image {
+    height: 180px;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.vinz-product-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vinz-product-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.vinz-product-details h3 {
+    margin: 0 0 10px 0;
+    color: #3965B5;
+}
+
+.vinz-product-price {
+    display: block;
+    font-weight: bold;
+    color: #000;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+.vinz-shop-note {
+    margin: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Create new image column style */
+.vinz-shop-image-column {
+    grid-area: image;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    background-color: #d8e5ff;
+}
+
+.vinz-shop-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .vinz-shop-header {
+        flex-direction: column;
+    }
+    
+    .vinz-shop-header-left,
+    .vinz-shop-header-right {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    
+    .vinz-shop-header-right {
+        margin-top: 20px;
+        justify-content: flex-start;
+    }
+    
+    .vinz-product-card {
+        flex: 0 0 45%;
+    }
+    .vinz-shop-container {
+        grid-template-areas:
+            "image"
+            "title"
+            "products"
+            "button";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        height: auto; /* Auto height on mobile */
+        min-height: 600px;
+    }
+    
+    .vinz-shop-header-right {
+        justify-content: flex-start;
+        margin-top: 20px;
+    }
+    
+    .vinz-product-display {
+        padding-right: 0;
+    }
+    
+    .vinz-shop-image-column {
+        height: 250px; /* Fixed height on mobile */
+    }
+    
+    .vinz-shop-header,
+    .vinz-product-display,
+    .vinz-shop-header-right {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .vinz-shop-title {
+        font-size: 2.5rem;
+    }
+    
+    .vinz-product-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 576px) {
+    .vinz-product-card {
+        flex: 0 0 100%;
+    }
+}

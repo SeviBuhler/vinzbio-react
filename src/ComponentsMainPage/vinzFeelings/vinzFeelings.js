@@ -7,8 +7,6 @@ const VinzFeelings = ({ id }) => {
         <section id={id} className="vinz-feelings-section">
             <div className="vinz-feelings-section-content">
                 <div className="vinz-feelings-wrapper">
-
-
                     <div className="vinz-feelings-container">
                         <div className="vinz-feelings-image-column">
                             <img src={Images.vinzInHand} alt="vinz in hand" className="vinzinhand-image" />

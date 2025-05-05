@@ -15,7 +15,7 @@ const VinzLocation = ({ id }) => {
           {/* Text content on the right side */}
           <div className="vinzlocation-text">
           <h2 className="vinzlocation-title">
-            <span className="blue-text">Wo git's</span> <span className="black-text">vinz.?</span>
+            <span className="blue-text">Wo git's</span> <span className="black-text">vinz.</span>
           </h2>
           </div>
         </div>

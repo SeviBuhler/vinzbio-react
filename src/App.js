@@ -8,6 +8,7 @@ import Banner from './ComponentsMainPage/Banner/banner.js';
 import BackgroundWaves from './ComponentsMainPage/Background/backgroundWaves.js';
 import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
 import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
+import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
 
 /* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
@@ -70,12 +71,10 @@ function App() {
         <BackgroundWaves />
         <div className="snap-container">
           <Header />
-          <VinzOriginal id='vinzOriginal'>
-          </VinzOriginal>
-          <VinzLocation id='vinzLocation'>
-          </VinzLocation>
-          <VinzFeelings id='vinzFeelings'>
-          </VinzFeelings>
+          <VinzOriginal id='vinzOriginal'></VinzOriginal>
+          <VinzLocation id='vinzLocation'></VinzLocation>
+          <VinzFeelings id='vinzFeelings'></VinzFeelings>
+          <VinzShop id='vinzShop'></VinzShop>
         </div>
       </div>
     </AnimationContext.Provider>

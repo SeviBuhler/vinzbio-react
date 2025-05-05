@@ -67,6 +67,19 @@ const useBottleScroll = () => {
           scale: (scrollY, viewportHeight) => {
             return 0.7; // Even smaller in location section
           },
+        },
+
+        vinzShop: {
+          transform: (scrollY, viewportHeight, progress) => {
+            // Shop section: bottle moves to the right side
+            const baseTransform = `translate(230%, -55%)`;
+            const rotation = 5 + Math.sin(progress * Math.PI * 2) * 10; // Different rotation
+            return `${baseTransform} rotate(${rotation}deg)`;
+          },
+          scale: (scrollY, viewportHeight) => {
+            return 0.7; // Even smaller in location section
+          },
+          opacity: 1
         }
       };
       
@@ -87,9 +100,12 @@ const useBottleScroll = () => {
         } else if (scrollY < viewportHeight * 2.5){
           currentSection = 'vinzLocation';
           progress = (scrollY - viewportHeight * 1.5) / viewportHeight;
-        } else {
+        } else if (scrollY < viewportHeight * 3.5) {
           currentSection = 'vinzFeelings';
           progress = (scrollY - viewportHeight * 2.5) / viewportHeight;
+        } else {
+          currentSection = 'vinzShop';
+          progress = (scrollY - viewportHeight * 3.5) / viewportHeight;
         }
         
         // Get the animation for the current section

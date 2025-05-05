@@ -5,7 +5,8 @@ const VinzMap = () => {
   const mapRef = useRef(null);
   const ctrlKeyRef = useRef(false);
   const mapInstanceRef = useRef(null);
-  
+  const activeInfoWindowRef = useRef(null);
+
   // States
   const [isVisible, setIsVisible] = useState(false);
   const [mapAnimated, setMapAnimated] = useState(false);
@@ -316,15 +317,33 @@ const VinzMap = () => {
           `,
           maxWidth: 320,
           pixelOffset: new window.google.maps.Size(0, -5),
-          disableAutoPan: true,
+          disableAutoPan: false,
         });
 
         // Add click event to marker
         marker.addListener('click', () => {
-            setTimeout(() => {
-              infoWindow.open(map, marker);
-            }, 150);
+          // Close any open info window first
+          if (activeInfoWindowRef.current) {
+            activeInfoWindowRef.current.close();
+          }
+          
+          // Center map on the clicked marker (with slight offset for infoWindow)
+          map.panTo({
+            lat: location.lat - 0.01, // Small offset so InfoWindow doesn't cover marker
+            lng: location.lng
+          });
+          
+          // Open the info window with a slight delay for better UX
+          setTimeout(() => {
+            infoWindow.open(map, marker);
+            activeInfoWindowRef.current = infoWindow; // Store reference to currently open window
+          }, 150);
         });
+
+        // Add close listener to the info window to clear the reference
+        infoWindow.addListener('closeclick', () => {
+          activeInfoWindowRef.current = null;
+        })
       });
 
       // Fit map to markers
@@ -391,6 +410,24 @@ const VinzMap = () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
+  }, []);
+
+  // event listener for map clicks to close open info windows
+  useEffect(() => {
+    if (mapInstanceRef.current) {
+      const mapClickListener = mapInstanceRef.current.addListener('click', () => {
+        if (activeInfoWindowRef.current) {
+          activeInfoWindowRef.current.close();
+          activeInfoWindowRef.current = null;
+        }
+      });
+
+      return () => {
+        if (mapInstanceRef.current && mapClickListener) {
+          window.google.maps.event.removeListener(mapClickListener);
+        }
+      };
+    }
   }, []);
 
   // Load Google Maps script

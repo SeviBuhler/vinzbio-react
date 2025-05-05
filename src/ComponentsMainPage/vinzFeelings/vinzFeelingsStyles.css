@@ -12,8 +12,6 @@
     max-width: 1500px;
     max-height: 800px;
     padding: 0 20px;
-    overflow: hidden;
-    
 }
 
 .vinz-feelings-wrapper {
@@ -84,8 +82,8 @@
 }
 
 .vinz-feelings-text {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.4;
     color: #3965B5;
     text-align: left;
     max-width: 550px; 
@@ -103,6 +101,8 @@
 .vinz-brand {
     color: #3965B5;
     font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
 }
 
 /* Responsive adjustments */
