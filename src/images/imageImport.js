@@ -22,6 +22,9 @@ import NoSugar from './info-elements/no sugar.png'
 /* Prduktbilder */
 import vinzFlasche from './produkt-bilder/produkt-ohne-hintergrund.png'
 
+/* Jan */
+import JanamKochen from './JanCooking/JanamKochen.jpeg'
+
 const Images = {
     /* Ingredients */
     Apfelessig,
@@ -45,7 +48,10 @@ const Images = {
     NoSugar,
 
     /* Prduktbilder */
-    vinzFlasche
+    vinzFlasche,
+
+    /* Jan */
+    JanamKochen,
 }
 
 export default Images;

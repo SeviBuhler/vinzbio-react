@@ -1,0 +1,69 @@
+.about-page {
+  min-height: 100vh;
+  position: relative;
+  padding-top: 80px;  /* Erhöht für Banner-Höhe */
+  overflow-y: visible;
+}
+
+.about-container {
+  background-color: rgba(57, 101, 181, 0.1); /* Blauer Hintergrund mit Transparenz */
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(57, 101, 181, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.about-content {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+  font-family: Open Sans, sans-serif;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+h1 {
+  display: flex;              /* Änderung zu flex */
+  justify-content: center;    /* Zentriert horizontal */
+  align-items: baseline;      /* Richtet Text an Grundlinie aus */
+  width: 100%;
+  margin: 2rem auto;
+  font-size: 2.5rem;
+  gap: 8px;                  /* Gleichmäßiger Abstand zwischen Elementen */
+}
+
+h1 .vinz {
+  color: #000000;
+  font-weight: bold;
+  font-family: "Times New Roman", serif;
+  margin: 0;                 /* Entfernt Abstände */
+}
+
+h1 .separator {
+  color: #000000;
+  margin: 0 4px;            /* Kleiner horizontaler Abstand */
+  line-height: 1;           /* Verhindert vertikale Verschiebung */
+}
+
+h1 .mehr {
+  color: #3965B5;
+  font-family: "Helvetica", sans-serif;
+  margin: 0;                /* Entfernt Abstände */
+  line-height: 1;           /* Verhindert vertikale Verschiebung */
+}
+
+.about-image-container {
+  margin: 2rem auto;
+  max-width: 100%;
+  text-align: center;
+}
+
+.about-story-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
