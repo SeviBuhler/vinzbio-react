@@ -3,7 +3,6 @@ import './aboutbody.css';
 import AboutBanner from '../AboutBanner/aBanner';
 import Images from '../../images/imageImport';
 
-
 function AboutBody() {
     return (
     <div className="about-page">

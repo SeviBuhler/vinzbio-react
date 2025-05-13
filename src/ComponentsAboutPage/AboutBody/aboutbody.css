@@ -6,14 +6,15 @@
 }
 
 .about-container {
-  background-color: rgba(57, 101, 181, 0.1); /* Blauer Hintergrund mit Transparenz */
+  background-color: rgba(57, 101, 181, 0.1);
   border-radius: 20px;
   padding: 2rem;
   margin: 2rem auto;
-  max-width: 600px;
+  max-width: 800px;
   box-shadow: 0 4px 6px rgba(57, 101, 181, 0.1);
   position: relative;
   z-index: 1;
+  overflow: hidden; /* Verhindert Überlauf */
 }
 
 .about-content {
@@ -26,34 +27,39 @@
 }
 
 h1 {
-  display: flex;              /* Änderung zu flex */
-  justify-content: center;    /* Zentriert horizontal */
-  align-items: baseline;      /* Richtet Text an Grundlinie aus */
+  display: block;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
   width: 100%;
-  margin: 2rem auto;
-  font-size: 2.5rem;
-  gap: 8px;                  /* Gleichmäßiger Abstand zwischen Elementen */
+  position: relative;
 }
 
 h1 .vinz {
   color: #000000;
   font-weight: bold;
   font-family: "Times New Roman", serif;
-  margin: 0;                 /* Entfernt Abstände */
+  letter-spacing: 0.5px;
+  display: inline;
 }
 
 h1 .separator {
   color: #000000;
-  margin: 0 4px;            /* Kleiner horizontaler Abstand */
-  line-height: 1;           /* Verhindert vertikale Verschiebung */
+  margin: 0 0.3rem;
+  font-weight: normal;
+  opacity: 0.8;
+  display: inline;
 }
 
 h1 .mehr {
   color: #3965B5;
   font-family: "Helvetica", sans-serif;
-  margin: 0;                /* Entfernt Abstände */
-  line-height: 1;           /* Verhindert vertikale Verschiebung */
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  display: inline;
 }
+
 
 .about-image-container {
   margin: 2rem auto;
