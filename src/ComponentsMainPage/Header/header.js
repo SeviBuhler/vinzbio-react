@@ -461,6 +461,8 @@ const Header = () => {
 
       <div className="header-text-content">
         <h1 className='vinz'>{vinzText}</h1>
+      </div>
+      <div className='header-text-content2'>
         <h1 className='original'>{originalText}</h1>
       </div>
 

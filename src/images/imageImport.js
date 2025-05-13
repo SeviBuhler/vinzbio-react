@@ -12,6 +12,7 @@ import Logo from './logo/Logo vinz. ohne Hintergrund.png'
 import Welle1 from './logo/Welle Blau Eck dick.png'
 import Welle2 from './logo/Welle Blau dick.png'
 import Welle3 from './logo/Welle Blau fein.png'
+import WelleOrange from './logo/Grafik Blau mit Orangem Schweif fein.png'
 
 /* info elemnte */
 import Bio from './info-elements/csm_EU-Bio-Logo_weiss_9d5eff1b3f.jpg'
@@ -21,6 +22,10 @@ import NoSugar from './info-elements/no sugar.png'
 
 /* Prduktbilder */
 import vinzFlasche from './produkt-bilder/produkt-ohne-hintergrund.png'
+import vinzInHand from './produkt-bilder/vinz-in-hand.jpeg'
+import vinzShop from './produkt-bilder/vinz-shop.jpeg'
+import vinzShop2 from './produkt-bilder/vinz-mit-hintergrund.jpeg'
+import vinzGeländer from './produkt-bilder/vinzAufGeländer.jpeg'
 
 /* Jan */
 import JanamKochen from './JanCooking/JanamKochen.jpeg'
@@ -40,6 +45,7 @@ const Images = {
     Welle1,
     Welle2,
     Welle3,
+    WelleOrange,
 
     /* info elemente */
     Bio,
@@ -48,6 +54,11 @@ const Images = {
     NoSugar,
 
     /* Prduktbilder */
+    vinzFlasche,
+    vinzInHand,
+    vinzShop,
+    vinzShop2,
+    vinzGeländer,
     vinzFlasche,
 
     /* Jan */
