@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 /* komponente */
@@ -9,6 +10,7 @@ import BackgroundWaves from './ComponentsMainPage/Background/backgroundWaves.js'
 import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
 import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
 import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
+import AboutBody from './ComponentsAboutPage/AboutBody/aboutbody';
 
 /* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
@@ -64,20 +66,27 @@ function App() {
     }
   }, [initialLoadComplete]);
 
-  return (
-    <AnimationContext.Provider value={{ allowSectionAnimations }}>
-      <div className={`App ${showWaves ? 'show-waves' : ''}`}>
-        <Banner />
-        <BackgroundWaves />
-        <div className="snap-container">
-          <Header />
-          <VinzOriginal id='vinzOriginal'></VinzOriginal>
-          <VinzLocation id='vinzLocation'></VinzLocation>
-          <VinzFeelings id='vinzFeelings'></VinzFeelings>
-          <VinzShop id='vinzShop'></VinzShop>
-        </div>
-      </div>
-    </AnimationContext.Provider>
+return (
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <AnimationContext.Provider value={{ allowSectionAnimations }}>
+            <div className={`App ${showWaves ? 'show-waves' : ''}`}>
+              <Banner />
+              <BackgroundWaves />
+              <div className="snap-container">
+                <Header />
+                <VinzOriginal id='vinzOriginal' />
+                <VinzLocation id='vinzLocation' />
+                <VinzFeelings id='vinzFeelings'></VinzFeelings>
+                <VinzShop id='vinzShop'></VinzShop>
+              </div>
+            </div>
+          </AnimationContext.Provider>
+        } />
+        <Route path="/überVinz.ch" element={<AboutBody />} />
+      </Routes>
+    </Router>
   );
 }
 

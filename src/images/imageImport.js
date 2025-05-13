@@ -27,6 +27,9 @@ import vinzShop from './produkt-bilder/vinz-shop.jpeg'
 import vinzShop2 from './produkt-bilder/vinz-mit-hintergrund.jpeg'
 import vinzGeländer from './produkt-bilder/vinzAufGeländer.jpeg'
 
+/* Jan */
+import JanamKochen from './JanCooking/JanamKochen.jpeg'
+
 const Images = {
     /* Ingredients */
     Apfelessig,
@@ -56,6 +59,9 @@ const Images = {
     vinzShop,
     vinzShop2,
     vinzGeländer,
+
+    /* Jan */
+    JanamKochen,
 }
 
 export default Images;
