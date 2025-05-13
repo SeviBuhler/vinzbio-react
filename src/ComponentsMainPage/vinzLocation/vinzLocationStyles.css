@@ -1,15 +1,101 @@
-.vinz-location-container {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    scroll-snap-align: start;
-    background-color: transparent;
+.section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  background-color: transparent;
+}
+
+.vinzlocation-content {
+  max-width: min(2400px, 90vw);
+  width: 100%;
+  padding: 0 clamp(20px, 3vw, 40px);
+}
+
+.vinzlocation-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: clamp(20px, 3vw, 60px);
+  position: relative;
+}
+
+/* Map container (left side) */
+.vinzlocation-map {
+  flex: 1;
+  max-width: 60%;
+  margin-top: clamp(100px, 18vh, 180px); 
+  margin-left: clamp(-40px, -3vw, -20px); 
+  position: relative;
+  min-width: clamp(500px, 40vw, 1200px);
+  width: clamp(400px, 40vw, 800px);
+}
+
+/* Text content (right side) */
+.vinzlocation-text {
+  flex: 1;
+  max-width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.vinzlocation-title {
+  font-size: clamp(2rem, 2vw + 1rem, 4rem); 
+  margin-bottom: clamp(8px, 2vw, 25px); 
+  color: #000;
+  position: absolute;
+  top: clamp(60px, 10vh, 100px); 
+  left: 0;
+  z-index: 10;
+}
+
+.vinzlocation-title .blue-text {
+  color: #426CB8;
+}
+
+.vinzlocation-title .black-text {
+  color: #000000;
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(2.5rem, 2.5vw + 1rem, 4.5rem);
+}
+
+.location-shop-button {
+  background-color: #E9760C;
+  color: white;
+  padding: clamp(8px, 1vw, 15px) clamp(15px, 2vw, 25px);
+  border-radius: clamp(20px, 2vw, 30px);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: clamp(0.9rem, 1vw + 0.2rem, 1.2rem);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.location-shop-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .vinzlocation-wrapper {
+    flex-direction: column;
+    gap: 30px;
   }
   
-  .vinz-location-content {
-    max-width: 1200px;
-    width: 100%;
-    padding: 0 20px;
+  .vinzlocation-map,
+  .vinzlocation-text {
+    max-width: 100%;
   }
+  
+  .vinzlocation-title {
+    font-size: 2rem;
+  }
+  
+  .vinzlocation-description {
+    font-size: 1rem;
+  }
+}

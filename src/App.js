@@ -8,6 +8,8 @@ import VinzOriginal from './ComponentsMainPage/Original/vinzOriginal.js';
 import Banner from './ComponentsMainPage/Banner/banner.js';
 import BackgroundWaves from './ComponentsMainPage/Background/backgroundWaves.js';
 import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
+import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
+import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
 import AboutBody from './ComponentsAboutPage/AboutBody/aboutbody';
 
 /* hooks */
@@ -76,6 +78,8 @@ return (
                 <Header />
                 <VinzOriginal id='vinzOriginal' />
                 <VinzLocation id='vinzLocation' />
+                <VinzFeelings id='vinzFeelings'></VinzFeelings>
+                <VinzShop id='vinzShop'></VinzShop>
               </div>
             </div>
           </AnimationContext.Provider>
