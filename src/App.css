@@ -18,3 +18,18 @@ body, html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
+
+/* Add this to your main CSS file */
+.text-justified {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  text-justify: inter-word;
+  word-spacing: normal;
+  text-rendering: optimizeLegibility;
+  letter-spacing: 0.01em;
+  /* For German text */
+  lang: de;
+  hyphenate-limit-chars: 6 3 2;
+}

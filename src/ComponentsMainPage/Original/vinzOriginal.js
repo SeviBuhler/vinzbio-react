@@ -71,15 +71,15 @@ const VinzOriginal = ({ id }) => {
   return (
     <section id={id} className="original-section">
       <div className="original-section-content">
-        <div className='vinz-original-wrapper'>
+        {/* Add this wrapper div */}
+        <div className="vinz-original-wrapper">
           <div className='vinz-original-container'>
             <h2 className="original-section-title">Vinz. - Original</h2>
             <p className="section-description">
-            Frisch, natürlich und kompromisslos. Die Kombination aus Zitrone, Honig, Apfelessig, Ingwer und Minze schmeckt nicht nur hervorragend, sondern gibt dir genau dass, was dein Körper verdient. 
-            <br /> 
-            <strong>vinz.</strong> wird in der Schweiz hergestellt und ausschliesslich mit frischen Zutaten welche aus 100% biologischer Landwirtschaft stammen. Dazu verzichten wir auf Zusatzstoffe wie Zucker, Aroma, oder Konzentrate, sodass nicht nur du sondern auch dein Körper es einfach nur geniessen könnt.
-
-            Also erfrisch di mit vinz. – Fühlsch es?
+              Frisch, natürlich und kompromisslos. Die Kombination aus Zitrone, Honig, Apfelessig, Ingwer und Minze schmeckt nicht nur hervorragend, sondern gibt dir genau dass, was dein Körper verdient. 
+              <br /> 
+              <strong>vinz.</strong> wird in der Schweiz hergestellt und ausschliesslich mit frischen Zutaten welche aus 100% biologischer Landwirtschaft stammen. Dazu verzichten wir auf Zusatzstoffe wie Zucker, Aroma, oder Konzentrate, sodass nicht nur du sondern auch dein Körper es einfach nur geniessen könnt.
+              Also erfrisch di mit vinz. – Fühlsch es?
             </p>
             <a
               href='https://vinz.sumupstore.com/'
@@ -90,26 +90,27 @@ const VinzOriginal = ({ id }) => {
               Bestell jetzt
             </a>
           </div>
-        </div>
-        
-        <div className={`info-container ${animationStarted ? 'animation-started' : ''}`}>
-          {infoElements.map((info) => (
-            <div 
-              key={info.id}
-              className='info-element'
-              style={{
-                transitionDelay: `${info.delay}ms`,
-                animationDelay: `${info.delay}ms`,
-              }}  
-            >
-              <div className='info-image-container'>
-                <img src={info.image} alt={info.title} className='info-image' />
+          
+          {/* Keep the info container outside but still within the wrapper */}
+          <div className={`info-container ${animationStarted ? 'animation-started' : ''}`}>
+            {infoElements.map((info) => (
+              <div 
+                key={info.id}
+                className='info-element'
+                style={{
+                  transitionDelay: `${info.delay}ms`,
+                  animationDelay: `${info.delay}ms`,
+                }}  
+              >
+                <div className='info-image-container'>
+                  <img src={info.image} alt={info.title} className='info-image' />
+                </div>
+                <div className='info-text'>
+                  <h3>{info.title}</h3>
+                </div>
               </div>
-              <div className='info-text'>
-                <h3>{info.title}</h3>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

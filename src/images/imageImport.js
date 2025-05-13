@@ -12,6 +12,7 @@ import Logo from './logo/Logo vinz. ohne Hintergrund.png'
 import Welle1 from './logo/Welle Blau Eck dick.png'
 import Welle2 from './logo/Welle Blau dick.png'
 import Welle3 from './logo/Welle Blau fein.png'
+import WelleOrange from './logo/Grafik Blau mit Orangem Schweif fein.png'
 
 /* info elemnte */
 import Bio from './info-elements/csm_EU-Bio-Logo_weiss_9d5eff1b3f.jpg'
@@ -41,6 +42,7 @@ const Images = {
     Welle1,
     Welle2,
     Welle3,
+    WelleOrange,
 
     /* info elemente */
     Bio,

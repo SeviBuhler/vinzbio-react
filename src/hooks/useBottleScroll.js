@@ -36,7 +36,7 @@ const useBottleScroll = () => {
         vinzOriginal: {
           transform: (scrollY, viewportHeight, progress) => {
             // VinzOriginal section: bottle moves to the right side
-            const baseTransform = `translate(-50%, -50%)`;
+            const baseTransform = `translate(50%, -50%)`;
             const rotation = 5 + Math.sin(progress * Math.PI) * 10; // Gentle rocking
             return `${baseTransform} rotate(${rotation}deg)`;
           },
@@ -49,7 +49,7 @@ const useBottleScroll = () => {
         vinzLocation: {
           transform: (scrollY, viewportHeight, progress) => {
             // Location section: bottle moves to the left with different angle
-            const baseTransform = `translate(50%, -40%)`;
+            const baseTransform = `translate(100%, -40%)`;
             const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10; // Different rotation
             return `${baseTransform} rotate(${rotation}deg)`;
           },

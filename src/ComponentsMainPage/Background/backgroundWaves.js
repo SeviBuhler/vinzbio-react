@@ -5,7 +5,7 @@ import Images from '../../images/imageImport.js';
 const BackgroundWaves = () => {
   return (
     <div className="background-waves-container">
-      <img src={Images.Welle3} alt='Background Waves' className='background-waves' />
+      <img src={Images.WelleOrange} alt='Background Waves' className='background-waves' />
     </div>
   );
 };
