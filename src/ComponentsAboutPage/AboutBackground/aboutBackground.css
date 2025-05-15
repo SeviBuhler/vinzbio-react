@@ -1,29 +1,25 @@
 .about-background-container {
    position: fixed;
-   top: 15%;
-   right: -5%;
+   top: 0;
+   left: 0;
    width: 100%;
    height: 120vh;
-   z-index: -1; 
+   z-index: -1;
    pointer-events: none;
    padding: 0;
    margin: 0;
-   overflow: hidden;
+   overflow: visible;
 }
   
-.about-background {
+.background-wave {
   position: absolute;
-  top: 0;
-  right: 0; 
+  top: -300px;          /* Behalten wir bei für die obere Ausrichtung */
+  left: -350px;         /* Weiter nach links verschoben von -250px auf -350px */
   width: auto;
-  height: 100%;
+  height: 200%;         /* Höhe beibehalten für gute Abdeckung */
   max-width: none;
   object-fit: cover;
-  object-position: right top; 
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.show-background .about-background {
-  opacity: 1;
+  object-position: left top;
+  opacity: 0.8;
+  transform: scaleX(-1) rotate(-75deg); /* Rotation von -85deg auf -75deg geändert für bessere rechtsseitige Abdeckung */
 }

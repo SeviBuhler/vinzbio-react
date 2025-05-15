@@ -1,0 +1,92 @@
+.about-page {
+  min-height: 100vh;
+  position: relative;
+  padding-top: 10%; /* Angepasst an die Banner-Höhe */
+  overflow-y: visible;
+  z-index: 2; 
+}
+
+
+.about-container {
+  background-color: #EBF2FF;
+  border-radius: 16px;  /* Reduziert von 20px */
+  padding: 2rem;       /* Reduziert von 2.5rem */
+  margin: 0.8rem auto; /* Reduziert von 1rem */
+  max-width: 1040px;   /* Reduziert von 1300px */
+  min-height: 80px;    /* Reduziert von 100px */
+  position: relative;
+  z-index: 2;
+}
+
+/* Neuer Stil für den Titel innerhalb des Content-Containers */
+.title-inside-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0 0 1.5rem 0; /* Abstand nach unten zum Text */
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 1rem;
+  /* border-bottom: 1px solid rgba(66, 108, 184, 0.2);  Optionale Trennlinie */
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  gap: 2.4rem;        /* Reduziert von 3rem */
+}
+
+.about-content {
+  flex: 0 1 50%;
+  font-size: 1rem;    /* Reduziert von 1.2rem */
+  line-height: 1.4;
+  color: #426CB8;
+}
+
+.about-image-container {
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  padding: 0; /* Padding entfernt, da Container-Padding ausreicht */
+}
+
+.about-story-image {
+  width: 90%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0;
+  line-height: 1.2;
+}
+
+h1 .vinz {
+  font-size: 2rem;    
+  letter-spacing: 0.4px;
+  font-family: "Times New Roman", serif;
+  color: #000000;
+  font-weight: 700;
+}
+
+h1 .mehr {
+  font-size: 2rem;    /* Reduziert von 2.5rem */
+  letter-spacing: 0.16px;
+  color: #3965B5; 
+  margin-left: 12px;
+}
+
+.vinz-inline {
+  font-size: 1rem;    /* Reduziert von 1.2rem */
+  letter-spacing: 0.4px;
+  font-family: "Times New Roman", serif;
+  color: #000000;
+  font-weight: 700;
+}

@@ -1,14 +1,14 @@
 import React from 'react';
-import './aboutBackgroundStyles.css';
-import backgroundWave from './images/Welle Blau Eck dick.png';
+import './aboutBackground.css';
+import Images from '../../images/imageImport';
 
 const AboutBackground = () => {
   return (
     <div className="about-background-container">
-      <img
-        src={backgroundWave}
-        alt=""
-        className="about-background"
+      <img 
+        src={Images.Welle3}
+        alt="Background Wave"
+        className="background-wave"
       />
     </div>
   );

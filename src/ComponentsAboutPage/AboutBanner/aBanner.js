@@ -8,11 +8,11 @@ const AboutBanner = () => {
       <div className="about-banner-content">
         <div className="about-ingredient-container">
           <div className='about-banner-image'>
-            <img src={Images.Minze} alt="Minze" className="about-banner-minze" />
+            <img src={Images.Ingwer} alt="Ingwer" className="about-banner-ingwer" />
           </div>
         </div>
         <div className="about-banner-text">
-          <a href="/" className="about-banner-brand">vinz.</a>
+          <a href="/" className="about-banner-brand vinz-text">vinz.</a>
         </div>
         <div className="about-banner-logo">
           <a href="/" className='about-logo-link'>
@@ -24,7 +24,7 @@ const AboutBanner = () => {
         </div>
         <div className="about-ingredient-container">
           <div className='about-banner-image'>
-            <img src={Images.Zitrone} alt="Zitrone" className="about-banner-zitrone" />
+            <img src={Images.Honig} alt="Honig" className="about-banner-honig" />
           </div>
         </div>
       </div>

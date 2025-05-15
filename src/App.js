@@ -8,9 +8,11 @@ import VinzOriginal from './ComponentsMainPage/Original/vinzOriginal.js';
 import Banner from './ComponentsMainPage/Banner/banner.js';
 import BackgroundWaves from './ComponentsMainPage/Background/backgroundWaves.js';
 import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
-import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
+import VinzFeelings from './ComponentsMainPage/VinzFeelings/vinzFeelings.js';
 import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
-import AboutBody from './ComponentsAboutPage/AboutBody/aboutbody';
+import AboutBanner from './ComponentsAboutPage/AboutBanner/aBanner';
+import AboutBackground from './ComponentsAboutPage/AboutBackground/aboutBackground';
+import VinzEnjoyment from './ComponentsAboutPage/vinzEnjoyment/vinzEnjoyment';
 
 /* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
@@ -84,7 +86,13 @@ return (
             </div>
           </AnimationContext.Provider>
         } />
-        <Route path="/überVinz.ch" element={<AboutBody />} />
+        <Route path="/überVinz.ch" element={
+          <>
+          <AboutBanner />
+          <AboutBackground />
+          <VinzEnjoyment />
+          </>
+        } />
       </Routes>
     </Router>
   );
