@@ -74,7 +74,9 @@ const VinzOriginal = ({ id }) => {
         {/* Add this wrapper div */}
         <div className="vinz-original-wrapper">
           <div className='vinz-original-container'>
-            <h2 className="original-section-title">Vinz. - Original</h2>
+            <h2 className="original-section-title">
+              <span className="vinz-text">Vinz. </span><span className="original-text">- Original</span>
+            </h2>
             <p className="section-description">
               Frisch, natürlich und kompromisslos. Die Kombination aus Zitrone, Honig, Apfelessig, Ingwer und Minze schmeckt nicht nur hervorragend, sondern gibt dir genau dass, was dein Körper verdient. 
               <br /> 

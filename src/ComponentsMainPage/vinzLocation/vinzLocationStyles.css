@@ -25,7 +25,7 @@
 /* Map container (left side) */
 .vinzlocation-map {
   flex: 1;
-  max-width: 60%;
+  max-width: clamp(500px, 50vw, 900px);
   margin-top: clamp(100px, 18vh, 180px); 
   margin-left: clamp(-40px, -3vw, -20px); 
   position: relative;

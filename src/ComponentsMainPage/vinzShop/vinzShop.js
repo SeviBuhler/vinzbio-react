@@ -58,7 +58,6 @@ const VinzShop = ({ id }) => {
                                 <button onClick={goToSumUpStore} className="vinz-shop-button">
                                     Zum Shop
                                 </button>
-                                <p className="vinz-shop-note">Du wirst zum vinz. Online-Shop weitergeleitet</p>
                             </div>
                         </div>
                     </div>

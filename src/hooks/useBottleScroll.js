@@ -60,7 +60,7 @@ const useBottleScroll = () => {
 
         vinzFeelings: {
           transform: (scrollY, viewportHeigth, progress) => {
-            const baseTransform = `translate(250%, -40%)`;
+            const baseTransform = `translate(200%, -45%)`;
             const rotation = 5 + Math.sin(progress * Math.PI * 2) * 10;
             return `${baseTransform} rotate(${rotation}deg)`;
           },
@@ -73,11 +73,11 @@ const useBottleScroll = () => {
           transform: (scrollY, viewportHeight, progress) => {
             // Shop section: bottle moves to the right side
             const baseTransform = `translate(230%, -55%)`;
-            const rotation = 5 + Math.sin(progress * Math.PI * 2) * 10; // Different rotation
+            const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10; // Different rotation
             return `${baseTransform} rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
-            return 0.7; // Even smaller in location section
+            return 0.6; // Even smaller in location section
           },
           opacity: 1
         }
