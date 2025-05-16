@@ -37,11 +37,11 @@ const useBottleScroll = () => {
           transform: (scrollY, viewportHeight, progress) => {
             // VinzOriginal section: bottle moves to the right side
             const baseTransform = `translate(50%, -50%)`;
-            const rotation = 5 + Math.sin(progress * Math.PI) * 10; // Gentle rocking
+            const rotation = 5 + Math.sin(progress * Math.PI) * 10; 
             return `${baseTransform} rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
-            return 0.7; // Slightly smaller in product section
+            return 0.7; 
           },
           opacity: 1
         },
@@ -50,11 +50,11 @@ const useBottleScroll = () => {
           transform: (scrollY, viewportHeight, progress) => {
             // Location section: bottle moves to the left with different angle
             const baseTransform = `translate(100%, -40%)`;
-            const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10; // Different rotation
+            const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10;
             return `${baseTransform} rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
-            return 0.7; // Even smaller in location section
+            return 0.7;
           },
         },
 
@@ -65,7 +65,7 @@ const useBottleScroll = () => {
             return `${baseTransform} rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
-            return 0.7; // Even smaller in location section
+            return 0.7;
           },
         },
 
@@ -73,11 +73,24 @@ const useBottleScroll = () => {
           transform: (scrollY, viewportHeight, progress) => {
             // Shop section: bottle moves to the right side
             const baseTransform = `translate(230%, -55%)`;
-            const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10; // Different rotation
+            const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10;
             return `${baseTransform} rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
-            return 0.6; // Even smaller in location section
+            return 0.6;
+          },
+          opacity: 1
+        },
+
+        mixologie: {
+          transform: (scrollY, viewportHeight, progress) => {
+            // Mixologie section: bottle moves to the right side
+            const baseTransform = `translate(-400%, -40%)`;
+            const rotation = 0 + Math.sin(progress * Math.PI * 2) * 10;
+            return `${baseTransform} rotate(${rotation}deg)`;
+          },
+          scale: (scrollY, viewportHeight) => {
+            return 0.5;
           },
           opacity: 1
         }
@@ -103,9 +116,12 @@ const useBottleScroll = () => {
         } else if (scrollY < viewportHeight * 3.5) {
           currentSection = 'vinzFeelings';
           progress = (scrollY - viewportHeight * 2.5) / viewportHeight;
-        } else {
+        } else if (scrollY < viewportHeight * 4.5) {
           currentSection = 'vinzShop';
           progress = (scrollY - viewportHeight * 3.5) / viewportHeight;
+        } else {
+          currentSection = 'mixologie';
+          progress = (scrollY - viewportHeight * 4.5) / viewportHeight;
         }
         
         // Get the animation for the current section

@@ -82,6 +82,7 @@
     padding: clamp(15px, 2vw, 25px);
     overflow-y: hidden;
     max-height: 100%;
+    
 }
 
 .vinz-feelings-text {
@@ -111,7 +112,7 @@
     color: #3965B5;
     font-weight: 700;
     font-family: 'Times New Roman', Times, serif;
-    font-size: clamp(1rem, 1vw + 0.3rem, 1.4rem);
+    font-size: clamp(0.8rem, 1vw + 0.2rem, 1.4rem);
 }
 
 /* Responsive adjustments */
@@ -153,19 +154,19 @@
 /* For 4K and ultra-wide displays */
 @media (min-width: 2560px) {
     .vinz-feelings-container {
-        max-height: min(1200px, 88vh); /* Slightly higher container */
+        max-height: min(1200px, 88vh); 
     }
     
     .vinz-feelings-text-column {
-        padding: 30px; /* Fixed padding for predictable spacing */
+        padding: 30px; 
     }
     
     .vinz-feelings-text {
-        max-width: 98%; /* Use almost all available space */
-        font-size: clamp(1.1rem, 1.2vw, 1.8rem); /* Slightly larger text */
+        max-width: 98%; 
+        font-size: clamp(1.1rem, 1.2vw, 1.8rem); 
         line-height: 1.8;
     }
-    .vinz-brand {
+    .vinz-feelings-text .vinz-brand {
         font-size: clamp(1.2rem, 1.5vw + 0.5rem, 2rem);
     }
 }
