@@ -10,6 +10,7 @@ import BackgroundWaves from './ComponentsMainPage/Background/backgroundWaves.js'
 import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
 import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
 import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
+import Mixologie from './ComponentsMainPage/mixologie/mixologie.js';
 import AboutBody from './ComponentsAboutPage/AboutBody/aboutbody';
 
 /* hooks */
@@ -80,6 +81,7 @@ return (
                 <VinzLocation id='vinzLocation' />
                 <VinzFeelings id='vinzFeelings'></VinzFeelings>
                 <VinzShop id='vinzShop'></VinzShop>
+                <Mixologie id='mixologie'/>
               </div>
             </div>
           </AnimationContext.Provider>

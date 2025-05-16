@@ -1,0 +1,16 @@
+.mixologie-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    background-color: transparent;
+}
+
+.mixologie-section-content {
+    max-width: min(2200px, 95vw);
+    max-height: min(1200px, 90vh);
+    padding: 0 clamp(10px, 2vw, 40px);
+    width: 100%;
+}
