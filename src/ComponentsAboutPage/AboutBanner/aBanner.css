@@ -1,21 +1,27 @@
 .about-header-banner {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 10%;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 2000;
+  z-index: 1000;
   display: flex;
   align-items: center;
-  transform: translateY(-100%);
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.about-header-banner.visible {
+  transform: translateY(0);
 }
 
 .about-banner-content {
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,7 +40,7 @@
 }
 
 .about-banner-logo {
-  height: 40px;
+  height: clamp(40px, 7vh, 150px);
   width: auto;
 }
 
@@ -45,11 +51,15 @@
 }
 
 .about-banner-brand {
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 1.5vw + 0.5rem, 2rem);
   font-weight: 700;
   color: #000;
   text-decoration: none;
   transition: color 0.4s cubic-bezier(0.2, 0.1, 0.1, 0.2), transform 0.2s cubic-bezier(0.2, 0.1, 0.1, 0.2);
+}
+
+.about-banner-brand.vinz-text {
+  font-family: "Times New Roman", serif;
 }
 
 .about-banner-brand:hover {
@@ -58,43 +68,64 @@
 }
 
 .about-ingredient-container {
-  width: 80px;
-  min-width: 80px;
-  height: 80px;
+  width: clamp(60px, 8vw, 100px);
+  min-width: clamp(60px, 8vw, 100px);
+  height: clamp(60px, 8vw, 100px);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: visible;
 }
 
 .about-banner-image {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 1;
+  animation: fadeIn 0.8s forwards;
+  transition: opacity 0.8s ease-out;
+  overflow: visible;
 }
 
-.about-banner-minze {
-  width: 120px;
+.about-banner-image.fade-out {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translate(10px);
+}
+
+.about-banner-ingwer {
+  width: clamp(80px, 8vw, 200px);
   height: auto;
-  margin-top: 40%;
+  margin-top: clamp(20%, 4vh, 30%);
+  transform: translateX(20%);
   transition: transform 0.5s cubic-bezier(0.2, 0.1, 0.1, 0.2);
 }
 
-.about-banner-minze:hover {
-  transform: rotate(10deg);
+.about-banner-ingwer:hover {
+  transform: rotate(5deg) translateX(20%);
 }
 
-.about-banner-zitrone {
-  width: 120px;
+.about-banner-honig {
+  width: clamp(80px, 8vw, 200px);
   height: auto;
-  margin-top: 80%;
-  transform: rotate(10deg);
+  margin-top: clamp(80%, 20vh, 120%);
+  transform: rotate(15deg) translateX(-10%);
   transition: transform 0.5s cubic-bezier(0.2, 0.1, 0.1, 0.2);
 }
 
-.about-banner-zitrone:hover {
-  transform: rotate(0deg);
+.about-banner-honig:hover {
+  transform: rotate(0deg) translateX(0%);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

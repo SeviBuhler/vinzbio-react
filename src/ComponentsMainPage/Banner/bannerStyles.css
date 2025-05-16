@@ -16,7 +16,7 @@
 }
   
 .header-banner.visible {
-  transform: translateY(0);
+ transform: translateY(0);  /* Slide in Animation */
   opacity: 0.99;
 }
 
