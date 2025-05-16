@@ -19,8 +19,7 @@
 }
 
 .animated-bottle {
-  height: 70vh;
-  max-height: 800px;
+  height: clamp(500px, 80vh, 900px);
   transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
 }
@@ -44,6 +43,7 @@
   color: rgb(61, 61, 61);
   z-index: 5;
   pointer-events: none;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 /* Style for original text */
@@ -51,14 +51,15 @@
   font-size: clamp(2rem, 5vw + 1.5rem, 10rem);
   margin: 0;
   position: absolute;
-  left: 40%;
-  top: 12%;
+  left: -10%;
+  top: 15%;
   text-align: right;
   font-weight: 700;
   align-self: center;
   color: rgb(61, 61, 61);
   z-index: 5;
   pointer-events: none;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .vinz, .original {

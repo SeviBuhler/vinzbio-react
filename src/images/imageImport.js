@@ -59,7 +59,6 @@ const Images = {
     vinzShop,
     vinzShop2,
     vinzGeländer,
-    vinzFlasche,
 
     /* Jan */
     JanamKochen,

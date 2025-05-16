@@ -46,10 +46,10 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  width: 100%;
+  width: clamp(300px, 80vw, 1800px);
   background-color: #EBF2FF;
   top: clamp(0px, 0.5vw, 20px);
-  padding: clamp(15px, 2%, 30px);
+  padding: clamp(10px, 2%, 80px);
   border-radius: clamp(6px, 0.5vw, 12px);
   margin-bottom: clamp(120px, 20vh, 200px);
   margin-top: clamp(50px, 5vh, 200px);
@@ -57,9 +57,13 @@
 }
 
 .original-section-title {
-  font-size: clamp(1.8rem, 2vw + 1rem, 4rem);
+  font-size: clamp(2.5rem, 2.5vw + 1rem, 4.5rem);
   margin-bottom: clamp(8px, 1vw, 15px);
   color: #000;
+}
+
+.vinz-text, .original-text {
+  font-family: "Times New Roman", Times, serif;
 }
 
 .section-description {
@@ -86,7 +90,7 @@
   font-weight: 600;
   text-decoration: none;
   font-size: clamp(0.9rem, 1vw + 0.2rem, 1.5rem);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, scale 0.5s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -102,7 +106,7 @@
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  top: calc(98% - 100px);
+  top: calc(98% - 110px);
   left: -20%;
   width: 100%;
   padding: 0 5%;

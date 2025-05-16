@@ -36,7 +36,7 @@ const VinzShop = ({ id }) => {
                                     <img src={Images.vinzShop} alt="vinz Original" />
                                 </div>
                                 <div className="vinz-product-details">
-                                    <h3>vinz. Original - 24 Flaschen</h3>
+                                    <h3><span className="vinz-brand">vinz.</span> Original - 24 Flaschen</h3>
                                     <span className="vinz-product-price">CHF 79</span>
                                 </div>
                             </a>
@@ -46,7 +46,7 @@ const VinzShop = ({ id }) => {
                                     <img src={Images.vinzShop2} alt="vinz Original" />
                                 </div>
                                 <div className="vinz-product-details">
-                                    <h3>vinz. Original - Partymenge (240 Flaschen)</h3>
+                                    <h3><span className="vinz-brand">vinz.</span> Original - Partymenge (240 Flaschen)</h3>
                                     <span className="vinz-product-price">CHF 660</span>
                                 </div>
                             </a>
@@ -58,7 +58,6 @@ const VinzShop = ({ id }) => {
                                 <button onClick={goToSumUpStore} className="vinz-shop-button">
                                     Zum Shop
                                 </button>
-                                <p className="vinz-shop-note">Du wirst zum vinz. Online-Shop weitergeleitet</p>
                             </div>
                         </div>
                     </div>

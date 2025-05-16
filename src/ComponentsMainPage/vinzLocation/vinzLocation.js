@@ -11,7 +11,6 @@ const VinzLocation = ({ id }) => {
           <div className="vinzlocation-map">
             <VinzMap />
           </div>
-          
           {/* Text content on the right side */}
           <div className="vinzlocation-text">
           <h2 className="vinzlocation-title">
