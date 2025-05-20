@@ -82,7 +82,7 @@ const Banner = () => {
       <div className="ingredient-container">
         {showIngredients ? (
           <div className='banner-image'>
-            <img src={Images.Minze} alt="Minze" className="banner-minze" />
+           <img src={Images.Minze} alt="Minze" className="banner-minze" />
           </div>
         ) : (
           <div className='banner-image fade-out'>
@@ -91,7 +91,7 @@ const Banner = () => {
         )}
       </div>
         <div className="banner-text">
-          <a href="überVinz.ch" className="banner-brand">über Vinz.</a>
+          <a href="überVinz.ch" className="banner-brand">über vinz.</a>
         </div>
         <div className="banner-logo">
           <a href='/' onClick={handleLogoClick} className='logo-link'>

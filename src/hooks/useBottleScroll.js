@@ -85,8 +85,8 @@ const useBottleScroll = () => {
         mixologie: {
           transform: (scrollY, viewportHeight, progress) => {
             // Mixologie section: bottle moves to the right side
-            const baseTransform = `translate(-400%, -40%)`;
-            const rotation = 0 + Math.sin(progress * Math.PI * 2) * 10;
+            const baseTransform = `translate(-380%, -80%)`;
+            const rotation = 45 + Math.sin(progress * Math.PI * 2) * 10;
             return `${baseTransform} rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {

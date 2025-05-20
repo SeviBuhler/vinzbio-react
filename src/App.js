@@ -8,7 +8,7 @@ import VinzOriginal from './ComponentsMainPage/Original/vinzOriginal.js';
 import Banner from './ComponentsMainPage/Banner/banner.js';
 import BackgroundWaves from './ComponentsMainPage/Background/backgroundWaves.js';
 import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
-import VinzFeelings from './ComponentsMainPage/VinzFeelings/vinzFeelings.js';
+import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
 import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
 import Mixologie from './ComponentsMainPage/mixologie/mixologie.js';
 import AboutBanner from './ComponentsAboutPage/AboutBanner/aBanner';
