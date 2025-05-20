@@ -11,17 +11,19 @@
 
 /* Bottle styles */
 .bottle-container {
-  position: fixed; /* This keeps the bottle on screen during scroll */
+  position: fixed;
   left: 50%;
   top: 50%;
-  z-index: 10;
   pointer-events: none;
+  z-index: 10;
+  will-change: transform, opacity;
 }
 
 .animated-bottle {
   height: clamp(500px, 80vh, 900px);
   transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+  will-change: transform;
 }
 
 .header-text-content, .header-text-content2 {
@@ -105,7 +107,7 @@
   width: 100%;
   height: 100vh;
   pointer-events: none;
-  z-index: 3;
+  z-index: 2;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
 }
 
@@ -151,3 +153,4 @@
     font-size: 10rem;
   }
 } */
+ 

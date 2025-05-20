@@ -13,6 +13,7 @@
     max-height: min(1200px, 90vh);
     padding: 0 clamp(10px, 2vw, 40px);
     width: 100%;
+    z-index: 8;
 }
 
 .vinz-shop-wrapper {

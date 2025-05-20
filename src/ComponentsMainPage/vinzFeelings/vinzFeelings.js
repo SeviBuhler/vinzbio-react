@@ -1,15 +1,16 @@
-import React from "react";
+import React, { memo } from 'react';  // Import memo from React
 import Images from "../../images/imageImport.js";
 import "./vinzFeelingsStyles.css";
 
-const VinzFeelings = ({ id }) => {
+// Wrap the component definition with memo()
+const VinzFeelings = memo(({ id }) => {
     return (
         <section id={id} className="vinz-feelings-section">
             <div className="vinz-feelings-section-content">
                 <div className="vinz-feelings-wrapper">
                     <div className="vinz-feelings-container">
                         <div className="vinz-feelings-image-column">
-                            <img src={Images.vinzInHand} alt="vinz in hand" className="vinzinhand-image" />
+                            <img src={Images.vinzInHand} alt="vinz in hand" className="vinzinhand-image" loading="lazy" />
                         </div>
 
                         <div className="vinz-feelings-text-column">
@@ -32,6 +33,6 @@ const VinzFeelings = ({ id }) => {
             </div>
         </section>
     );
-};
+});
 
 export default VinzFeelings;

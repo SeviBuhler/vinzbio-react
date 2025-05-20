@@ -38,7 +38,7 @@ function App() {
       const viewportHeight = window.innerHeight;
       
       // Set initial states based on where the page loaded
-      setShowWaves(scrollY > viewportHeight * 0.8);
+      setShowWaves(scrollY > viewportHeight * 0.3);
       setAllowSectionAnimations(scrollY > viewportHeight * 0.5);
       setInitialLoadComplete(true);
     }
@@ -52,7 +52,7 @@ function App() {
       const scrollY = snapContainer.scrollTop;
       const viewportHeight = window.innerHeight;
 
-      setShowWaves(scrollY > viewportHeight * 0.8);
+      setShowWaves(scrollY > viewportHeight * 0.3);
       setAllowSectionAnimations(scrollY > viewportHeight * 0.5);
     };
 

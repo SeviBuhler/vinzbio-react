@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useRef, useEffect, useState, useMemo, memo } from 'react';
 import './headerStyles.css';
 import Images from '../../images/imageImport.js';
 
-const Header = () => {
+const Header = memo(() => {
   const bottleRef = useRef(null);
   const blauerBogenRef = useRef(null);
   const orangerPunktRef = useRef(null);
@@ -402,6 +402,7 @@ const Header = () => {
           src={Images.vinzFlasche}
           alt='Bottle of vinzOriginal'
           className='animated-bottle'
+          loading="lazy"
         />
       </div>
 
@@ -411,13 +412,14 @@ const Header = () => {
           src={Images.Apfelessig}
           alt="Ingredients Apfelessig"
           className="apfelessig"
+          loading="lazy"
 
         />
         <img
           src={Images.Honig}
           alt='Ingredients Honig'
           className='honig'
-
+          loading="lazy"
         />
 
         {/* Left side ingredients */}
@@ -425,19 +427,19 @@ const Header = () => {
           src={Images.Ingwer}
           alt='Ingredients Ingwer'
           className='ingwer'
-
+          loading="lazy"
         />
         <img
           src={Images.Zitrone}
           alt='Ingredients Zitrone'
           className='zitrone'
-
+          loading="lazy"
         />
         <img
           src={Images.Minze}
           alt='Ingredients Minze'
           className='minze'
-
+          loading="lazy"
         />
       </div>
 
@@ -447,6 +449,7 @@ const Header = () => {
           src={Images.BlauerBogen}
           alt='Blauer Bogen'
           className='blauer-bogen'
+          loading="lazy"
         />
       </div>
 
@@ -456,6 +459,7 @@ const Header = () => {
           src={Images.OrangerPunkt} 
           alt='Oranger Punkt'
           className='oranger-punkt'
+          loading="lazy"
         />
       </div>
 
@@ -468,6 +472,6 @@ const Header = () => {
 
     </header>
   );
-};
+});
 
 export default Header;

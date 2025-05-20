@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import "./vinzShopStyles.css";
 import Images from "../../images/imageImport.js";
 
-const VinzShop = ({ id }) => {
+const VinzShop = memo(({ id }) => {
     const goToSumUpStore = () => {
         window.open("https://vinz.sumupstore.com/", "_blank");
     };
@@ -18,6 +18,7 @@ const VinzShop = ({ id }) => {
                                 src={Images.vinzGeländer || Images.vinzShop} 
                                 alt="vinz Flaschen" 
                                 className="vinz-shop-image"
+                                loading="lazy"
                             />
                         </div>
                         
@@ -33,7 +34,11 @@ const VinzShop = ({ id }) => {
                         <div className="vinz-product-display">
                             <a className="vinz-product-card" href="https://vinz.sumupstore.com/produkt/vinz-original-24-flaschen-3-25-flasche-1" target="_blank" rel="noopener noreferrer">
                                 <div className="vinz-product-image">
-                                    <img src={Images.vinzShop} alt="vinz Original" />
+                                    <img 
+                                        src={Images.vinzShop}
+                                        alt="vinz Original"
+                                        loading="lazy"
+                                    />
                                 </div>
                                 <div className="vinz-product-details">
                                     <h3><span className="vinz-brand">vinz.</span> Original - 24 Flaschen</h3>
@@ -43,7 +48,11 @@ const VinzShop = ({ id }) => {
 
                             <a className="vinz-product-card" href="https://vinz.sumupstore.com/produkt/vinz-original-partymenge-240-flaschen" target="_blank" rel="noopener noreferrer">
                                 <div className="vinz-product-image">
-                                    <img src={Images.vinzShop2} alt="vinz Original" />
+                                    <img 
+                                        src={Images.vinzShop2}
+                                        alt="vinz Original" 
+                                        loading="lazy"
+                                    />
                                 </div>
                                 <div className="vinz-product-details">
                                     <h3><span className="vinz-brand">vinz.</span> Original - Partymenge (240 Flaschen)</h3>
@@ -65,6 +74,6 @@ const VinzShop = ({ id }) => {
             </div>
         </section>
     );
-};
+});
 
 export default VinzShop;

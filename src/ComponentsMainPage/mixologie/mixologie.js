@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './mixologieStyles.css';
 import Images from '../../images/imageImport.js';
 
-const Mixologie = ({ id }) => {
+const Mixologie = memo(({ id }) => {
     return (
         <section id={id} className='mixologie-section'>
             <div className='mixologie-section-content'>
@@ -12,7 +12,7 @@ const Mixologie = ({ id }) => {
                     </div>
                     <div className='mixologie-cards-container'>
                         <div className='mixologie-drink-card'>
-                            <img src={Images.JanamKochen} alt='vinz.-da-vinz' />
+                            <img src={Images.JanamKochen} alt='vinz.-da-vinz' loading="lazy" />
                             <div className='mixologie-drink-card-content'>
                                 <div className='mixologie-drink-card-title'><span className="vinz-brand">vinz.</span> <span className='daVinz'>da - vinz</span></div>
                                 <div className='mixologie-drink-card-description'>
@@ -66,6 +66,6 @@ const Mixologie = ({ id }) => {
             </div>
         </section>
     );
-}
+});
 
 export default Mixologie;

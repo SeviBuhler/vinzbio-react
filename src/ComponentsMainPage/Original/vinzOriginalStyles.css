@@ -39,7 +39,30 @@
   margin-bottom: 5%;
 }
 
-/* Update the vinz-original-container */
+/* Add this first */
+.background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5; /* Behind waves */
+}
+
+.background-blue-card {
+  position: absolute;
+  width: clamp(300px, 80vw, 1800px);
+  height: auto;
+  background-color: #EBF2FF;
+  top: calc(clamp(50px, 5vh, 200px) + clamp(0px, 0.5vw, 20px));
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: clamp(6px, 0.5vw, 12px);
+  bottom: clamp(120px, 20vh, 200px);
+  z-index: -5;
+}
+
+/* Then modify your content container */
 .vinz-original-container {
   text-align: left;
   display: flex;
@@ -47,13 +70,14 @@
   align-items: flex-start;
   position: relative;
   width: clamp(300px, 80vw, 1800px);
-  background-color: #EBF2FF;
+  background-color: transparent; /* Remove background */
   top: clamp(0px, 0.5vw, 20px);
   padding: clamp(10px, 2%, 80px);
   border-radius: clamp(6px, 0.5vw, 12px);
   margin-bottom: clamp(120px, 20vh, 200px);
   margin-top: clamp(50px, 5vh, 200px);
   max-height: 60%;
+  z-index: 10; /* In front of waves */
 }
 
 .original-section-title {
@@ -92,6 +116,7 @@
   font-size: clamp(0.9rem, 1vw + 0.2rem, 1.5rem);
   transition: transform 0.3s ease, box-shadow 0.3s ease, scale 0.5s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 20;
 }
 
 .shop-button:hover {

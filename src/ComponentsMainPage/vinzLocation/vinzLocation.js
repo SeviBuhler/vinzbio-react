@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './vinzLocationStyles.css';
 import VinzMap from './VinzMap';
 
-const VinzLocation = ({ id }) => {
+const VinzLocation = memo(({ id }) => {
   return (
     <section id={id} className="section">
       <div className="vinzlocation-content">
@@ -21,6 +21,6 @@ const VinzLocation = ({ id }) => {
       </div>
     </section>
   );
-};
+});
 
 export default VinzLocation;
