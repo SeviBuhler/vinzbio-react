@@ -31,6 +31,7 @@ const useBottleScroll = () => {
       }
       
       const snapContainer = document.querySelector('.snap-container');
+
       
       if (!snapContainer) {
         console.error('Snap container not found!');
@@ -44,7 +45,7 @@ const useBottleScroll = () => {
             // Header section: bottle stays centered with slight movement
             const rotation = scrollY * 0.05;
             const horizontalShift = Math.sin(scrollY * 0.01) * 20;
-            return `translate(-50%, -50%) translateX(${horizontalShift}px) rotate(${rotation}deg)`;
+            return `translateX(${horizontalShift}px) rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
             return 1;
@@ -56,7 +57,7 @@ const useBottleScroll = () => {
         vinzOriginal: {
           transform: (scrollY, viewportHeight, progress) => {
             // VinzOriginal section: bottle moves to the right side and emerges more from behind the waves
-            const baseTransform = `translate(190%, -60%)`;
+            const baseTransform = `translate(100%, -0%)`;
             const rotation = 5 + Math.sin(progress * Math.PI) * 10;
             const zTranslate = 20 + progress * 30; 
             return `${baseTransform} rotate(${rotation}deg) translateZ(${zTranslate}px)`;
@@ -65,13 +66,13 @@ const useBottleScroll = () => {
             return 0.7; 
           },
           opacity: 1,
-          zIndex: 0
+          zIndex: 6
         },
         
         vinzLocation: {
           transform: (scrollY, viewportHeight, progress) => {
             // Location section: bottle moves to the left with different angle
-            const baseTransform = `translate(190%, -60%)`;
+            const baseTransform = `translate(190%, -0%)`;
             const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10;
             const zTranslate = 20 + progress * 30; 
             return `${baseTransform} rotate(${rotation}deg) translateZ(${zTranslate}px)`;
@@ -123,6 +124,75 @@ const useBottleScroll = () => {
           opacity: 1
         }
       };
+
+      const checkInitialSection = () => {
+        const scrollY = snapContainer.scrollTop;
+        const viewportHeight = window.innerHeight;
+        
+        // Check if we're in header section (first section)
+        const isInHeaderSection = scrollY < viewportHeight * 0.5;
+        
+        if (isInHeaderSection) {
+          // We're in header section, do the slide-in animation
+          const initialHeaderTransform = sectionAnimations.header.transform(0, window.innerHeight, 0);
+          const initialHeaderScale = sectionAnimations.header.scale(0, window.innerHeight);
+
+
+          bottleContainer.style.cssText = `
+            z-index: ${sectionAnimations.header.zIndex || 0};
+          `;
+          
+          // Force a reflow to ensure the initial position is applied before animating
+          void bottle.offsetHeight;
+          
+          // Then animate it in after a short delay
+          setTimeout(() => {
+            bottle.style.cssText = `
+              transform: ${initialHeaderTransform} scale(${initialHeaderScale});
+              opacity: ${sectionAnimations.header.opacity};
+              transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+            `;
+          }, 50);
+        } else {
+          // We're not in header section, immediately apply the correct section's animation
+          const currentSection = getCurrentSection(scrollY, viewportHeight);
+          const animation = sectionAnimations[currentSection.name];
+          const progress = currentSection.progress;
+          
+          const transform = animation.transform(scrollY, viewportHeight, progress);
+          const scale = animation.scale(scrollY, viewportHeight);
+          
+          bottle.style.cssText = `
+            transform: ${transform} scale(${scale});
+            opacity: ${animation.opacity};
+          `;
+          
+          bottleContainer.style.cssText = `
+            z-index: ${animation.zIndex || 0};
+            transform: translate(-50%, -50%);
+          `;
+        }
+      };
+
+      // Helper function to determine current section
+      const getCurrentSection = (scrollY, viewportHeight) => {
+        if (scrollY < viewportHeight * 0.5) {
+          return { name: 'header', progress: scrollY / (viewportHeight * 0.5) };
+        } else if (scrollY < viewportHeight * 1.5) {
+          return { name: 'vinzOriginal', progress: (scrollY - viewportHeight * 0.5) / viewportHeight };
+        } else if (scrollY < viewportHeight * 2.5) {
+          return { name: 'vinzLocation', progress: (scrollY - viewportHeight * 1.5) / viewportHeight };
+        } else if (scrollY < viewportHeight * 3.5) {
+          return { name: 'vinzFeelings', progress: (scrollY - viewportHeight * 2.5) / viewportHeight };
+        } else if (scrollY < viewportHeight * 4.5) {
+          return { name: 'vinzShop', progress: (scrollY - viewportHeight * 3.5) / viewportHeight };
+        } else {
+          return { name: 'mixologie', progress: (scrollY - viewportHeight * 4.5) / viewportHeight };
+        }
+      };
+
+      // Replace your current initial animation code with this function call
+      checkInitialSection();
       
       let lastScrollY = 0; // Initialize lastScrollY
       
@@ -209,12 +279,13 @@ const useBottleScroll = () => {
             bottleContainer.style.zIndex = animation.zIndex || 0;
           }
           
-          // Apply the transform and scale
-          bottle.style.cssText = `
-            transform: ${transform} scale(${scale});
-            opacity: ${opacity};
-          `;
-          bottleContainer.setAttribute('style', `z-index: ${animation.zIndex || 0} !important`);
+          // Apply the transform and scale to the bottle
+          bottle.style.transform = `${transform} scale(${scale})`;
+          bottle.style.opacity = opacity;
+          bottle.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease";
+
+          // Only update z-index on the container (not the transform which stays stable)
+          bottleContainer.style.zIndex = animation.zIndex || 0;
 
         });
       };
@@ -223,7 +294,7 @@ const useBottleScroll = () => {
       handleScroll();
       
       // Add event listener to snapContainer
-      const debouncedHandleScroll = debounce(handleScroll, 10);
+      const debouncedHandleScroll = debounce(handleScroll, 5);
       snapContainer.addEventListener('scroll', debouncedHandleScroll, { passive: true });
       
       // Cleanup

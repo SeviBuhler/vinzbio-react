@@ -30,18 +30,3 @@ body, html {
   text-rendering: optimizeLegibility;
   letter-spacing: 0.01em;
 }
-
-.section, .vinz-feelings-section, .vinz-shop-section, .original-section {
-  height: 100vh !important;
-  min-height: 100vh !important;
-  overflow: hidden;
-}
-
-.section-loading, .page-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh !important;
-  font-size: 1.5rem;
-  color: #3965B5;
-}

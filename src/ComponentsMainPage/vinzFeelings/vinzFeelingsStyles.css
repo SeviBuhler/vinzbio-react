@@ -112,18 +112,55 @@
 .vinz-brand {
     color: #000000;
     font-family: 'Times New Roman', Times, serif;
-    font-size: clamp(0.8rem, 1vw + 0.3rem, 1.5rem);
+    font-size: inherit;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-    .vinz-feelings-container {
+@media (max-width: 568px) {
+    .vinz-feelings-section {
+        align-items: flex-start;
+    }
+
+    .vinz-feelings-section-content {
+        max-height: none;
+        padding: 0 clamp(10px, 2vw, 20px);
+        margin-top: 10px;
+        max-width: 100%;
+    }
+
+    .vinz-feelings-wrapper {
         flex-direction: column;
+        gap: 0;
+        height: auto;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .vinz-feelings-container {
+        margin-top: 8%;
+        flex-direction: column;
+    }
+
+    .vinzinhand-image {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .vinz-feelings-image-column,
     .vinz-feelings-text-column {
         flex: 0 0 100%;
+    }
+
+    .vinz-feelings-title-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     
     .section-title {
@@ -131,7 +168,8 @@
     }
     
     .vinz-feelings-text {
-        font-size: 0.9rem;
+        font-size: clamp(0.8rem, 2.1vw + 0.4rem, 1.4rem);
+        padding: clamp(10px, 2vw, 20px);
     }
 }
 

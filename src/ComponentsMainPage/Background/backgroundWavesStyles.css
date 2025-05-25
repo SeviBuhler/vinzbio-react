@@ -54,3 +54,17 @@
 .show-waves .background-waves {
   opacity: 1;
 }
+
+@media (max-width: 567px) {
+  .bottom-wave {
+    right: -100%;
+  }
+
+  .top-wave {
+    right: -100%;
+  }
+
+  .background-waves {
+    height: 98vh;
+  }
+}
