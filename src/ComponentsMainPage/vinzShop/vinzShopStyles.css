@@ -332,8 +332,6 @@
 @media (max-width: 570px) {
     .vinz-shop-section {
         align-items: flex-start;
-        padding-top: 10px;
-        height: auto; 
         width: 100%;
         overflow-x: hidden;
     }

@@ -99,8 +99,7 @@ const useBottleScroll = () => {
 
         vinzShop: {
           transform: (scrollY, viewportHeight, progress) => {
-            // Shop section: bottle moves to the right side
-            const baseTransform = `translate(230%, -55%)`;
+            const baseTransform = `translate(250%, -55%)`;
             const rotation = -5 + Math.sin(progress * Math.PI * 2) * 10;
             return `${baseTransform} rotate(${rotation}deg)`;
           },
@@ -113,15 +112,15 @@ const useBottleScroll = () => {
 
         mixologie: {
           transform: (scrollY, viewportHeight, progress) => {
-            // Mixologie section: bottle moves to the right side
-            const baseTransform = `translate(-380%, -80%)`;
+            const baseTransform = `translate(-380%, -40%)`;
             const rotation = 45 + Math.sin(progress * Math.PI * 2) * 10;
             return `${baseTransform} rotate(${rotation}deg)`;
           },
           scale: (scrollY, viewportHeight) => {
             return 0.5;
           },
-          opacity: 1
+          opacity: 1,
+          zIndex: 11
         }
       };
 

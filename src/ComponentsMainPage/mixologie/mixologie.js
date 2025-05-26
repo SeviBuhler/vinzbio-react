@@ -1,8 +1,38 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import './mixologieStyles.css';
 import Images from '../../images/imageImport.js';
 
 const Mixologie = memo(({ id }) => {
+    const [expandedCard, setExpandedCard] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    // Handle window resize
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+            if (window.innerWidth >= 768) {
+                setExpandedCard(null);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Auto expand the first card on mobile during inital load
+    useEffect(() => {
+        if (isMobile) {
+            setExpandedCard('davinz');
+        }
+    }, [isMobile])
+
+    // toggle card expansion
+    const toggleCard = (cardId) => {
+        if (isMobile) {
+            setExpandedCard(expandedCard === cardId ? null : cardId);
+        }
+    };
+
     return (
         <section id={id} className='mixologie-section'>
             <div className='mixologie-section-content'>
@@ -11,10 +41,20 @@ const Mixologie = memo(({ id }) => {
                         <h2>Mixologie</h2>
                     </div>
                     <div className='mixologie-cards-container'>
-                        <div className='mixologie-drink-card'>
+                        {/* First Card: da vinz */}
+                        <div
+                            className={`mixologie-drink-card ${expandedCard === 'davinz' ? 'expanded-card' : ''}`}
+                            onClick={() => toggleCard('davinz')}
+                        >   
+                            <div className='mixologie-drink-card-title'>
+                                <p></p>
+                                <div>
+                                    <span className='daVinz'>da - </span> <span className="vinz-brand">vinz.</span>
+                                </div>
+                                {isMobile && <span className='expand-icon'>{expandedCard === 'davinz' ? '−' : '+'}</span>}   
+                            </div>
                             <img src={Images.JanamKochen} alt='vinz.-da-vinz' loading="lazy" />
                             <div className='mixologie-drink-card-content'>
-                                <div className='mixologie-drink-card-title'><span className="vinz-brand">vinz.</span> <span className='daVinz'>da - vinz</span></div>
                                 <div className='mixologie-drink-card-description'>
                                     <p>Leicht, frisch und schmeckt nach Sommer</p>
                                 </div>
@@ -36,11 +76,21 @@ const Mixologie = memo(({ id }) => {
                                 </div>
                             </div>
                         </div>
-                        
-                        <div className='mixologie-drink-card'>
+                        {/* Second Card: Spritz */}
+                        <div
+                            className={`mixologie-drink-card ${expandedCard === 'spritz' ? 'expanded-card' : ''}`}
+                            onClick={() => toggleCard('spritz')}
+                        >   
+                            <div className='mixologie-drink-card-title'>
+                                <p></p>
+                                <div>
+                                    <span className="vinz-brand">vinz.</span> <span className='spritz'>Spritz</span>
+                                </div>
+                                {isMobile && <span className='expand-icon'>{expandedCard === 'spritz' ? '−' : '+'}</span>}
+                            </div>
                             <img src={Images.JanamKochen} alt='vinz.-spritz' />
                             <div className='mixologie-drink-card-content'>
-                                <div className='mixologie-drink-card-title'><span className="vinz-brand">vinz.</span> <span className='spritz'>Spritz</span></div>
+                                
                                 <div className='mixologie-drink-card-description'>
                                     <p>Erfrischend mit einer floralen Note</p>
                                 </div>
