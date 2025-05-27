@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import './vinzOriginalStyles.css';
 import Images from '../../images/imageImport.js';
 import { AnimationContext } from '../../App.js';
 
-const VinzOriginal = ({ id }) => {
+const VinzOriginal = memo(({ id }) => {
   const [animationStarted, setAnimationStarted] = useState(false);
   const { allowSectionAnimations } = useContext(AnimationContext);
 
@@ -73,6 +73,9 @@ const VinzOriginal = ({ id }) => {
       <div className="original-section-content">
         {/* Add this wrapper div */}
         <div className="vinz-original-wrapper">
+            <div className="background-container">
+              <div className="background-blue-card"></div>
+            </div>
           <div className='vinz-original-container'>
             <h2 className="original-section-title">
               <span className="vinz-text">Vinz. </span><span className="original-text">- Original</span>
@@ -117,6 +120,6 @@ const VinzOriginal = ({ id }) => {
       </div>
     </section>
   );
-};
+});
 
 export default VinzOriginal;

@@ -4,7 +4,7 @@
 }
 
 .original-section {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -12,14 +12,14 @@
   scroll-snap-align: start;
   background-color: transparent;
   overflow: hidden;
-  padding: 80px 0;
+  padding: min(5em, 8%);
   box-sizing: border-box;
 }
 
 .original-section-content {
   max-width: min(1800px, 85vw);
   width: 100%;
-  padding: 0 clamp(15px, 3vw, 40px);
+  padding: min(5em, 8%);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -35,8 +35,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
+  margin-top: min(5em, 8%);
   margin-bottom: 5%;
+  z-index: 5;
 }
 
 /* Update the vinz-original-container */
@@ -48,7 +49,7 @@
   position: relative;
   width: clamp(300px, 80vw, 1800px);
   background-color: #EBF2FF;
-  top: clamp(0px, 0.5vw, 20px);
+  top: clamp(0vh, 0.5vw, 20vh);
   padding: clamp(10px, 2%, 80px);
   border-radius: clamp(6px, 0.5vw, 12px);
   margin-bottom: clamp(120px, 20vh, 200px);
@@ -207,17 +208,59 @@
 }
 
 @media (max-width: 576px) {
+  .original-section {
+    padding: min(4em, 7%);
+    align-items: flex-start;
+  }
+
+  .original-section-content {
+    padding: 10px;
+    max-width: 100%;
+  }
+
   .vinz-original-wrapper {
     margin-top: 5%;
   }
   
   .vinz-original-container {
-    margin-bottom: 250px;
+    width: 90%;
+    margin: clamp(0px, 2vh, 80px) auto;
+    padding: min(5em, 5%);
+    max-height: none; 
+    top: 0;
+  }
+
+  .original-section-title {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .section-description {
+    max-width: 100%;
+    font-size: 1rem;
+    text-align: left; 
+    margin-bottom: 50px; 
+  }
+  
+  .shop-button {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin: min(20px, 4vh) auto;
+    display: block;
+    width: 80%;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 1rem;
   }
   
   .info-container {
     position: absolute;
     top: calc(100% - 50px);
+    margin-top: min(9em, 20%);
+
   }
   
   .info-element {
@@ -225,8 +268,78 @@
     min-width: 120px;
   }
   
-  /* Make description take up more width on small screens */
+  /* Update the animation for mobile */
+  @keyframes comeFromBottleOnMobile {
+    0% {
+      opacity: 0;
+      transform: translate(0, -30px) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  /* Apply mobile-specific animation */
+  .info-container.animation-started .info-element {
+    animation: comeFromBottleOnMobile 0.8s forwards;
+  }
+
+  /* Adjust image sizes for better mobile proportions */
+  .info-image-container {
+    width: clamp(50px, 6vw, 60px);
+    height: clamp(50px, 6vw, 60px);
+    margin-bottom: 8px;
+  }
+
+  .info-text h3 {
+    font-size: 0.6rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .vinz-original-container {
+    padding: 10px 15px;
+    margin-bottom: 140px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: auto;
+  }
+  
+  .original-section-title {
+    font-size: 1.6rem;
+  }
+  
   .section-description {
-    max-width: 90%;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 30px;
+  }
+  
+  .info-container {
+    top: calc(90% - 40px);
+    margin-top: 0;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
+    grid-template-columns: repeat(4, minmax(30px, 60px));
+  }
+  
+  .info-image-container {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .info-text h3 {
+    display: none;
+  }
+
+  .shop-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    width: 90%;
+    margin: 10px auto; /* Center button */
   }
 }

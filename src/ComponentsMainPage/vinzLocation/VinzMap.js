@@ -150,22 +150,29 @@ const VinzMap = () => {
     try {
       const locations = getLocations();
       
+      const isMobile = window.innerWidth <= 768;
+      
       const mapOptions = {
         center: { lat: 47.421432, lng: 9.3726123 },
-        zoom: 8,
-        mapTypeControl: true,
+        zoom: isMobile ? 7.5 : 8, // Slightly zoomed out on mobile
+        mapTypeControl: !isMobile, // Hide map type control on mobile to save space
         mapTypeId: 'terrain',
         streetViewControl: false,
         zoomControl: true,
-        fullscreenControl: true,
-        gestureHandling: 'cooperative',
+        fullscreenControl: !isMobile, // Hide fullscreen button on mobile
+        gestureHandling: isMobile ? 'greedy' : 'cooperative', // Make it more touch-friendly
         draggable: true,
         scrollwheel: false,
         minZoom: 6,
         maxZoom: 18,
+        zoomControlOptions: {
+          position: window.google?.maps.ControlPosition.RIGHT_BOTTOM // Better position for mobile
+        },
         mapTypeControlOptions: window.google ? {
           mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain'],
-          style: window.google.maps.MapTypeControlStyle.DROPDOWN_MENU
+          style: isMobile ? 
+            window.google.maps.MapTypeControlStyle.DROPDOWN_MENU : 
+            window.google.maps.MapTypeControlStyle.DROPDOWN_MENU
         } : undefined,
         // Custom map styling
         styles: [
@@ -294,31 +301,38 @@ const VinzMap = () => {
           animation: window.google.maps.Animation.DROP
         });
 
-        // Info window for marker
-        const infoWindow = new window.google.maps.InfoWindow({
-          content: `
-            <div style="max-width:320px; font-family: Arial, sans-serif; border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.15); border:1px solid rgba(0,0,0,0.1);">
-              <div style="background: #E7AA4E; padding:12px; border-radius:8px 8px 0 0; display:flex; align-items:center; gap:10px;">
-                <h3 style="margin:0; color:white; font-size:16px; font-weight:600;">${location.name}</h3>
+        // For mobile, make the info windows open at a better position
+        const createInfoWindow = (location) => {
+          const content = `
+            <div style="max-width:${isMobile ? '280px' : '320px'}; font-family: Arial, sans-serif; border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.15); border:1px solid rgba(0,0,0,0.1);">
+              <div style="background: #E7AA4E; padding:${isMobile ? '10px' : '12px'}; border-radius:8px 8px 0 0; display:flex; align-items:center; gap:10px;">
+                <h3 style="margin:0; color:white; font-size:${isMobile ? '14px' : '16px'}; font-weight:600;">${location.name}</h3>
               </div>
-              <div style="background:white; padding:15px; border-radius:0 0 8px 8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-                <p style="margin:0; font-size:14px; color:#555;">${location.address}</p>
-                ${location.description ? `<p style="margin:8px 0 0; font-size:13px; color:#777;">${location.description}</p>` : ''}
+              <div style="background:white; padding:${isMobile ? '12px' : '15px'}; border-radius:0 0 8px 8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+                <p style="margin:0; font-size:${isMobile ? '13px' : '14px'}; color:#555;">${location.address}</p>
+                ${location.description ? `<p style="margin:8px 0 0; font-size:${isMobile ? '12px' : '13px'}; color:#777;">${location.description}</p>` : ''}
                 <div style="margin-top:15px; display:flex; gap:10px;">
                   ${location.website ? `
-                    <a href="${location.website}" target="_blank" rel="noreferrer" style="flex:1; text-align:center; background-color:#E7AA4E; color:white; text-decoration:none; padding:8px; border-radius:6px; font-size:13px;">Website</a>
+                    <a href="${location.website}" target="_blank" rel="noreferrer" style="flex:1; text-align:center; background-color:#E7AA4E; color:white; text-decoration:none; padding:${isMobile ? '10px 6px' : '8px'}; border-radius:6px; font-size:${isMobile ? '12px' : '13px'};">Website</a>
                   ` : ''}
                   ${location.googleMaps ? `
-                    <a href="${location.googleMaps}" target="_blank" rel="noreferrer" style="flex:1; text-align:center; background-color:#4285F4; color:white; text-decoration:none; padding:8px; border-radius:6px; font-size:13px;">Route</a>
+                    <a href="${location.googleMaps}" target="_blank" rel="noreferrer" style="flex:1; text-align:center; background-color:#4285F4; color:white; text-decoration:none; padding:${isMobile ? '10px 6px' : '8px'}; border-radius:6px; font-size:${isMobile ? '12px' : '13px'};">Route</a>
                   ` : ''}
                 </div>
               </div>
             </div>
-          `,
-          maxWidth: 320,
-          pixelOffset: new window.google.maps.Size(0, -5),
-          disableAutoPan: false,
-        });
+          `;
+
+          return new window.google.maps.InfoWindow({
+            content,
+            maxWidth: isMobile ? 280 : 320,
+            pixelOffset: new window.google.maps.Size(0, -5),
+            disableAutoPan: false,
+          });
+        };
+
+        // Create info window using our function
+        const infoWindow = createInfoWindow(location);
 
         // Add click event to marker
         marker.addListener('click', () => {
@@ -327,17 +341,25 @@ const VinzMap = () => {
             activeInfoWindowRef.current.close();
           }
           
-          // Center map on the clicked marker (with slight offset for infoWindow)
+          // On mobile, use a different offset and zoom level
+          const offset = isMobile ? 0.005 : 0.01;
+          
+          // Center map on the clicked marker with appropriate offset
           map.panTo({
-            lat: location.lat - 0.01, // Small offset so InfoWindow doesn't cover marker
+            lat: location.lat - offset,
             lng: location.lng
           });
+          
+          // On mobile, make sure we're zoomed in enough to see details
+          if (isMobile && map.getZoom() < 12) {
+            map.setZoom(14);
+          }
           
           // Open the info window with a slight delay for better UX
           setTimeout(() => {
             infoWindow.open(map, marker);
-            activeInfoWindowRef.current = infoWindow; // Store reference to currently open window
-          }, 150);
+            activeInfoWindowRef.current = infoWindow;
+          }, isMobile ? 50 : 150);
         });
 
         // Add close listener to the info window to clear the reference
@@ -346,8 +368,9 @@ const VinzMap = () => {
         })
       });
 
-      // Fit map to markers
-      map.fitBounds(bounds);
+      // Fit map to markers with padding for mobile
+      const padding = isMobile ? { top: 10, right: 10, bottom: 10, left: 10 } : 0;
+      map.fitBounds(bounds, padding);
       
     } catch (error) {
       console.error('Error initializing map:', error);

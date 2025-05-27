@@ -60,42 +60,101 @@
   color: #000000;
   font-family: "Times New Roman", Times, serif;
   font-size: clamp(2.5rem, 2.5vw + 1rem, 4.5rem);
+  font-weight: 100;
 }
 
-.location-shop-button {
-  background-color: #E9760C;
-  color: white;
-  padding: clamp(8px, 1vw, 15px) clamp(15px, 2vw, 25px);
-  border-radius: clamp(20px, 2vw, 30px);
-  font-weight: 600;
-  text-decoration: none;
-  font-size: clamp(0.9rem, 1vw + 0.2rem, 1.2rem);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.location-shop-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 567px) {
+  .section {
+    height: 100vh;
+    padding: 0;
+    overflow: hidden;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .vinzlocation-content {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
   .vinzlocation-wrapper {
     flex-direction: column;
-    gap: 30px;
+    gap: 0;
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  .vinzlocation-map {
+    flex: 0 0 70vh;
+    max-width: 100%;
+    width: 100%;
+    height: 70vh;
+    min-width: 100%;
+    margin: 0;
+    position: relative;
+    order: 1; 
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .vinzlocation-map .leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1;
+  }
+
+  .vinzlocation-text {
+    flex: 0 0 20vh;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+    padding: min(5em, 8%);
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .vinzlocation-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin: 15px 0;
+    text-align: center;
+    transform: none;
+  }
+
+  .vinzlocation-title .blue-text {
+    display: block;
+    margin-bottom: 5px;
+    font-size: clamp(1.5rem, 8vw, 8rem);
   }
   
   .vinzlocation-map,
   .vinzlocation-text {
-    max-width: 100%;
+    z-index: 10;
+  }
+
+  .vinzlocation-title .black-text {
+    font-size: clamp(2.2rem, 10vw, 8rem);
   }
   
-  .vinzlocation-title {
-    font-size: 2rem;
-  }
-  
-  .vinzlocation-description {
-    font-size: 1rem;
+}
+
+@media (max-width: 375px) {
+  .vinzlocation-map {
+    flex: 0 0 65vh;
   }
 }

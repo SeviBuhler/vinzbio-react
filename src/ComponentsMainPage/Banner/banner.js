@@ -82,11 +82,11 @@ const Banner = () => {
       <div className="ingredient-container">
         {showIngredients ? (
           <div className='banner-image'>
-           <img src={Images.Minze} alt="Minze" className="banner-minze" />
+           <img src={Images.Minze} alt="Minze" className="banner-minze" loading="lazy" />
           </div>
         ) : (
           <div className='banner-image fade-out'>
-            <img src={Images.Minze} alt="Minze" className="banner-minze" />
+            <img src={Images.Minze} alt="Minze" className="banner-minze" loading="lazy" />
           </div>
         )}
       </div>
@@ -95,7 +95,7 @@ const Banner = () => {
         </div>
         <div className="banner-logo">
           <a href='/' onClick={handleLogoClick} className='logo-link'>
-            <img src={Images.Logo} alt="Vinz Logo" className="banner-logo" />
+            <img src={Images.Logo} alt="Vinz Logo" className="banner-logo" loading="lazy" />
           </a>
         </div>
         <div className="banner-text">
@@ -104,11 +104,11 @@ const Banner = () => {
         <div className="ingredient-container">
           {showIngredients ? (
             <div className='banner-image'>
-              <img src={Images.Zitrone} alt="Zitrone" className="banner-zitrone" />
+              <img src={Images.Zitrone} alt="Zitrone" className="banner-zitrone" loading="lazy" />
             </div>
           ) : (
             <div className='banner-image fade-out'>
-              <img src={Images.Zitrone} alt="Zitrone" className="banner-zitrone" />
+              <img src={Images.Zitrone} alt="Zitrone" className="banner-zitrone" loading="lazy" />
             </div>
           )}
         </div>

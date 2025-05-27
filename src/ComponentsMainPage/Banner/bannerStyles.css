@@ -16,7 +16,7 @@
 }
   
 .header-banner.visible {
- transform: translateY(0);  /* Slide in Animation */
+ transform: translateY(0);
   opacity: 0.99;
 }
 
@@ -123,5 +123,74 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Mobile banner (bottom navigation) */
+@media (max-width: 567px) {
+  .header-banner {
+    top: auto;
+    bottom: 0;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+  }
+  
+  .header-banner.visible {
+    transform: translateY(0);
+  }
+  
+  .banner-content {
+    justify-content: space-around;
+    padding: 0 10px;
+  }
+  
+  /* Hide ingredient containers on mobile */
+  .ingredient-container {
+    display: none;
+  }
+  
+  /* Make text items larger and centered for better tapping */
+  .banner-text {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .banner-brand {
+    font-size: clamp(1rem, 5vw, 2.2rem);
+    padding: 8px;
+  }
+  
+  /* Make logo smaller on mobile */
+  .banner-logo {
+    height: 50px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-banner {
+    height: 50px;
+  }
+  
+  .banner-logo {
+    height: 40px;
+  }
+  
+  .banner-brand {
+    font-size: clamp(0.8rem, 5vw, 1.8rem);
+    padding: 4px;
+  }
+  
+  .banner-minze,
+  .banner-zitrone {
+    width: clamp(60px, 6vw, 150px);
+    height: auto;
+    margin-top: clamp(10%, 3vh, 20%);
   }
 }

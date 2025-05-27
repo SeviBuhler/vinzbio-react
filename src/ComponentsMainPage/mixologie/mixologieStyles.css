@@ -1,5 +1,5 @@
 .mixologie-section {
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -43,11 +43,16 @@
     height: auto; 
     max-height: 90%; 
     overflow: visible; 
+    z-index: 10;
 }
 
 .mixologie-drink-card {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-areas: 
+        "image title"
+        "image content";
+    grid-template-columns: 40% 60%;
+    grid-template-rows: auto 1fr;
     background-color: #EBF2FF;
     border-radius: clamp(10px, 1.5vw, 20px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -60,13 +65,15 @@
 }
 
 .mixologie-drink-card img {
-    width: clamp(120px, 50%, 250px);
-    height: auto;
+    grid-area: image;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }
 
 .mixologie-drink-card-content {
+    grid-area: content;
     padding: clamp(15px, 2vw, 25px);
     display: flex;
     flex-direction: column;
@@ -76,23 +83,25 @@
 }
 
 .mixologie-drink-card-title {
-    font-size: clamp(1.3rem, 1.5vw, 1.8rem);
-    font-weight: bold;
+    grid-area: title;
+    font-size: clamp(1.3rem, 1.5vw, 1.8rem);  
     color: #3965B5;
-    margin-bottom: 8px;
+    padding: clamp(15px, 2vw, 25px)
 }
 
 .daVinz {
     color: #EA8121;
+    font-weight: 600;
 }
 
 .spritz {
     color: #EA8121;
+    font-weight: 600;
 }
 
 .mixologie-drink-card-content .vinz-brand {
     color: #3965B5;
-    font-weight: 700;
+    font-weight: 400;
     font-family: 'Times New Roman', Times, serif;
     font-size: inherit;
 }
@@ -126,4 +135,117 @@
     line-height: 1.5;
     color: #3965B5;
     margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+    .mixologie-section {
+        align-items: flex-start;
+    }
+
+    .mixologie-section-content {
+        padding: 0 clamp(10px, 2vw, 20px);
+    }
+    .mixologie-section-title {
+        font-size: clamp(1.2rem, 6vw, 3.5rem);
+        margin-bottom: clamp(15px, 3vh, 25px);
+    }
+    .mixologie-section-title h2 {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .mixologie-cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mixologie-drink-card {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        height: auto;
+        overflow: hidden;
+        will-change: height, transform, opacity;
+        transform-origin: top;
+        transition: all 0.4s ease;    
+    }
+
+    .mixologie-drink-card:not(.expanded-card) {
+        max-height: 50px;
+
+    }
+
+    .mixologie-drink-card.expanded-card {
+        max-height: 85vh;
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        z-index: 2;
+        margin-bottom: clamp(10px, 2vh, 30px);
+    }
+
+    .mixologie-drink-card-content,
+    .mixologie-drink-card img {
+        max-height: 0;
+        opacity: 0;
+        transition: all 0.4s ease;
+        overflow: hidden;
+    }
+
+    .mixologie-drink-card.expanded-card .mixologie-drink-card-content,
+    .mixologie-drink-card.expanded-card img {
+        opacity: 1;
+        max-height: 800px;
+    }
+
+    .mixologie-drink-card.expanded-card img {
+        max-height: clamp(150px, 20vh, 250px);
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .mixologie-drink-card-title {
+        font-size: clamp(1.2rem, 5vw, 4rem);
+        margin-bottom: 0px;
+        width: 100%;
+        padding: clamp(10px, 1vh, 20px);
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 1;
+    }
+
+    .expand-icon {
+        color: #EA8121;
+        font-size: 1.5rem;
+        font-weight: bold;
+        transform-origin: center center;
+        display: inline-flex;
+        transition: transform 0.5s ease-in-out;
+        line-height: inherit;
+    }
+
+    .mixologie-drink-card.expanded-card .expand-icon {
+        transform: rotate(180deg);
+    }    
+}
+
+@media (max-width: 375px) {
+    .mixologie-section-title {
+        font-size: clamp(1.2rem, 4vw, 3rem);
+        margin-bottom: clamp(10px, 1vh, 30px);
+    }
+
+    .mixologie-drink-card-description p {
+        font-size: clamp(0.8rem, 2vw, 1.1rem);
+        margin-bottom: 0;
+    }
+
+    .mixologie-drink-card-ingredients ul {
+        margin-bottom: 0;
+    }
 }
