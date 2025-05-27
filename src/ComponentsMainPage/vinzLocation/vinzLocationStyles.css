@@ -60,6 +60,7 @@
   color: #000000;
   font-family: "Times New Roman", Times, serif;
   font-size: clamp(2.5rem, 2.5vw + 1rem, 4.5rem);
+  font-weight: 100;
 }
 
 

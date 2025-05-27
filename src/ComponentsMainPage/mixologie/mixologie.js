@@ -5,6 +5,7 @@ import Images from '../../images/imageImport.js';
 const Mixologie = memo(({ id }) => {
     const [expandedCard, setExpandedCard] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const smallMobile = window.innerWidth <= 375;
 
     // Handle window resize
     useEffect(() => {
@@ -21,10 +22,10 @@ const Mixologie = memo(({ id }) => {
 
     // Auto expand the first card on mobile during inital load
     useEffect(() => {
-        if (isMobile) {
+        if (isMobile && !smallMobile) {
             setExpandedCard('davinz');
         }
-    }, [isMobile])
+    }, [isMobile, smallMobile])
 
     // toggle card expansion
     const toggleCard = (cardId) => {

@@ -367,6 +367,10 @@
         width: 100%; 
         overflow: hidden;
     }
+
+    .vinz-shop-image {
+        object-position: center 70%;
+    }
     .vinz-shop-title {
         font-size: clamp(1.8rem, 3vw, 2.5rem);
         text-align: center;
@@ -426,6 +430,45 @@
     
     .vinz-product-card {
         flex: 0 0 clamp(280px, 20%, 380px);
+    }
+}
+
+@media (max-width: 375px) {
+    .vinz-shop-section-content {
+        padding: 0 5px;
+        margin-top: 5px;
+    }
+
+    .vinz-shop-container {
+        margin-top: 5px;
+        border-radius: 8px;
+        gap: 5px;
+    }
+
+    .vinz-shop-image-column {
+        height: 200px;
+    }
+
+    .vinz-shop-title {
+        font-size: 1.6rem;
+        margin-bottom: 5px;
+    }
+
+    .vinz-shop-intro {
+        font-size: 0.85rem;
+        padding: 0 5px;
+    }
+
+    .vinz-shop-intro p {
+        margin: 5px 0;
+    }
+
+    
+}
+
+@media (max-height: 770px) {
+    .vinz-shop-header-right {
+        display: none;
     }
 }
 

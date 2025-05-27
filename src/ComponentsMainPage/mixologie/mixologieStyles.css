@@ -215,16 +215,37 @@
         align-items: center;
         position: relative;
         justify-content: space-between;
+        align-items: center;
+        line-height: 1;
     }
 
     .expand-icon {
         color: #EA8121;
         font-size: 1.5rem;
         font-weight: bold;
-        transition: transform 0.9s ease-in-out;
+        transform-origin: center center;
+        display: inline-flex;
+        transition: transform 0.5s ease-in-out;
+        line-height: inherit;
     }
 
     .mixologie-drink-card.expanded-card .expand-icon {
         transform: rotate(180deg);
     }    
+}
+
+@media (max-width: 375px) {
+    .mixologie-section-title {
+        font-size: clamp(1.2rem, 4vw, 3rem);
+        margin-bottom: clamp(10px, 1vh, 30px);
+    }
+
+    .mixologie-drink-card-description p {
+        font-size: clamp(0.8rem, 2vw, 1.1rem);
+        margin-bottom: 0;
+    }
+
+    .mixologie-drink-card-ingredients ul {
+        margin-bottom: 0;
+    }
 }

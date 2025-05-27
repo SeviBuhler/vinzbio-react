@@ -131,7 +131,7 @@
   .header-banner {
     top: auto;
     bottom: 0;
-    height: 60px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(100%);
@@ -160,7 +160,7 @@
   }
   
   .banner-brand {
-    font-size: clamp(1rem, 6vw, 2.2rem);
+    font-size: clamp(1rem, 5vw, 2.2rem);
     padding: 8px;
   }
   
@@ -170,5 +170,27 @@
     flex: 1;
     display: flex;
     justify-content: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-banner {
+    height: 50px;
+  }
+  
+  .banner-logo {
+    height: 40px;
+  }
+  
+  .banner-brand {
+    font-size: clamp(0.8rem, 5vw, 1.8rem);
+    padding: 4px;
+  }
+  
+  .banner-minze,
+  .banner-zitrone {
+    width: clamp(60px, 6vw, 150px);
+    height: auto;
+    margin-top: clamp(10%, 3vh, 20%);
   }
 }
