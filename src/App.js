@@ -1,8 +1,9 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
 /* komponente */
+/* mainPage */
 import Header from './ComponentsMainPage/Header/header';
 import VinzOriginal from './ComponentsMainPage/Original/vinzOriginal.js';
 import Banner from './ComponentsMainPage/Banner/banner.js';
@@ -11,9 +12,12 @@ import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
 import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
 import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
 import Mixologie from './ComponentsMainPage/mixologie/mixologie.js';
+/* aboutPage */
 import AboutBanner from './ComponentsAboutPage/AboutBanner/aBanner';
 import AboutBackground from './ComponentsAboutPage/AboutBackground/aboutBackground';
 import VinzEnjoyment from './ComponentsAboutPage/vinzEnjoyment/vinzEnjoyment';
+/* contactPage */
+import ContactPage from './ComponentsContactPage/ContactPage/contactPage.js';
 
 /* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
@@ -72,7 +76,8 @@ function App() {
 return (
     <Router>
       <Routes>
-        <Route path="/" element={
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/home" element={
           <AnimationContext.Provider value={{ allowSectionAnimations }}>
             <div className={`App ${showWaves ? 'show-waves' : ''}`}>
               <Banner />
@@ -88,6 +93,7 @@ return (
             </div>
           </AnimationContext.Provider>
         } />
+        
         <Route path="/überVinz.ch" element={
           <>
           <AboutBanner />
@@ -95,6 +101,10 @@ return (
           <VinzEnjoyment />
           </>
         } />
+
+        <Route path="/kontakt" element={
+          <ContactPage id='contactPage'/>
+        }/>
       </Routes>
     </Router>
   );

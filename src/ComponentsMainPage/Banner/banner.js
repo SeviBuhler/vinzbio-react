@@ -72,38 +72,46 @@ const Banner = () => {
         });
       }
     } else {
-      window.location.href = '/';
+      window.location.href = '/home';
     }
   }
 
   return (
     <div className={`header-banner ${isVisible ? 'visible' : ''}`}>
       <div className="banner-content">
-      <div className="ingredient-container">
-        {showIngredients ? (
-          <div className='banner-image'>
-           <img src={Images.Minze} alt="Minze" className="banner-minze" loading="lazy" />
-          </div>
-        ) : (
-          <div className='banner-image fade-out'>
-            <img src={Images.Minze} alt="Minze" className="banner-minze" loading="lazy" />
-          </div>
-        )}
-      </div>
-        <div className="banner-text">
+        <div className="ingredient-container">
+          {showIngredients ? (
+            <div className='banner-image mint'>
+             <img src={Images.Minze} alt="Minze" className="banner-minze" loading="lazy" />
+            </div>
+          ) : (
+            <div className='banner-image fade-out'>
+              <img src={Images.Minze} alt="Minze" className="banner-minze" loading="lazy" />
+            </div>
+          )}
+        </div>
+
+        <div className="banner-text uberVinz">
           <a href="überVinz.ch" className="banner-brand">über vinz.</a>
         </div>
+
         <div className="banner-logo">
           <a href='/' onClick={handleLogoClick} className='logo-link'>
             <img src={Images.Logo} alt="Vinz Logo" className="banner-logo" loading="lazy" />
           </a>
         </div>
-        <div className="banner-text">
+
+        <div className="banner-text shop">
           <a href="https://vinz.sumupstore.com/" className="banner-brand" target='_blank' rel='noreferrer'>Shop</a>
         </div>
+
+        <div className='banner-text contact'>
+          <a href='/kontakt' className='banner-brand contact'>Kontakt</a>
+        </div>
+
         <div className="ingredient-container">
           {showIngredients ? (
-            <div className='banner-image'>
+            <div className='banner-image lemon'>
               <img src={Images.Zitrone} alt="Zitrone" className="banner-zitrone" loading="lazy" />
             </div>
           ) : (
@@ -112,6 +120,7 @@ const Banner = () => {
             </div>
           )}
         </div>
+        
       </div>
     </div>
   );

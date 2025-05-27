@@ -26,6 +26,7 @@ import vinzInHand from './produkt-bilder/vinz-in-hand.jpeg'
 import vinzShop from './produkt-bilder/vinz-shop.jpeg'
 import vinzShop2 from './produkt-bilder/vinz-mit-hintergrund.jpeg'
 import vinzGeländer from './produkt-bilder/vinzAufGeländer.jpeg'
+import vinzMitJan from './produkt-bilder/vinz_mit_Jan.jpeg'
 
 /* Jan */
 import JanamKochen from './JanCooking/JanamKochen.jpeg'
@@ -59,6 +60,7 @@ const Images = {
     vinzShop,
     vinzShop2,
     vinzGeländer,
+    vinzMitJan,
 
     /* Jan */
     JanamKochen,
