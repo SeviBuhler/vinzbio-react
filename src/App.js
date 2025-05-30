@@ -86,8 +86,8 @@ return (
                 <Header />
                 <VinzOriginal id='vinzOriginal' />
                 <VinzLocation id='vinzLocation' />
-                <VinzFeelings id='vinzFeelings'></VinzFeelings>
-                <VinzShop id='vinzShop'></VinzShop>
+                <VinzFeelings id='vinzFeelings'/>
+                <VinzShop id='vinzShop' />
                 <Mixologie id='mixologie'/>
               </div>
             </div>
@@ -103,7 +103,10 @@ return (
         } />
 
         <Route path="/kontakt" element={
-          <ContactPage id='contactPage'/>
+          <>
+            <Banner />
+            <ContactPage id='contactPage'/>
+          </>
         }/>
       </Routes>
     </Router>

@@ -1,0 +1,208 @@
+.contact-page-section {
+    display: flex;
+    height: 100dvh;
+}
+
+.contact-page {
+    width: 100vw;
+    max-height: 100vh;
+    display: flex;
+    align-items: baseline;
+    position: relative;
+}
+
+.background {
+    position: absolute;
+    max-width: 150%;
+    height: 100%;
+    right: 0%;
+    top: -10%;
+    scale: 2.3;
+    object-fit: contain;
+    object-position: center;
+    z-index: -1;
+    rotate: 0deg;
+}
+
+.contact-page-content {
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-page-title {
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    margin-bottom: 20px;
+    text-align: center;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+}
+
+.contactdates {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.phonenumber {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.email {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.address {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.contactdates label {
+    margin: 0;
+    color: #E9760C;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-weight: bold;
+}
+
+.email-link {
+    margin: 5px 0;
+    color: #333;
+    text-decoration: none;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    transition: color 0.3s ease;
+}
+
+.address p {
+    margin: 5px 0;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.phone-link {
+    margin: 5px 0;
+    text-decoration: none;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+
+}
+
+.link-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.link-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(40px, 7vw, 60px);
+    height: clamp(40px, 7vw, 60px);
+    border-radius: 40%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Instagram gradient */
+.link-icons a:first-child {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 4px 15px rgba(240, 148, 51, 0.4);
+}
+
+/* LinkedIn solid blue */
+.link-icons a:last-child {
+    background: #0077B5;
+    box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
+}
+
+/* Hover effects */
+.link-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* White icons */
+.link-icons svg {
+    color: white !important;
+    border-radius: 40%;
+}
+
+@media (min-width: 768px) {
+    .contact-page {
+        max-height: 90vh;
+        margin-top: 10%;
+    }
+
+    .background {
+        position: absolute;
+        max-width: 150%;
+        height: 100%;
+        right: 60%;
+        top: 0%;
+        scale: 2.3;
+        object-fit: contain;
+        object-position: center;
+        z-index: -1;
+        rotate: 180deg;
+        transform: scaleX(-1);
+    }
+
+    .contact-page-content {
+        display: grid;
+        grid-template-areas: 
+            "form title"
+            "form dates"
+            "form links";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .contact-page-title {
+        grid-area: title;
+    }
+
+    .contactdates {
+        grid-area: dates;
+        text-align: center;
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .address, .phonenumber, .email {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .contact-form {
+        grid-area: form;
+        width: 100%;
+        max-width: 800px;
+        left: clamp(10%, 10vw, 20%);
+        position: relative;
+    }
+
+    .link-icons {
+        gap: clamp(20px, 3vw, 40px);
+    }
+
+    .link-icons svg {
+        scale: 1.4;
+    }
+    
+}

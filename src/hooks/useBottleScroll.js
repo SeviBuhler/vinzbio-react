@@ -117,6 +117,13 @@ const getResponsivePosition = (screenWidth, screenHeight, basePositions) => {
 
 const useBottleScroll = () => {
   useEffect(() => {
+    const isHomePage = window.location.pathname === '/home';
+
+    if (!isHomePage) {
+      console.log('Not on home page, skipping bottle scroll effect.');
+      return;
+    }
+
     // Add a delay to ensure DOM is fully loaded
     setTimeout(() => {
       const bottle = document.querySelector('.animated-bottle');
