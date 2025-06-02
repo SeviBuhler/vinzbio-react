@@ -61,6 +61,45 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, scale 0.5s ease;
 }
 
+/* SweelAlert Styling */
+
+.custom-swal-popup {
+    background: linear-gradient(135deg, #EBF2FF 0%, #ffffff 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-family: inherit;
+}
+
+.custom-swal-title {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.custom-swal-content {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.custom-swal-button {
+    background: #E9760C;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.custom-swal-button:hover {
+    background: #E9760C;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 @media (min-width: 768px) {
     .contact-form {
         padding: clamp(20px, 2vw, 30px);

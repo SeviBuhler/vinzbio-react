@@ -4,12 +4,18 @@ import Swal from 'sweetalert2';
 
 
 const ContactForm = () => {
-
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
     const onSubmit = async (event) => {
         event.preventDefault();
+
+        if (isSubmitting) return;
+        setIsSubmitting(true);
+
         const formData = new FormData(event.target);
 
-        formData.append("access_key", "2f6d0db6-4582-43bf-97e2-8cb6f58454d9");
+        formData.append("access_key", process.env.REACT_APP_WEB3FORMS_KEY);
+
+        formData.append('botcheck', '');
 
         const message1 = formData.get("message1");
         const message2 = formData.get("message2");
@@ -37,6 +43,13 @@ const ContactForm = () => {
                   title: 'Vielen Dank!',
                   text: 'Deine Nachricht wurde erfolgreich gesendet.',
                   icon: 'success',
+                  customClass: {
+                    popup: 'custom-swal-popup',
+                    title: 'custom-swal-title',
+                    content: 'custom-swal-content',
+                    confirmButton: 'custom-swal-button'
+                  },
+                  buttonsStyling: false,
               })
               event.target.reset();
             } else {
@@ -44,6 +57,13 @@ const ContactForm = () => {
                     title: 'Fehler!',
                     text: res.message || 'Es gab ein Problem beim Senden deiner Nachricht.',
                     icon: 'error',
+                    customClass: {
+                        popup: 'custom-swal-popup',
+                        title: 'custom-swal-title',
+                        content: 'custom-swal-content',
+                        confirmButton: 'custom-swal-button'
+                    },
+                    buttonsStyling: false,
                 });
             }
         } catch (error) {
@@ -52,12 +72,23 @@ const ContactForm = () => {
                 title: 'Fehler!',
                 text: 'Es gab ein Problem beim Senden deiner Nachricht. Bitte versuche es später erneut.',
                 icon: 'error',
+                customClass: {
+                    popup: 'custom-swal-popup',
+                    title: 'custom-swal-title',
+                    content: 'custom-swal-content',
+                    confirmButton: 'custom-swal-button'
+                },
+                buttonsStyling: false,
             });
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return (
         <form onSubmit={onSubmit} className='contact-form'>
+            <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
+
             <h3>Hast du eine Frage oder möchtest du uns etwas mitteilen?</h3>
             <div className='input-Box'>
                 <label>Name</label>

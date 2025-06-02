@@ -28,9 +28,9 @@ const ContactPage = () => {
            
             <div className="contact-page">
                     { isMobile ? (
-                        <img src={Images.WelleOrange2} alt="Background Image Waves" className='background' />
+                        <img src={Images.WelleOrange2} alt="Background Waves" className='background' />
                     ) : (
-                        <img src={Images.WelleOrange} alt="Background Image Waves" className='background' />
+                        <img src={Images.WelleOrange} alt="Background Waves" className='background' />
                     )}
 
                 <div className='contact-page-content'>
