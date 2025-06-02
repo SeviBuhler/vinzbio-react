@@ -105,7 +105,7 @@ const ContactForm = () => {
                 <input
                     name='email'
                     type="email"
-                    placeholder='gib deine Email ein'
+                    placeholder='Gib deine Email ein'
                     className='field'
                     required
                 />

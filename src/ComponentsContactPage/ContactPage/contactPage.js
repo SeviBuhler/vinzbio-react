@@ -8,7 +8,7 @@ import { SiInstagram, SiLinkedin } from 'react-icons/si';
 
 
 const ContactPage = () => {
-    const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+    const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 719);
 
     React.useEffect(() => {
         const handleResize = () => {
@@ -70,10 +70,10 @@ const ContactPage = () => {
                     </div>
                     <div className='link-icons'>
                         <a href="https://www.instagram.com/vinz.bio" target="_blank" rel="noopener noreferrer">
-                            <FaInstagram size={30} color="#E4405F" />
+                            <FaInstagram className='sozial-icon' color="#E4405F" />
                         </a>
                         <a href="https://www.linkedin.com/company/105987035" target="_blank" rel="noopener noreferrer">
-                            <FaLinkedin size={30} color="#0077B5" />
+                            <FaLinkedin className='sozial-icon' color="#0077B5" />
                         </a>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 10%;
+  height: clamp(3.75rem, 2.391vw + 3.19rem, 6.25rem);
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -28,7 +28,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: "mint home uber-vinz logo shop kontakt lemon";
   align-items: center;
-  gap: clamp(20px, 4vw, 40px);
+  gap: clamp(1.25rem, 3.914vw + -0.142rem, 2.5rem);
   position: relative;
   
 }
@@ -163,13 +163,37 @@
   }
 }
 
+@media (max-width: 1080px) {
+  .header-banner {
+    height: clamp(3.125rem, 3.889vw + 1.375rem, 4rem);
+  }
+
+  .banner-logo img {
+    height: clamp(2.5rem, 4.444vw + 0.5rem, 3.5rem);
+  }
+
+  .banner-brand {
+    font-size: clamp(1.2rem, 2.667vw + -0rem, 1.8rem);
+  }
+
+  .ingredient-container {
+    width: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
+    min-width: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
+    height: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
+  }
+
+  .banner-minze .banner-zitrone {
+    width: clamp(5rem, 6.667vw + 2rem, 6.5rem);
+  }
+}
+
 /* Mobile banner (bottom navigation) */
 @media (max-width: 567px) {
   .header-banner {
     top: auto;
     bottom: 0;
-    height: 60px;
     width: 100%;
+    height: clamp(3.5rem, 8vw + 1.6rem, 4.5rem);
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(100%);
@@ -185,7 +209,7 @@
     margin: 0 auto;
     display: flex !important;
     align-items: center;
-    gap: clamp(5px, 1vw, 10px);
+    gap: clamp(0.313rem, 2.496vw + -0.28rem, 0.625rem);
     justify-content: center;
     box-sizing: border-box;
   }
@@ -217,14 +241,14 @@
   }
   
   .banner-brand {
-    font-size: clamp(1rem, 4.5vw, 2.2rem);
+    font-size: clamp(1.1rem, 8vw + -0.8rem, 2.1rem);
     padding: 8px;
     text-align: center;
   }
   
   /* Make logo smaller on mobile */
   .banner-logo {
-    height: 50px;
+    height: clamp(3rem, 8vw + 1.1rem, 4rem);
     flex: 1;
     justify-self: center;
     display: flex;
@@ -233,7 +257,7 @@
   }
 
   .banner-logo img {
-    height: 45px;
+    height: clamp(3rem, 8vw + 1.1rem, 4rem);
     width: auto;
   }
 }
