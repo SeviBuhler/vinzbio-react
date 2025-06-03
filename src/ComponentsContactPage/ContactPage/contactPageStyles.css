@@ -1,11 +1,11 @@
 .contact-page-section {
     display: flex;
-    height: 100dvh;
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .contact-page {
-    width: 100vw;
-    max-height: 100vh;
+    width: calc(var(--vw, 1vw) * 100);
+    max-height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: baseline;
     position: relative;
@@ -13,10 +13,10 @@
 
 .background {
     position: absolute;
-    max-width: 150%;
-    height: 100%;
+    max-width: calc(var(--vw, 1vw) * 150);
+    height: calc(var(--vh, 1vh) * 100);
     right: 0%;
-    top: -10%;
+    top: calc(var(--vh, 1vh) * -10);
     scale: 2.3;
     object-fit: contain;
     object-position: center;
@@ -29,26 +29,26 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
-    padding: 20px;
+    padding: clamp(0.625rem, calc(0.625rem + var(--font-scale-combined) * 15), 1.25rem);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .contact-page-title {
-    margin-bottom: clamp(0.313rem, 1.511vw + -0.036rem, 0.5rem);
+    margin-bottom: clamp(0.3rem, calc(var(--vh) * 1.5), 1rem);
     text-align: center;
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
 }
 
 .contact-page-title h2 {
-    font-size: clamp(2rem, 16.162vw + -1.737rem, 4rem);
+    font-size: clamp(1.5rem, calc(1.5rem + var(--font-scale-combined) * 70), 4rem);
 }
 
 .contactdates {
     width: 100%;
-    margin-bottom: clamp(1.563rem, 10.101vw + -0.773rem, 2.813rem);
-    margin-top: clamp(1.563rem, 7.572vw + -0.188rem, 2.5rem);
+    margin-bottom: clamp(0.2rem, calc(var(--vh) * 4), 5rem);
+    margin-top: clamp(0.5rem, calc(var(--vh) * 3), 3rem);
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -79,7 +79,7 @@
 .contactdates label {
     margin: 0;
     color: #E9760C;
-    font-size: clamp(1.1rem, 3.232vw + 0.353rem, 1.5rem);
+    font-size: clamp(0.5rem, calc(0.5rem + var(--font-scale-combined) * 80), 1.5rem);
     font-weight: bold;
 }
 
@@ -87,19 +87,19 @@
     margin: 5px 0;
     color: #333;
     text-decoration: none;
-    font-size: clamp(0.9rem, 2.424vw + 0.339rem, 1.2rem);
+    font-size: clamp(0.2rem, calc(0.2rem + var(--font-scale-combined) * 80), 1.2rem);
     transition: color 0.3s ease;
 }
 
 .address p {
     margin: 5px 0;
-    font-size: clamp(0.9rem, 2.424vw + 0.339rem, 1.2rem);
+    font-size: clamp(0.2rem, calc(0.2rem + var(--font-scale-combined) * 80), 1.2rem);
 }
 
 .phone-link {
     margin: 5px 0;
     text-decoration: none;
-    font-size: clamp(0.9rem, 2.424vw + 0.339rem, 1.2rem);
+    font-size: clamp(0.2rem, calc(0.2rem + var(--font-scale-combined) * 80), 1.2rem);
 
 }
 
@@ -107,15 +107,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(1.563rem, 5.051vw + 0.395rem, 2.188rem);
+    gap: clamp(1.5rem, calc(1.5rem + var(--font-scale-combined) * 50), 2.2rem);
 }
 
 .link-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: clamp(2.5rem, 10.101vw + 0.164rem, 3.75rem);
-    height: clamp(2.5rem, 10.101vw + 0.164rem, 3.75rem);
+    width: clamp(2.5rem, calc(var(--vw) * 2), 3.75rem);
+    height: clamp(2.5rem, calc(var(--vh) * 2), 3.75rem);
     border-radius: 40%;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -148,13 +148,13 @@
 }
 
 .sozial-icon {
-    width: clamp(1.875rem, 5vw + -0.375rem, 3rem);
-    height: clamp(1.875rem, 5vw + -0.375rem, 3rem);
+    width: clamp(1.875rem, calc(var(--vw) * 2), 3rem);
+    height: clamp(1.875rem, calc(var(--vh) * 2), 3rem);
 }
 
 @media (min-width: 569px) {
     .contact-page {
-        max-height: 90vh;
+        max-height: calc(var(--vh, 1vh) * 90);
         margin-top: clamp(3.125rem, 3.889vw + 1.375rem, 4rem);
     }
 
@@ -252,7 +252,7 @@
 
 @media (min-width: 1081px) {
     .contact-page {
-        max-height: 90vh;
+        max-height: calc(var(--vh, 1vh) * 90);
         margin-top: clamp(3.75rem, 6.19vw + -0.429rem, 7rem);
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, use } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
@@ -73,44 +73,69 @@ function App() {
     }
   }, [initialLoadComplete]);
 
-return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/home" element={
-          <AnimationContext.Provider value={{ allowSectionAnimations }}>
-            <div className={`App ${showWaves ? 'show-waves' : ''}`}>
-              <Banner />
-              <BackgroundWaves />
-              <div className="snap-container">
-                <Header />
-                <VinzOriginal id='vinzOriginal' />
-                <VinzLocation id='vinzLocation' />
-                <VinzFeelings id='vinzFeelings'/>
-                <VinzShop id='vinzShop' />
-                <Mixologie id='mixologie'/>
-              </div>
-            </div>
-          </AnimationContext.Provider>
-        } />
-        
-        <Route path="/überVinz.ch" element={
-          <>
-          <AboutBanner />
-          <AboutBackground />
-          <VinzEnjoyment />
-          </>
-        } />
 
-        <Route path="/kontakt" element={
-          <>
-            <Banner />
-            <ContactPage id='contactPage'/>
-          </>
-        }/>
-      </Routes>
-    </Router>
-  );
+  useEffect(() => {
+      function updateViewportHeight() {
+      const vh = window.innerHeight * 0.01;
+      const vw = window.innerWidth * 0.01;
+      
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      document.documentElement.style.setProperty('--vw', `${vw}px`);
+    }
+
+    updateViewportHeight();
+
+    window.addEventListener('resize', updateViewportHeight);
+    window.addEventListener('orientationchange', updateViewportHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateViewportHeight);
+      window.removeEventListener('orientationchange', updateViewportHeight);
+    }
+  }, []);
+  
+
+  
+
+
+  return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={
+            <AnimationContext.Provider value={{ allowSectionAnimations }}>
+              <div className={`App ${showWaves ? 'show-waves' : ''}`}>
+                <Banner />
+                <BackgroundWaves />
+                <div className="snap-container">
+                  <Header />
+                  <VinzOriginal id='vinzOriginal' />
+                  <VinzLocation id='vinzLocation' />
+                  <VinzFeelings id='vinzFeelings'/>
+                  <VinzShop id='vinzShop' />
+                  <Mixologie id='mixologie'/>
+                </div>
+              </div>
+            </AnimationContext.Provider>
+          } />
+
+          <Route path="/überVinz.ch" element={
+            <>
+            <AboutBanner />
+            <AboutBackground />
+            <VinzEnjoyment />
+            </>
+          } />
+
+          <Route path="/kontakt" element={
+            <>
+              <Banner />
+              <ContactPage id='contactPage'/>
+            </>
+          }/>
+        </Routes>
+      </Router>
+    );
 }
 
 export default App;

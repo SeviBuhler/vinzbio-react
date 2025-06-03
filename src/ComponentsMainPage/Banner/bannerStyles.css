@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: clamp(3.75rem, 2.391vw + 3.19rem, 6.25rem);
+  height: clamp(3.75rem, calc(var(--vh) * 8), 6.25rem);
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -193,7 +193,7 @@
     top: auto;
     bottom: 0;
     width: 100%;
-    height: clamp(3.5rem, 8vw + 1.6rem, 4.5rem);
+    height: clamp(3.5rem, calc(var(--vh) * 7), 4.5rem);
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(100%);
@@ -209,7 +209,7 @@
     margin: 0 auto;
     display: flex !important;
     align-items: center;
-    gap: clamp(0.313rem, 2.496vw + -0.28rem, 0.625rem);
+    gap: clamp(0.3rem, calc(var(--vw) * 2 ), 0.4rem);
     justify-content: center;
     box-sizing: border-box;
   }
@@ -241,7 +241,7 @@
   }
   
   .banner-brand {
-    font-size: clamp(1.1rem, 8vw + -0.8rem, 2.1rem);
+    font-size: clamp(1.1rem, calc(1.1rem + var(--font-scale-combined) * 10), 2.1rem);
     padding: 8px;
     text-align: center;
   }

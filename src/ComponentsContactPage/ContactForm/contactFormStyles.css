@@ -1,43 +1,48 @@
 .contact-form {
-    max-width: clamp(21.875rem, 95.96vw + -0.316rem, 33.75rem);
+    max-width: clamp(21.875rem, calc(var(--vw, 1vw) * 125), 33.75rem);
     width: 100%;
     background-color: #EBF2FF;
-    padding: clamp(1rem, 4.549vw + -0.052rem, 1.563rem);
+    padding: clamp(1rem, calc(1rem + var(--font-scale-combined) * 10), 1.563rem);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: #333;
+    min-height: calc(var(--vh, 1vh) * 15);
+    max-height: calc(var(--vh, 1vh) * 65);
 }
 
 .contact-form h3 {
-    font-size: clamp(1.2rem, 2.424vw + 0.639rem, 1.5rem);
-    margin-bottom: clamp(0.625rem, 2.222vw + 0.111rem, 0.9rem);
+    font-size: clamp(0.4rem, calc(0.4em + var(--font-scale-combined) * 70), 3rem);
+    margin-bottom: clamp(0.4rem, calc(0.4rem + var(--font-scale-combined) * 20), 0.9rem);
 }
 
 .contact-form label {
     display: block;
-    margin-bottom: clamp(0.313rem, 0.703vw + 0.15rem, 0.4rem);
+    margin-bottom: clamp(0.5rem, calc(0.5rem + var(--font-scale-combined) * 10), 1rem);
     font-weight: bold;
-    font-size: clamp(0.9rem, 1.616vw + 0.526rem, 1.1rem);
+    font-size: clamp(0.3rem, calc(0.3rem + var(--font-scale-combined) * 70),  1.1rem);
     color: #E9760C
 }
 
 .message {
-    resize: vertical;
-    height: clamp(4rem, 4.04vw + 3.066rem, 4.5rem);
+    height: calc(var(--vh, 1vh) * 5);
+    min-height: 1.5rem;
+    max-height: 3.5rem;
 }
 
 .message2 {
-    height: clamp(5rem, 12.121vw + 2.197rem, 6.5rem);
+    height: calc(var(--vh, 1vh) * 8);
+    min-height: 1.5rem;
+    max-height: 5.5rem;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
     padding: clamp(0.313rem, 0.294vw + 0.249rem, 0.625rem);
-    margin-bottom: clamp(0.625rem, 1.01vw + 0.391rem, 0.75rem);
+    margin-bottom: clamp(0.4rem, calc(0.4rem + var(--font-scale-combined) * 20), 1rem);
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: clamp(0.8rem, 1.616vw + 0.426rem, 1rem);
+    font-size: clamp(0.7rem, calc(0.7rem + var(--font-scale-combined) * 10), 1.2rem);
     font-family: 'Times New Roman', Times, serif;
     resize: vertical;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -47,19 +52,20 @@
 .button-container {
     display: flex;
     justify-content: center;
-    margin-top: clamp(1rem, 1.616vw + 0.626rem, 1.2rem);
-    margin-bottom: clamp(1rem, 1.616vw + 0.626rem, 1.2rem);
+    margin-top: clamp(1rem, calc(var(--vh) * 2), 1.2rem);
+    margin-bottom: clamp(1rem, calc(var(--vh) * 2), 1.2rem);
 }
 
 .contact-form button {
     background-color: #E9760C;
     color: white;
-    padding: clamp(0.5rem, 4.04vw + -0.434rem, 1rem) clamp(0.938rem, 6.966vw + -0.673rem, 1.8rem); 
+    padding:    clamp(0.5rem, calc(var(--vh) * 1.2), 1rem)
+                clamp(0.8rem, calc(var(--vw, 1vw) * 2), 1.8rem); 
     border: none;
     cursor: pointer;
-    font-size: clamp(1rem, 1.616vw + 0.626rem, 1.2rem);
+    font-size: clamp(0.8rem, calc(0.8rem + var(--font-scale-combined) * 8), 1.2rem);
     font-weight: 600;
-    border-radius: clamp(25px, 2vw, 50px);
+    border-radius: clamp(1.2rem, calc(1.2rem + var(--font-scale-combined) * 15), 2.5rem);
     transition: transform 0.3s ease, box-shadow 0.3s ease, scale 0.5s ease;
 }
 
@@ -101,10 +107,60 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+@media (max-height: 799px) {
+    .contact-form {
+        min-height: calc(var(--vh, 1vh) * 10);
+        max-height: calc(var(--vh, 1vh) * 50);
+        padding: clamp(0.5rem, calc(0.5rem + var(--font-scale-combined) * 5), 1rem);
+    }
+
+    .contact-form h3 {
+        font-size: clamp(0.8rem, calc(0.8rem + var(--font-scale-combined) * 20), 1.5rem);
+        margin-bottom: clamp(0.2rem, calc(0.2rem + var(--font-scale-combined) * 5), 0.5rem);
+    }
+
+    .contact-form label {
+        font-size: clamp(0.6rem, calc(0.6rem + var(--font-scale-combined) * 18), 0.9rem);
+        margin-bottom: clamp(0.1rem, calc(0.1rem + var(--font-scale-combined) * 10), 0.4rem);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: clamp(0.6rem, calc(0.6rem + var(--font-scale-combined) * 8), 1rem);
+        padding: clamp(0.2rem, calc(0.2rem + var(--font-scale-combined) * 3), 0.4rem);
+        margin-bottom: clamp(0.3rem, calc(0.3rem + var(--font-scale-combined) * 8), 0.6rem);
+    }
+
+    .message {
+        height: calc(var(--vh, 1vh) * 3);
+        min-height: 1.2rem;
+        max-height: 2.5rem;
+    }
+
+    .message2 {
+        height: calc(var(--vh, 1vh) * 5);
+        min-height: 1.5rem;
+        max-height: 3rem;
+    }
+
+    .button-container {
+        margin-top: clamp(0.5rem, calc(var(--vh) * 1), 0.8rem);
+        margin-bottom: clamp(0.5rem, calc(var(--vh) * 1), 0.8rem);
+    }
+
+    .contact-form button {
+        padding: clamp(0.3rem, calc(var(--vh) * 0.8), 0.6rem) 
+                 clamp(0.6rem, calc(var(--vw, 1vw) * 1.5), 1.2rem);
+        font-size: clamp(0.7rem, calc(0.7rem + var(--font-scale-combined) * 5), 1rem);
+    }
+}
+
 @media (min-width: 569px) {
     .contact-form {
         max-width: clamp(21.875rem, 52.778vw + -1.875rem, 33.75rem);
         padding: clamp(0.8rem, 3.378vw + -0.72rem, 1.56rem);
+        min-height: calc(var(--vh, 1vh) * 45);
+        max-height: calc(var(--vh, 1vh) * 80);
     }
     
     .contact-form h3 {
