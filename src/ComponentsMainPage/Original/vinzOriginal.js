@@ -6,6 +6,8 @@ import { AnimationContext } from '../../App.js';
 const VinzOriginal = memo(({ id }) => {
   const [animationStarted, setAnimationStarted] = useState(false);
   const { allowSectionAnimations } = useContext(AnimationContext);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
 
   const infoElements = [
     {
@@ -40,17 +42,20 @@ const VinzOriginal = memo(({ id }) => {
 
   // Animation for info elements
   useEffect(() => {
-    if (!allowSectionAnimations) {
-      setAnimationStarted(false);
+    if (!allowSectionAnimations || hasAnimated) {
+      if (hasAnimated) {
+        setAnimationStarted(true);
+      }
       return;
     }
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && !hasAnimated) {
           setTimeout(() => {
             setAnimationStarted(true);
-          }, 600);
+            setHasAnimated(true);
+          }, 400);
         }
       },
       { threshold: 0.3 }
@@ -66,16 +71,16 @@ const VinzOriginal = memo(({ id }) => {
         observer.unobserve(section);
       }
     };
-  }, [id, allowSectionAnimations]);
+  }, [id, allowSectionAnimations, hasAnimated]);
 
   return (
     <section id={id} className="original-section">
       <div className="original-section-content">
         {/* Add this wrapper div */}
+        <div className="background-container">
+          <div className="background-blue-card"></div>
+        </div>
         <div className="vinz-original-wrapper">
-            <div className="background-container">
-              <div className="background-blue-card"></div>
-            </div>
           <div className='vinz-original-container'>
             <h2 className="original-section-title">
               <span className="vinz-text">Vinz. </span><span className="original-text">- Original</span>
@@ -102,10 +107,6 @@ const VinzOriginal = memo(({ id }) => {
               <div 
                 key={info.id}
                 className='info-element'
-                style={{
-                  transitionDelay: `${info.delay}ms`,
-                  animationDelay: `${info.delay}ms`,
-                }}  
               >
                 <div className='info-image-container'>
                   <img src={info.image} alt={info.title} className='info-image' />
