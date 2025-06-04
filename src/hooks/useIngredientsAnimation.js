@@ -22,11 +22,11 @@ const useIngredientsAnimation = (ingredientPositions) => {
 
     // Mobile-specific positions
     const mobilePositions = {
-      apfelessig: { transform: 'translate(30vw, 30vh) rotate(30deg)', opacity: '1' },
-      honig: { transform: 'translate(10vw, 25vh) rotate(15deg)', opacity: '1' },
-      ingwer: { transform: 'translate(-42vw, 38vh) rotate(-10deg)', opacity: '1' },
-      zitrone: { transform: 'translate(-23vw, 30vh) rotate(-5deg)', opacity: '1' },
-      minze: { transform: 'translate(-12vw, 35vh) rotate(-5deg)', opacity: '1' }
+      apfelessig: { transform: 'translate(calc(var(--vw) * 25), calc(var(--vh) * 30)) rotate(30deg)', opacity: '1' },
+      honig: { transform: 'translate(calc(var(--vw) * 5), calc(var(--vh) * 25)) rotate(15deg)', opacity: '1' },
+      ingwer: { transform: 'translate(calc(var(--vw) * -42), calc(var(--vh) * 38)) rotate(-10deg)', opacity: '1' },
+      zitrone: { transform: 'translate(calc(var(--vw) * -25), calc(var(--vh) * 30)) rotate(-5deg)', opacity: '1' },
+      minze: { transform: 'translate(calc(var(--vw) * -15), calc(var(--vh) * 35)) rotate(-5deg)', opacity: '1' }
     };
 
     // Set initial states for all ingredients
