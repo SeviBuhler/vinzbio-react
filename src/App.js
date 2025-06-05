@@ -1,8 +1,9 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
 /* komponente */
+/* mainPage */
 import Header from './ComponentsMainPage/Header/header';
 import VinzOriginal from './ComponentsMainPage/Original/vinzOriginal.js';
 import Banner from './ComponentsMainPage/Banner/banner.js';
@@ -11,9 +12,12 @@ import VinzLocation from './ComponentsMainPage/vinzLocation/vinzLocation.js';
 import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
 import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
 import Mixologie from './ComponentsMainPage/mixologie/mixologie.js';
+/* aboutPage */
 import AboutBanner from './ComponentsAboutPage/AboutBanner/aBanner';
 import AboutBackground from './ComponentsAboutPage/AboutBackground/aboutBackground';
 import VinzEnjoyment from './ComponentsAboutPage/vinzEnjoyment/vinzEnjoyment';
+/* contactPage */
+import ContactPage from './ComponentsContactPage/ContactPage/contactPage.js';
 
 /* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
@@ -69,35 +73,67 @@ function App() {
     }
   }, [initialLoadComplete]);
 
-return (
-    <Router>
-      <Routes>
-        <Route path="/" element={
-          <AnimationContext.Provider value={{ allowSectionAnimations }}>
-            <div className={`App ${showWaves ? 'show-waves' : ''}`}>
-              <Banner />
-              <BackgroundWaves />
-              <div className="snap-container">
-                <Header />
-                <VinzOriginal id='vinzOriginal' />
-                <VinzLocation id='vinzLocation' />
-                <VinzFeelings id='vinzFeelings'></VinzFeelings>
-                <VinzShop id='vinzShop'></VinzShop>
-                <Mixologie id='mixologie'/>
+
+  useEffect(() => {
+      function updateViewportHeight() {
+      const vh = window.innerHeight * 0.01;
+      const vw = window.innerWidth * 0.01;
+      
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      document.documentElement.style.setProperty('--vw', `${vw}px`);
+    }
+
+    updateViewportHeight();
+
+    window.addEventListener('resize', updateViewportHeight);
+    window.addEventListener('orientationchange', updateViewportHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateViewportHeight);
+      window.removeEventListener('orientationchange', updateViewportHeight);
+    }
+  }, []);
+  
+
+
+  return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={
+            <AnimationContext.Provider value={{ allowSectionAnimations }}>
+              <div className={`App ${showWaves ? 'show-waves' : ''}`}>
+                <Banner />
+                <BackgroundWaves />
+                <div className="snap-container">
+                  <Header />
+                  <VinzOriginal id='vinzOriginal' />
+                  <VinzLocation id='vinzLocation' />
+                  <VinzFeelings id='vinzFeelings'/>
+                  <VinzShop id='vinzShop' />
+                  <Mixologie id='mixologie'/>
+                </div>
               </div>
-            </div>
-          </AnimationContext.Provider>
-        } />
-        <Route path="/überVinz.ch" element={
-          <>
-          <AboutBanner />
-          <AboutBackground />
-          <VinzEnjoyment />
-          </>
-        } />
-      </Routes>
-    </Router>
-  );
+            </AnimationContext.Provider>
+          } />
+
+          <Route path="/überVinz.ch" element={
+            <>
+            <AboutBanner />
+            <AboutBackground />
+            <VinzEnjoyment />
+            </>
+          } />
+
+          <Route path="/kontakt" element={
+            <>
+              <Banner />
+              <ContactPage id='contactPage'/>
+            </>
+          }/>
+        </Routes>
+      </Router>
+    );
 }
 
 export default App;

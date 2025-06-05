@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 10%;
+  height: clamp(calc(var(--vh) * 6), calc(var(--vh) * 10), calc(var(--vh) * 25));
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -13,6 +13,7 @@
   opacity: 0;
   transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
               opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  padding: 0;
 }
   
 .header-banner.visible {
@@ -23,16 +24,52 @@
 .banner-content {
   width: 100%;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "mint home uber-vinz logo shop kontakt lemon";
   align-items: center;
+  gap: clamp(1.25rem, 3.914vw + -0.142rem, 2.5rem);
   position: relative;
+  
+}
+
+.ingredient-container:first-child {
+  grid-area: mint;
+  justify-self: start;
+}
+
+.banner-text.home {
+  grid-area: home;
+  justify-self: center;
+}
+
+.banner-text.uberVinz {
+  grid-area: uber-vinz;
+  justify-self: center;
+}
+
+.banner-logo {
+  grid-area: logo;
+  justify-self: center;
+}
+
+.banner-text.shop {
+  grid-area: shop;
+}
+
+.banner-text.contact {
+  grid-area: kontakt;
+}
+
+.ingredient-container:last-child {
+  grid-area: lemon;
+  justify-self: end;
 }
 
 .logo-link {
+  cursor: pointer;
   display: flex;
   align-items: center;
-  cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.2, 0.1, 0.1, 0.2);
 }
 
@@ -40,16 +77,15 @@
   transform: scale(1.05);
 }
 
-.banner-logo {
+.banner-logo img {
   height: clamp(40px, 7vh, 150px);
   width: auto;
 }
 
 .banner-text {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
+  align-items: center;
+  justify-content: center;
 }
 
 .banner-brand {
@@ -58,7 +94,9 @@
   color: #000;
   text-decoration: none;
   transition: color 0.4s cubic-bezier(0.2, 0.1, 0.1, 0.2), transform 0.2s cubic-bezier(0.2, 0.1, 0.1, 0.2);
+  white-space: nowrap;
 }
+
 .banner-brand:hover {
   color: #E9760C;
   transform: scale(1.05);
@@ -75,13 +113,12 @@
 }
 
 .banner-image {
-  position: absolute;
-  width: 100%;
+  width: auto;
   height: 100%;
+  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
   animation: fadeIn 0.8s forwards;
   transition: opacity 0.8s ease-out; 
 }
@@ -95,7 +132,7 @@
 .banner-minze {
   width: clamp(80px, 8vw, 200px);
   height: auto;
-  margin-top: clamp(20%, 5vh, 40%);
+  margin-top: clamp(10%, 3vh, 20%);
   transition: transform 0.5s cubic-bezier(0.2, 0.1, 0.1, 0.2);
 }
 
@@ -106,8 +143,8 @@
 .banner-zitrone {
   width: clamp(80px, 8vw, 200px);
   height: auto;
-  margin-top: clamp(60%, 10vh, 80%);
   transform: rotate(10deg);
+  margin-top: clamp(40%, 5vh, 50%);
   transition: transform 0.5s cubic-bezier(0.2, 0.1, 0.1, 0.2);
 }
 
@@ -126,15 +163,41 @@
   }
 }
 
+@media (max-width: 1080px) {
+  .header-banner {
+    height: clamp(calc(var(--vh) * 6), calc(var(--vh) * 14  ), calc(var(--vh) * 25));
+  }
+
+  .banner-logo img {
+    height: clamp(2.5rem, 4.444vw + 0.5rem, 3.5rem);
+  }
+
+  .banner-brand {
+    font-size: clamp(1.2rem, 2.667vw + -0rem, 1.8rem);
+  }
+
+  .ingredient-container {
+    width: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
+    min-width: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
+    height: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
+  }
+
+  .banner-minze .banner-zitrone {
+    width: clamp(5rem, 6.667vw + 2rem, 6.5rem);
+  }
+}
+
 /* Mobile banner (bottom navigation) */
 @media (max-width: 567px) {
   .header-banner {
     top: auto;
     bottom: 0;
-    height: 50px;
+    width: 100%;
+    height: clamp(3.5rem, calc(var(--vh) * 7), 4.5rem);
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(100%);
+    padding: 0 5px;
   }
   
   .header-banner.visible {
@@ -142,8 +205,13 @@
   }
   
   .banner-content {
-    justify-content: space-around;
-    padding: 0 10px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex !important;
+    align-items: center;
+    gap: clamp(0.3rem, calc(var(--vw) * 2 ), 0.4rem);
+    justify-content: center;
+    box-sizing: border-box;
   }
   
   /* Hide ingredient containers on mobile */
@@ -153,23 +221,44 @@
   
   /* Make text items larger and centered for better tapping */
   .banner-text {
-    flex: 1;
+    display: 1;
     align-items: center;
     justify-content: center;
     display: flex;
+    height: 100%;
+  }
+
+  /* Remove specific grid areas for mobile */
+  .banner-text.home,
+  .banner-text.uberVinz,
+  .banner-text.shop,
+  .banner-text.contact {
+    grid-area: unset !important;
+  }
+  
+  .banner-logo {
+    grid-area: unset !important;
   }
   
   .banner-brand {
-    font-size: clamp(1rem, 5vw, 2.2rem);
+    font-size: clamp(1.1rem, calc(1.1rem + var(--font-scale-combined) * 10), 2.1rem);
     padding: 8px;
+    text-align: center;
   }
   
   /* Make logo smaller on mobile */
   .banner-logo {
-    height: 50px;
+    height: clamp(3rem, 8vw + 1.1rem, 4rem);
     flex: 1;
+    justify-self: center;
     display: flex;
+    align-items: center;
     justify-content: center;
+  }
+
+  .banner-logo img {
+    height: clamp(3rem, 8vw + 1.1rem, 4rem);
+    width: auto;
   }
 }
 

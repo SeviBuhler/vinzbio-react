@@ -16,23 +16,23 @@ const Header = memo(() => {
   const ingredientPositions = useMemo(() => ({
     apfelessig: {
       initial: { transform: 'translate(-50%, -50%) rotate(-15deg)', opacity: '0' },
-      animated: { transform: 'translate(3vw, -20vh) rotate(20deg)', opacity: '1' }
+      animated: { transform: 'translate(calc(var(--vw) * 3), calc(var(--vh) * -20)) rotate(20deg)', opacity: '1' }
     },
     honig: {
       initial: { transform: 'translate(-50%, -50%) rotate(-20deg)', opacity: '0' },
-      animated: { transform: 'translate(3vw, 5vh) rotate(20deg)', opacity: '1' }
+      animated: { transform: 'translate(calc(var(--vw) * 3), calc(var(--vh) * 5)) rotate(20deg)', opacity: '1' }
     },
     ingwer: {
       initial: { transform: 'translate(-50%, -50%) rotate(15deg)', opacity: '0',},
-      animated: { transform: 'translate(-12vw, 6vh) rotate(5deg)', opacity: '1' }
+      animated: { transform: 'translate(calc(var(--vw) * -12), calc(var(--vh) * 6)) rotate(5deg)', opacity: '1' }
     },
     zitrone: {
       initial: { transform: 'translate(-50%, -50%) rotate(45deg)', opacity: '0',},
-      animated: { transform: 'translate(-12vw, -10vh) rotate(15deg)', opacity: '1' }
+      animated: { transform: 'translate(calc(var(--vw) * -12), calc(var(--vh) * -10)) rotate(15deg)', opacity: '1' }
     },
     minze: {
       initial: { transform: 'translate(-50%, -50%) rotate(0deg)', opacity: '0',},
-      animated: { transform: 'translate(-12vw, 20vh) rotate(-20deg)', opacity: '1' }
+      animated: { transform: 'translate(calc(var(--vw) * -12), calc(var(--vh) * 20)) rotate(-20deg)', opacity: '1' }
     }
   }), []);
 

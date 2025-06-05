@@ -249,3 +249,10 @@
         margin-bottom: 0;
     }
 }
+
+@media (min-width: 1440px) {
+    .mixologie-drink-card {
+        max-width: clamp(500px, 45%, 800px);
+        max-height: clamp(550px, 75vh, 750px);
+    }
+}

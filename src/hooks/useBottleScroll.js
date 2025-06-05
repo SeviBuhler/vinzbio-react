@@ -16,8 +16,8 @@ const debounce = (func, wait) => {
 // Base positions for each device category and section
 const basePositions = {
   largeDesktop: {
-    header: { x: 0, y: 0, scale: 1.1, rotation: 0 },
-    vinzOriginal: { x: 140, y: -10, scale: 0.8, rotation: 5 },
+    header: { x: 0, y: 0, scale: 1, rotation: 0 },
+    vinzOriginal: { x: 240, y: -20, scale: 0.7, rotation: 5 },
     vinzLocation: { x: 280, y: -8, scale: 0.8, rotation: -5 },
     vinzFeelings: { x: 280, y: -0, scale: 0.8, rotation: 5 },
     vinzShop: { x: 320, y: -10, scale: 0.7, rotation: -15 },
@@ -25,23 +25,31 @@ const basePositions = {
   },
   desktop: {
     header: { x: 0, y: 0, scale: 1.2, rotation: 0 },
-    vinzOriginal: { x: 100, y: -10, scale: 0.7, rotation: 5 },
+    vinzOriginal: { x: 260, y: -20, scale: 0.6, rotation: 5 },
     vinzLocation: { x: 250, y: -5, scale: 0.7, rotation: -5 },
     vinzFeelings: { x: 300, y: -5, scale: 0.7, rotation: 5 },
     vinzShop: { x: 350, y: -25, scale: 0.5, rotation: -25 },
     mixologie: { x: -380, y: -40, scale: 0.5, rotation: 45 }
   },
+  largeLaptop: {
+    header: { x: 0, y: 0, scale: 1.3, rotation: 0 },
+    vinzOriginal: { x: 400, y: -20, scale: 0.8, rotation: 5 },
+    vinzLocation: { x: 350, y: -5, scale: 0.9, rotation: -5 },
+    vinzFeelings: { x: 350, y: -5, scale: 0.9, rotation: 5 },
+    vinzShop: { x: 400, y: -20, scale: 0.7, rotation: -15 },
+    mixologie: { x: -400, y: -50, scale: 0.6, rotation: 45 }
+  },
   laptop: {
     header: { x: 0, y: 0, scale: 1.5, rotation: 0 },
-    vinzOriginal: { x: 220, y: -10, scale: 1, rotation: 5 },
+    vinzOriginal: { x: 420, y: -20, scale: 1, rotation: 5 },
     vinzLocation: { x: 350, y: -5, scale: 1, rotation: -5 },
     vinzFeelings: { x: 420, y: -0, scale: 1, rotation: 5 },
     vinzShop: { x: 400, y: -40, scale: 0.6, rotation: 15 },
     mixologie: { x: -520, y: -50, scale: 0.7, rotation: 45 }
   },
   tablet: {
-    header: { x: 0, y: 0, scale: 0.8, rotation: 0 },
-    vinzOriginal: { x: 70, y: 0, scale: 0.6, rotation: 5 },
+    header: { x: 0, y: 0, scale: 3, rotation: 0 },
+    vinzOriginal: { x: 950, y: 70, scale: 2.5, rotation: 5 },
     vinzLocation: { x: 120, y: 0, scale: 0.6, rotation: -5 },
     vinzFeelings: { x: 130, y: -35, scale: 0.6, rotation: 5 },
     vinzShop: { x: 150, y: -45, scale: 0.5, rotation: -5 },
@@ -73,9 +81,10 @@ const getResponsivePosition = (screenWidth, screenHeight, basePositions) => {
   // Get device type
   const smallMobile = screenWidth < 400;
   const isMobile = screenWidth < 768;
-  const isTablet = screenWidth >= 768 && screenWidth < 1024;
-  const isLaptop = screenWidth >= 1024 && screenWidth <= 1440;
-  const isDesktop = screenWidth >= 1440 && screenWidth <= 2048;
+  const isTablet = screenWidth >= 768 && screenWidth < 1080;
+  const isLaptop = screenWidth >= 1080 && screenWidth < 1440;
+  const isLargeLaptop = screenWidth >= 1440 && screenWidth < 1920;
+  const isDesktop = screenWidth >= 1920 && screenWidth < 2048;
   
   // Select appropriate base positions based on device type
   let positions;
@@ -91,10 +100,13 @@ const getResponsivePosition = (screenWidth, screenHeight, basePositions) => {
   } else if (isLaptop) {
     positions = basePositions.laptop;
     console.log(`Laptop Detected: ${screenWidth}x${screenHeight}`);
+  } else if (isLargeLaptop) {
+    positions = basePositions.largeLaptop;
+    console.log(`Large Laptop Detected: ${screenWidth}x${screenHeight}`);
   } else if (isDesktop) {
     positions = basePositions.desktop;
     console.log(`Desktop Detected: ${screenWidth}x${screenHeight}`);
-  } else {
+  }  else {
     positions = basePositions.largeDesktop;
     console.log(`Large Desktop detected: ${screenWidth}x${screenHeight}`);
   }
@@ -117,6 +129,13 @@ const getResponsivePosition = (screenWidth, screenHeight, basePositions) => {
 
 const useBottleScroll = () => {
   useEffect(() => {
+    const isHomePage = window.location.pathname === '/home';
+
+    if (!isHomePage) {
+      console.log('Not on home page, skipping bottle scroll effect.');
+      return;
+    }
+
     // Add a delay to ensure DOM is fully loaded
     setTimeout(() => {
       const bottle = document.querySelector('.animated-bottle');

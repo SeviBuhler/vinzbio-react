@@ -1,6 +1,6 @@
 .header-fullpage {
-  height: 100dvh;
-  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  width: calc(var(--vw, 1vw) * 100);
   display: flex;
   flex-direction: row;
   background-color: #ffffff;
@@ -17,8 +17,8 @@
   pointer-events: none;
   z-index: 10;
   will-change: transform, opacity;
-  width: clamp(80px, 30vw, 400px); 
-  height: clamp(240px, 60vh, 600px);
+  width: clamp(5rem, calc(var(--vw) * 30), 25rem); 
+  height: clamp(15rem, calc(var(--vh) * 60), 37.5rem);
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
@@ -32,7 +32,7 @@
   height: auto;
   object-fit: contain;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 clamp(5px, calc(var(--vh) * 1), 15px) clamp(10px, calc(var(--vh) * 1.5), 20px) rgba(0, 0, 0, 0.3));
   will-change: transform, opacity;
 }
 
@@ -51,15 +51,15 @@
 }
 
 .vinz-title {
-  left: clamp(20%, calc(4em + 1.5rem), 40%);
-  top: min(30em, 70%);
+  left: clamp(20%, calc(20% + var(--vw) * 0.5), 40%);
+  top: clamp(60%, calc(60% + var(--vh) * 0.8), 80%);
   display: flex;
   position: relative;
 }
 
 /* Style for vinz text */
 .vinz {
-  font-size: clamp(1.8rem, calc(7vw + 1rem), 6rem);
+  font-size: clamp(1.8rem, calc(1.8rem + var(--font-scale-combined) * 200), 8rem);
   margin: 0;
   text-align: left;
   position: absolute;
@@ -72,14 +72,14 @@
 
 /* Style for original text */
 .original-title {
-  left: clamp(10%, calc(25em + 1rem), 40%);
-  top: clamp(12%, calc(3.5em + 1rem), 15%);
+  left: clamp(10%, calc(10% + var(--vw) * 15), 60%);
+  top: clamp(12%, calc(12% + var(--vh) * 0.2), 20%);
   display: flex;
   position: absolute;
 }
 
 .original {
-  font-size: clamp(1.8rem, calc(7vw + 1rem), 6rem);
+  font-size: clamp(1.8rem, calc(1.8rem + var(--font-scale-combined) * 200), 8rem);;
   text-align: right;
   font-weight: 700;
   color: rgb(61, 61, 61);
@@ -98,14 +98,13 @@
   position: absolute;
   pointer-events: none;
   z-index: 1;
-  right: 15%;
-  top: 0%;
-  width: 45%;
+  right: clamp(calc(var(--vw) * 10), calc(var(--vw) * 15 + var(--font-scale-combined) * 100), calc(var(--vw) * 20));
+  width: clamp(calc(var(--vw) * 35), calc(var(--vw) * 37 + var(--font-scale-combined) * 200), calc(var(--vw) * 50));
   height: auto;
 }
 
 .blauer-bogen {
-  max-width:100%;
+  width: clamp(calc(var(--vw) * 30), calc(var(--vw) * 37 + var(--font-scale-combined) * 200), calc(var(--vw) * 50));
   height: auto;
 }
 
@@ -114,13 +113,13 @@
   position: absolute;
   pointer-events: none;
   z-index: 3;
-  right: clamp(20%, calc(3vw + 1rem), 50%);
-  top: 10%;
-  width: 13%;
+  right: clamp(20%, calc(20% + var(--vw) * 0.8), 50%);
+  top: clamp(8%, calc(8% + var(--vh) * 0.2), 15%);
+  width: clamp(10%, calc(10% + var(--vw) * 3), 15%);
 }
 
 .oranger-punkt {
-  width:100%;
+  width: clamp(calc(var(--vw) * 10), calc(var(--vw) * 12 + var(--font-scale-combined) * 50), calc(var(--vw) * 15));
   height: auto;
 }
 
@@ -129,11 +128,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  width: calc(var(--vw, 1vw) * 100);
+  height: calc(var(--vh, 1vh) * 100);
   pointer-events: none;
   z-index: 2;
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 clamp(5px, calc(var(--vh) * 1), 15px) clamp(10px, calc(var(--vh) * 1.5), 20px) rgba(0, 0, 0, 0.3));
 }
 
 /* Base styles for all ingredients - they all start centered */
@@ -149,54 +148,30 @@
 
 /* Individual ingredient sizes - no positioning here */
 .apfelessig {
-  max-width: 8vw;
+  max-width: clamp(2.5rem, calc(var(--vw) * 9), 12rem);
   height: auto;
 }
 
 .honig {
-  max-width: 12vw;
+  max-width: clamp(3.75rem, calc(var(--vw) * 12), 18rem);
   height: auto;
 }
 
 .ingwer {
-  max-width: 10vw;
+  max-width: clamp(3.125rem, calc(var(--vw) * 9), 15rem);
   height: auto;
 }
 
 .zitrone {
-  max-width: 9vw;
+  max-width: clamp(2.7rem, calc(var(--vw) * 10), 15rem);
   height: auto;
 }
 
 .minze {
-  max-width: 9vw;
+  max-width: clamp(2.5rem, calc(var(--vw) * 9), 15rem);
   height: auto;
 }
 
-/* styles for wide screens and 2k */
-@media (min-width: 1440px ) {
-  .blauer-bogen {
-    width: 85%;
-    height: auto;
-  }
-
-  .oranger-punkt {
-    width: 90%;
-    height: auto;
-  }
-  .original-title {
-    left: min(40%, calc(25em + 1rem), 60%);
-  }
-  .vinz-title {
-    left: min(40%, calc(30em + 1rem), 80%);
-  }
-  .vinz {
-    font-size: clamp(2.5rem, calc(7vw + 1rem), 8rem);
-  }
-  .original {
-    font-size: clamp(2.5rem, calc(7vw + 1rem), 8rem);
-  }
-}
 
 /* styles for extra wide screen and 4k */
 @media (min-width: 2300px) {
@@ -217,16 +192,16 @@
 /* phone design */
 @media (max-width: 567px) {
   .header-fullpage {
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     flex-direction: column;
   }
 
   .bottle-container {
-    width: 35vw;
+    width: clamp(7.5rem, calc(var(--vw) * 35), 12.5rem);
     height: auto;
-    max-height: 80vh;
+    max-height: calc(var(--vh) * 80);
     left: 50%;
-    top: 60%;
+    top: clamp(55%, calc(55% + var(--vh) * 5), 65%);
     transform: translate(-50%, -50%);
   }
 
@@ -237,19 +212,23 @@
 
   .header-text {
     width: 100%;
-    height: 100%;
+    height: 90%;
     position: relative;
     flex-direction: row;
   }
 
   .vinz-title {
-    left: min(35%, calc(6em + 1rem), 80%);
-    top: min(25em, 15%);
+    left: clamp(15%, calc(15% + var(--vw) * 0.5), 50%);
+    top: clamp(10%, calc(10% + var(--vh) * 0.3), 20%);
   }
 
   .original-title {
-    left: min(0%, calc(4em + 1.5rem), 80%);
-    top: min(26em, 15%);
+    left: clamp(-10%, calc(-10% + var(--vw) * 0.5), 10%);
+    top: clamp(10%, calc(10% + var(--vh) * 0.3), 20%);
+  }
+
+  .vinz, .original {
+    font-size: clamp(1.5rem, calc(1.5rem + var(--font-scale-combined) * 200), 3.5rem);
   }
 
   .blauer-bogen-container {
@@ -258,12 +237,16 @@
     z-index: 1;
     right: auto; 
     left: 50%; 
-    top: 20%;
-    width: 100%; 
+    top: clamp(calc(var(--vh) * 18), calc(var(--vh) * 22 + var(--font-scale-combined) * 50), calc(var(--vh) * 28));
+    width: clamp(calc(var(--vw) * 80), calc(var(--vw) * 90 + var(--font-scale-combined) * 200), calc(var(--vw) * 100));
     height: auto;
     display: flex;
     justify-content: center;
     transform: translateX(-50%);
+  }
+  .blauer-bogen {
+    width: clamp(calc(var(--vw) * 70), calc(var(--vw) * 90 + var(--font-scale-combined) * 200), calc(var(--vw) * 100));
+    height: auto;
   }
 
   .oranger-punkt-container {
@@ -272,12 +255,16 @@
     z-index: 3;
     right: auto; 
     left: 70%; 
-    top: 25%;
-    width: 30%; 
+    top: clamp(calc(var(--vh) * 22), calc(var(--vh) * 28 + var(--font-scale-combined) * 50), calc(var(--vh) * 35));
+    width: clamp(calc(var(--vw) * 25), calc(var(--vw) * 30 + var(--font-scale-combined) * 100), calc(var(--vw) * 35));
     height: auto;
     display: flex;
     justify-content: center;
     transform: translateX(-50%);
+  }
+  .oranger-punkt {
+    width: clamp(calc(var(--vw) * 20), calc(var(--vw) * 25 + var(--font-scale-combined) * 50), calc(var(--vw) * 30));
+    height: auto;
   }
   
   .ingredients-container img {
