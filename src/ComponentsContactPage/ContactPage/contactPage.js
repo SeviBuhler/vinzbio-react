@@ -42,9 +42,11 @@ const ContactPage = () => {
 
                         <div className='address'>
                             <label>Adresse:</label>
-                            <p>Vinz Bio GmbH<br />
-                            Musterstrasse 1<br />
-                            8000 Zürich</p>
+                            <p>
+                                Jan Weiss<br />
+                                Teufener Strasse 124<br />
+                                9000 St.Gallen
+                            </p>
                         </div>
 
                         <div className='phonenumber'>

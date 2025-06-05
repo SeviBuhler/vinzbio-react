@@ -16,8 +16,8 @@ const debounce = (func, wait) => {
 // Base positions for each device category and section
 const basePositions = {
   largeDesktop: {
-    header: { x: 0, y: 0, scale: 1.1, rotation: 0 },
-    vinzOriginal: { x: 140, y: -10, scale: 0.8, rotation: 5 },
+    header: { x: 0, y: 0, scale: 1, rotation: 0 },
+    vinzOriginal: { x: 240, y: -20, scale: 0.7, rotation: 5 },
     vinzLocation: { x: 280, y: -8, scale: 0.8, rotation: -5 },
     vinzFeelings: { x: 280, y: -0, scale: 0.8, rotation: 5 },
     vinzShop: { x: 320, y: -10, scale: 0.7, rotation: -15 },
@@ -25,7 +25,7 @@ const basePositions = {
   },
   desktop: {
     header: { x: 0, y: 0, scale: 1.2, rotation: 0 },
-    vinzOriginal: { x: 260, y: -20, scale: 0.7, rotation: 5 },
+    vinzOriginal: { x: 260, y: -20, scale: 0.6, rotation: 5 },
     vinzLocation: { x: 250, y: -5, scale: 0.7, rotation: -5 },
     vinzFeelings: { x: 300, y: -5, scale: 0.7, rotation: 5 },
     vinzShop: { x: 350, y: -25, scale: 0.5, rotation: -25 },
@@ -33,8 +33,8 @@ const basePositions = {
   },
   largeLaptop: {
     header: { x: 0, y: 0, scale: 1.3, rotation: 0 },
-    vinzOriginal: { x: 400, y: -30, scale: 0.9, rotation: 5 },
-    vinzLocation: { x: 300, y: -5, scale: 0.9, rotation: -5 },
+    vinzOriginal: { x: 400, y: -20, scale: 0.8, rotation: 5 },
+    vinzLocation: { x: 350, y: -5, scale: 0.9, rotation: -5 },
     vinzFeelings: { x: 350, y: -5, scale: 0.9, rotation: 5 },
     vinzShop: { x: 400, y: -20, scale: 0.7, rotation: -15 },
     mixologie: { x: -400, y: -50, scale: 0.6, rotation: 45 }
