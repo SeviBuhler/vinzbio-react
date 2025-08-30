@@ -1,0 +1,421 @@
+/* =================================================== */
+/* SMARTPHONES (max-width: 480px)                      */
+/* =================================================== */
+.about-vinz-bottle-section {
+  height: 100vh;
+  padding-top: 2vh;
+  position: relative;
+  overflow-y: visible;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+
+.about-bottle-background-wrapper {
+  background: #FF8C42;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(255, 140, 66, 0.3);
+  width: 45vh;
+  height: 70vh;
+  margin: 0 auto;
+  padding: 25px 35px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.about-bottle-container {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* TITEL "INHALTSSTOFFE" OBEN LINKS */
+.about-bottle-title {
+  color: #FFFFFF;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: left;
+  margin: 0;
+  width: auto;
+  letter-spacing: 0.2px;
+  display: block;
+  position: absolute;
+  top: 5%;
+  left: 9%;
+  transform: none;
+  z-index: 10;
+}
+
+.about-vinz-text {
+  font-family: "Times New Roman", serif;
+  margin-right: 15px;
+  color: #000000;
+}
+
+.about-bottle-subtitle {
+  font-size: 2rem;
+  letter-spacing: 0.16px;
+  color: #3965B5;
+}
+
+/* FLASCHE PERFEKT ZENTRIERT */
+.about-bottle-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.about-bottle-image {
+  max-width: 120px;
+  height: auto;
+  opacity: 1;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  pointer-events: auto;
+}
+
+/* ALLE ANDEREN ELEMENTE AUSBLENDEN */
+.about-bottle-description,
+.about-bottle-features {
+  display: none;
+}
+
+/* BLAUE LINIEN MIT FLACHEREN WINKELN */
+.about-ingredient-line {
+  position: absolute;
+  background-color: #0055a7;
+  z-index: 3;
+}
+
+/* LINIE VON HONIG ZUR FLASCHE */
+.about-ingredient-line-honig {
+  top: 38%;
+  left: 28%;
+  width: 18%;
+  height: 3px;
+  transform: rotate(15deg);
+  transform-origin: left center;
+}
+
+/* LINIE VON APFELESSIG ZUR FLASCHE */
+.about-ingredient-line-apfelessig {
+  bottom: 35%;
+  left: 28%;
+  width: 11%;
+  height: 3px;
+  transform: rotate(-8deg);
+  transform-origin: left center;
+}
+
+/* LINIE VON ZITRONE ZUR FLASCHE */
+.about-ingredient-line-zitrone {
+  top: 28%;
+  right: 28%;
+  width: 16%;
+  height: 3px;
+  transform: rotate(-15deg);
+  transform-origin: right center;
+}
+
+/* LINIE VON INGWER ZUR FLASCHE */
+.about-ingredient-line-ingwer {
+  top: 52%;
+  right: 28%;
+  width: 10%;
+  height: 3px;
+  transform: rotate(0deg);
+  transform-origin: right center;
+}
+
+/* LINIE VON MINZE ZUR FLASCHE */
+.about-ingredient-line-minze {
+  bottom: 23%;
+  right: 27%;
+  width: 10%;
+  height: 3px;
+  transform: rotate(25deg);
+  transform-origin: right center;
+}
+
+/* PULSING ANIMATION - OHNE BLAUE BOX-SHADOW */
+@keyframes pulse {
+  0% { transform: scale(1);}
+  50% { transform: scale(1.05);}
+  100% { transform: scale(1);}
+}
+
+.pulsing {
+  animation: pulse 2s infinite;
+  cursor: pointer;
+}
+
+/* STOPPE PULSING BEI HOVER */
+.about-ingredient-container:hover.pulsing {
+  animation: none;
+}
+
+/* INGREDIENT CONTAINER MIT FLIP ANIMATION */
+.about-ingredient-container {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+}
+
+/* FLIP ANIMATION */
+.about-ingredient-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.about-ingredient-container:hover .about-ingredient-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.about-ingredient-flip-front,
+.about-ingredient-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.about-ingredient-flip-front {
+  transform: rotateY(0deg);
+  background-color: #0055a7;
+  border: 6px solid #FFFFFF;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.about-ingredient-flip-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+  border: 6px solid #FFFFFF;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.click-me-text {
+  font-weight: bold;
+  font-size: 10px;
+  text-align: center;
+  padding: 5px;
+  user-select: none;
+  color: white;
+}
+
+.about-ingredient-flip-front .about-ingredient-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+  object-position: center;
+  border: none;
+  background: none;
+  padding: 10px;
+  box-shadow: none;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* INDIVIDUELLE CONTAINER POSITIONEN */
+.about-ingredient-honig {
+  position: absolute;
+  top: 30%;
+  left: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 6;
+}
+
+.about-ingredient-apfelessig {
+  position: absolute;
+  bottom: 22%;
+  left: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 6;
+}
+
+.about-ingredient-zitrone {
+  position: absolute;
+  top: 20%;
+  right: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 6;
+}
+
+.about-ingredient-ingwer {
+  position: absolute;
+  top: 55%;
+  right: 4%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 6;
+}
+
+.about-ingredient-minze {
+  position: absolute;
+  bottom: 10%;
+  right: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 6;
+}
+
+.about-ingredient-label {
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 12px;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+/* MODAL OVERLAY */
+.ingredient-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* MODAL CONTENT */
+.ingredient-modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 95%;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+  margin: 20px;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* MODAL CLOSE BUTTON */
+.ingredient-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #666;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.ingredient-modal-close:hover {
+  background: #f5f5f5;
+  color: #333;
+  transform: scale(1.1);
+}
+
+/* MODAL HEADER */
+.ingredient-modal-header {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px 10px 15px;
+  border-bottom: 2px solid #f0f0f0;
+  background: linear-gradient(135deg, #FF8C42, #ff9d5c);
+  border-radius: 20px 20px 0 0;
+}
+
+.ingredient-modal-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #0055a7;
+  border: 4px solid white;
+  padding: 8px;
+  margin-right: 0;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ingredient-modal-title {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  flex: 1;
+}
+
+/* MODAL BODY */
+.ingredient-modal-body {
+  padding: 15px;
+}
+
+.ingredient-modal-text {
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: justify;
+}

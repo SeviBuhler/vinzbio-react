@@ -13,15 +13,17 @@ import VinzFeelings from './ComponentsMainPage/vinzFeelings/vinzFeelings.js';
 import VinzShop from './ComponentsMainPage/vinzShop/vinzShop.js';
 import Mixologie from './ComponentsMainPage/mixologie/mixologie.js';
 /* aboutPage */
-import AboutBanner from './ComponentsAboutPage/AboutBanner/aBanner';
 import AboutBackground from './ComponentsAboutPage/AboutBackground/aboutBackground';
 import VinzEnjoyment from './ComponentsAboutPage/vinzEnjoyment/vinzEnjoyment';
+import InstagramFeedeed from './ComponentsAboutPage/InstagramFeed/instagramFeed.js';
+import VinzBottle from './ComponentsAboutPage/VinzBottle/vinzBottle.js';
 /* contactPage */
 import ContactPage from './ComponentsContactPage/ContactPage/contactPage.js';
 
 /* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
 import useBottleScroll from './hooks/useBottleScroll';
+
 
 export const AnimationContext = createContext();
 
@@ -119,9 +121,13 @@ function App() {
 
           <Route path="/überVinz.ch" element={
             <>
-            <AboutBanner />
-            <AboutBackground />
-            <VinzEnjoyment />
+            <Banner />
+            <div className="about-page-scroll-container">
+              <AboutBackground />
+              <VinzEnjoyment />
+              <VinzBottle />
+              <InstagramFeedeed />
+            </div>
             </>
           } />
 

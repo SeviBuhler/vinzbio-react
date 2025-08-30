@@ -4,14 +4,17 @@
   overflow: hidden;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
 body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
+/* Main-Page Container - BLEIBT UNVERÄNDERT */
 .snap-container {
   height: 100vh;
   overflow-y: scroll;
@@ -19,7 +22,29 @@ body, html {
   scroll-behavior: smooth;
 }
 
-/* Add this to your main CSS file */
+/* About-Page Container - EXAKT GLEICH wie Main-Page */
+.about-snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* NEUER About-Page Scroll Container für App.js */
+.about-page-scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
+}
+
+/* Entferne Header falls vorhanden auf About Page */
+.about-page-scroll-container .header {
+  display: none;
+}
+
 .text-justified {
   text-align: justify;
   hyphens: auto;
@@ -29,4 +54,92 @@ body, html {
   word-spacing: normal;
   text-rendering: optimizeLegibility;
   letter-spacing: 0.01em;
+}
+
+/* About-Page Sektionen - perfekt abgestimmt */
+.about-background {
+  height: 100vh; /* GEÄNDERT von min-height zu height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+
+.vinz-enjoyment {
+  height: 100vh; /* GEÄNDERT von min-height zu height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+
+.instagram-feed-container {
+  height: 100vh; /* GEÄNDERT von min-height zu height */
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.instagram-feed-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.juicer-feed {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+/* SCROLL SNAP ALIGN FÜR ALLE SEKTIONEN */
+.snap-container > *,
+.about-page-scroll-container > *,
+.about-snap-container > * {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .instagram-feed-container {
+    padding: 1rem;
+  }
+  
+  .snap-container,
+  .about-page-scroll-container,
+  .about-snap-container {
+    scroll-behavior: auto;
+  }
+}
+
+/* ACCESSIBILITY - REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .snap-container,
+  .about-page-scroll-container,
+  .about-snap-container {
+    scroll-behavior: auto;
+  }
+}
+
+/* FALLBACK FÜR ÄLTERE BROWSER */
+@supports not (scroll-snap-type: y mandatory) {
+  .snap-container,
+  .about-page-scroll-container,
+  .about-snap-container {
+    overflow-y: auto;
+  }
 }
