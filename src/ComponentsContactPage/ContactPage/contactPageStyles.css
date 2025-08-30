@@ -322,3 +322,147 @@
     }
     
 }
+
+@media (min-width: 1600px) {
+    .contact-page {
+        max-height: calc(var(--vh, 1vh) * 90);
+        margin-top: clamp(4rem, calc(var(--vh) * 15), 8rem);
+    }
+
+    .background {
+        right: clamp(45rem, 45.238vw + 20.464rem, 112rem);
+    }
+
+    .contact-page-content {
+        display: grid;
+        grid-template-areas: 
+            "form title"
+            "form dates"
+            "form links";
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .contact-page-title {
+        grid-area: title;
+    }
+
+    .contact-page-title h2 {
+        font-size: clamp(3rem, 1.905vw + 1.714rem, 5rem);
+    }
+
+    .contactdates {
+        grid-area: dates;
+        text-align: center;
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .address, .phonenumber, .email {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .contact-form {
+        grid-area: form;
+        width: 100%;
+        max-width: 800px;
+        left: clamp(4.5rem, 10.476vw + -2.571rem, 10rem);
+        position: relative;
+    }
+
+    .contactdates label {
+        font-size: clamp(1.5rem, 0.952vw + 0.857rem, 2rem);
+    }
+
+    .link-icons {
+        gap: clamp(20px, 3vw, 40px);
+    }
+
+    .email-link {
+        margin: 5px 0;
+        font-size: clamp(1rem, 0.762vw + 0.486rem, 1.4rem);
+    }
+
+    .address p {
+        margin: 5px 0;
+        font-size: clamp(1rem, 0.762vw + 0.486rem, 1.4rem);
+    }
+
+    .phone-link {
+        margin: 5px 0;
+        font-size: clamp(1rem, 0.762vw + 0.486rem, 1.4rem);
+    }
+}
+
+@media (min-width: 2300px) {
+    .contact-page {
+        max-height: calc(var(--vh, 1vh) * 90);
+        margin-top: clamp(4rem, calc(var(--vh) * 20), 12rem);
+    }
+
+    .background {
+        right: clamp(45rem, 45.238vw + 20.464rem, 112rem);
+    }
+
+    .contact-page-content {
+        display: grid;
+        grid-template-areas: 
+            "form title"
+            "form dates"
+            "form links";
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .contact-page-title {
+        grid-area: title;
+    }
+
+    .contact-page-title h2 {
+        font-size: clamp(3rem, (3rem + calc(var(--font-scale-combined) * 30)) , 7rem);
+    }
+
+    .contactdates {
+        grid-area: dates;
+        text-align: center;
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .address, .phonenumber, .email {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .contact-form {
+        grid-area: form;
+        width: 100%;
+        max-width: 800px;
+        left: clamp(4.5rem, 10.476vw + -2.571rem, 10rem);
+        position: relative;
+    }
+
+    .contactdates label {
+        font-size: clamp(1.5rem, (1.5rem + calc(var(--font-scale-combined) * 20)), 3rem);
+    }
+
+    .link-icons {
+        gap: clamp(1.25rem, calc(var(--vw) * 10), 2.5rem);
+    }
+
+    .email-link {
+        margin: 5px 0;
+        font-size: clamp(1rem, (1rem + calc(var(--font-scale-combined) * 15)), 1.8rem);
+    }
+
+    .address p {
+        margin: 5px 0;
+        font-size: clamp(1rem, (1rem + calc(var(--font-scale-combined) * 15)), 1.8rem);
+    }
+
+    .phone-link {
+        margin: 5px 0;
+        font-size: clamp(1rem, (1rem + calc(var(--font-scale-combined) * 15)), 1.8rem);
+    }
+}

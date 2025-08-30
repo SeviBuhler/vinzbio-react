@@ -191,6 +191,11 @@
 }
 
 
+@media (max-height: 799px) {
+  .info-element {
+    display: none;
+  }  
+}
 
 
 /* ===== SMALL TABLET (570px and up) ===== */
