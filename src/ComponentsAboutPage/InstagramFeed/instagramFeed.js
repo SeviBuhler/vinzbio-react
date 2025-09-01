@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import './instagramFeed.css';
+import {
+  InstagramEmbed
+} from 'react-social-media-embed';
+
 
 const InstagramFeed = () => {
   useEffect(() => {
@@ -19,14 +23,16 @@ const InstagramFeed = () => {
   }, []);
 
   return (
-    <div className="instagram-background-wrapper">
+    <section className="instagram-section">
       <div className="instagram-feed-container">
         {/* Instagram Feed Container */}
         <h2>Unser Instagram Feed – Einblicke & Impressionen</h2>
-        {/* Hier fügst du deinen Juicer Embed-Code ein */}
-        <ul className="juicer-feed" data-feed-id="songokubloede"></ul>
+        <InstagramEmbed
+          url="https://www.instagram.com/p/DIWedB1tRmR/"
+          captioned
+        />
       </div>
-    </div>
+    </section>
   );
 };
 

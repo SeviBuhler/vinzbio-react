@@ -3,7 +3,6 @@ import './contactPageStyles.css';
 import Images from '../../images/imageImport.js';
 import ContactForm from '../ContactForm/contactForm.js';
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { SiInstagram, SiLinkedin } from 'react-icons/si';
 
 
 

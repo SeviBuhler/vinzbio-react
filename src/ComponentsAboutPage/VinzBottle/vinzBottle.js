@@ -67,7 +67,7 @@ const VinzBottle = () => {
           {/* TITEL MIT VINZ STYLING */}
           <h2 className="about-bottle-title">
             <span className="about-vinz-text">Vinz.</span>
-            <span className="about-bottle-subtitle">- Inhaltsstoffe</span>
+            <span className="about-bottle-subtitle"> - Inhaltsstoffe</span>
           </h2>
           
           {/* FLASCHE IN DER MITTE */}
@@ -189,16 +189,18 @@ const VinzBottle = () => {
             className="ingredient-modal-content" 
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="ingredient-modal-close" onClick={closeModal}>
-              ×
-            </button>
+            
             <div className="ingredient-modal-header">
+              
               <img 
                 src={modalContent.image} 
                 alt={modalContent.title} 
                 className="ingredient-modal-image"
               />
               <h3 className="ingredient-modal-title">{modalContent.title}</h3>
+              <button className="ingredient-modal-close" onClick={closeModal}>
+              ×
+              </button>
             </div>
             <div className="ingredient-modal-body">
               <p className="ingredient-modal-text">{modalContent.longText}</p>

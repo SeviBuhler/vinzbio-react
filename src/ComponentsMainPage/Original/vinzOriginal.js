@@ -76,7 +76,6 @@ const VinzOriginal = memo(({ id }) => {
   return (
     <section id={id} className="original-section">
       <div className="original-section-content">
-        {/* Add this wrapper div */}
         <div className="background-container">
           <div className="background-blue-card"></div>
         </div>
@@ -101,7 +100,6 @@ const VinzOriginal = memo(({ id }) => {
             </a>
           </div>
           
-          {/* Keep the info container outside but still within the wrapper */}
           <div className={`info-container ${animationStarted ? 'animation-started' : ''}`}>
             {infoElements.map((info) => (
               <div 

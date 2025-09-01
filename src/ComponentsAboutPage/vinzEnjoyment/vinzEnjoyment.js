@@ -4,11 +4,11 @@ import Images from '../../images/imageImport';
 
 function vinzEnjoyment() {
     return (
-    <div className="about-page">
+    <section className="enjoyment-section">
       <div className="about-container">
         <h1 className='title-inside-container'>
-          <span className="vinz">Vinz.</span>
-          <span className="mehr">- Mehr als Genuss</span>
+          <span className="vinz-enjoyment">Vinz.</span>
+          <span className="title"> - Mehr als Genuss</span>
         </h1>
         <div className="content-wrapper">
           <div className="about-content">
@@ -20,16 +20,16 @@ function vinzEnjoyment() {
             <br />
             <p><span className="vinz-inline">vinz.</span> ist mehr als nur ein Erfrischungsgetränk. Es ist ein Ausdruck von Gemeinschaft, ein Produkt aus Leidenschaft und Kreativität. Jeder Schluck erzählt die Geschichte von einem Traum, der mit Hilfe der Menschen um mich wahr wurde.</p>
           </div>
-          <div className="about-image-container">
+           <div className="about-image-container">
             <img 
               src={Images.JanamKochen} 
               alt="Jan Cooking" 
               className="about-story-image"
-            />
+            /> 
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

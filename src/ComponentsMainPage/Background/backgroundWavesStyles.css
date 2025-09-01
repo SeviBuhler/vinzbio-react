@@ -39,18 +39,17 @@
 }
 
 .top-wave {
-  top: 0; /* Position at the top */
+  top: 0;
   right: -15%;
   object-position: center top;
 }
 
 .bottom-wave {
-  top: -50vh; /* Offset to align with top image */
+  top: -50vh;
   right: -15%;
   object-position: center top;
 }
 
-/* Show waves only after first section */
 .show-waves .background-waves {
   opacity: 1;
 }
