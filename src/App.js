@@ -78,17 +78,19 @@ function App() {
 
   useEffect(() => {
       function updateViewportHeight() {
-      const vh = window.innerHeight * 0.01;
-      const vw = window.innerWidth * 0.01;
-      
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-      document.documentElement.style.setProperty('--vw', `${vw}px`);
+        const vh = window.innerHeight * 0.01;
+        const vw = window.innerWidth * 0.01;
+        
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        document.documentElement.style.setProperty('--vw', `${vw}px`);
     }
 
     updateViewportHeight();
 
     window.addEventListener('resize', updateViewportHeight);
-    window.addEventListener('orientationchange', updateViewportHeight);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(updateViewportHeight, 150);
+    });
 
     return () => {
       window.removeEventListener('resize', updateViewportHeight);
@@ -96,7 +98,6 @@ function App() {
     }
   }, []);
   
-
 
   return (
       <Router>

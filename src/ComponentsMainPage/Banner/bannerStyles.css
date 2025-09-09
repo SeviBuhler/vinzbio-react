@@ -1,69 +1,99 @@
+/* ===== DYNAMISCH RESPONSIVES BANNER - MOBILE FIRST ===== */
 .header-banner {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: clamp(calc(var(--vh) * 6), calc(var(--vh) * 10), calc(var(--vh) * 25));
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: calc(var(--vw, 1vw) * 100);
+  height: clamp(
+    calc(var(--vh) * 7 + var(--vw) * 0.5), 
+    calc(var(--vh) * 8 + var(--vw) * 1 + var(--font-scale-combined) * 5), 
+    calc(var(--vh) * 10 + var(--vw) * 1.5)
+  );
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 
+              clamp(-2px, calc(var(--vh) * -0.3), -4px) 
+              clamp(4px, calc(var(--vh) * 0.8), 8px) 
+              rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: flex;
   align-items: center;
-  transform: translateY(-100%);
+  transform: translateY(100%);
   opacity: 0;
   transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
               opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  padding: 0;
+  padding: 0 clamp(
+    calc(var(--vw) * 1 + var(--vh) * 0.1), 
+    calc(var(--vw) * 1.5 + var(--vh) * 0.2), 
+    calc(var(--vw) * 2 + var(--vh) * 0.3)
+  );
 }
   
 .header-banner.visible {
- transform: translateY(0);
+  transform: translateY(0);
   opacity: 0.99;
 }
 
+/* Mobile First - Flexbox Layout */
 .banner-content {
   width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: "mint home uber-vinz logo shop kontakt lemon";
+  display: flex;
   align-items: center;
-  gap: clamp(1.25rem, 3.914vw + -0.142rem, 2.5rem);
+  justify-content: center;
+  box-sizing: border-box;
   position: relative;
-  
 }
 
-.ingredient-container:first-child {
-  grid-area: mint;
-  justify-self: start;
+/* Mobile First - Hide ingredients on mobile */
+.ingredient-container {
+  display: none;
 }
 
-.banner-text.home {
-  grid-area: home;
-  justify-self: center;
+/* Mobile First - Banner text elements */
+.banner-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.banner-text.uberVinz {
-  grid-area: uber-vinz;
-  justify-self: center;
+.banner-brand {
+  font-size: clamp(
+    calc(var(--vh) * 1.3 + var(--vw) * 0.9), 
+    calc(var(--vh) * 1.5 + var(--vw) * 1.3 + var(--font-scale-combined) * 10), 
+    calc(var(--vh) * 2.8 + var(--vw) * 2)
+  );
+  font-weight: 700;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.4s cubic-bezier(0.2, 0.1, 0.1, 0.2), 
+              transform 0.2s cubic-bezier(0.2, 0.1, 0.1, 0.2);
+  white-space: nowrap;
+  padding: clamp(
+    calc(var(--vh) * 0.5 + var(--vw) * 0.5), 
+    calc(var(--vh) * 1 + var(--vw) * 1), 
+    calc(var(--vh) * 1.5 + var(--vw) * 1.5)
+  );
+  text-align: center;
 }
 
+.banner-brand:hover {
+  color: #E9760C;
+  transform: scale(1.05);
+}
+
+/* Mobile First - Logo */
 .banner-logo {
-  grid-area: logo;
-  justify-self: center;
-}
-
-.banner-text.shop {
-  grid-area: shop;
-}
-
-.banner-text.contact {
-  grid-area: kontakt;
-}
-
-.ingredient-container:last-child {
-  grid-area: lemon;
-  justify-self: end;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(
+    calc(var(--vh) * 4 + var(--vw) * 1), 
+    calc(var(--vh) * 5 + var(--vw) * 1.5 + var(--font-scale-combined) * 8), 
+    calc(var(--vh) * 7 + var(--vw) * 2)
+  );
 }
 
 .logo-link {
@@ -78,40 +108,15 @@
 }
 
 .banner-logo img {
-  height: clamp(40px, 7vh, 150px);
+  height: clamp(
+    calc(var(--vh) * 4 + var(--vw) * 1), 
+    calc(var(--vh) * 5 + var(--vw) * 1.5 + var(--font-scale-combined) * 8), 
+    calc(var(--vh) * 7 + var(--vw) * 2)
+  );
   width: auto;
 }
 
-.banner-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.banner-brand {
-  font-size: clamp(1.2rem, 1.5vw + 0.5rem, 2.5rem);
-  font-weight: 700;
-  color: #000;
-  text-decoration: none;
-  transition: color 0.4s cubic-bezier(0.2, 0.1, 0.1, 0.2), transform 0.2s cubic-bezier(0.2, 0.1, 0.1, 0.2);
-  white-space: nowrap;
-}
-
-.banner-brand:hover {
-  color: #E9760C;
-  transform: scale(1.05);
-}
-
-.ingredient-container {
-  width: clamp(60px, 8vw, 100px);
-  min-width: clamp(60px, 8vw, 100px);
-  height: clamp(60px, 8vw, 100px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
+/* Mobile First - Ingredient images (hidden) */
 .banner-image {
   width: auto;
   height: 100%;
@@ -126,13 +131,21 @@
 .banner-image.fade-out {
   opacity: 0;
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  transform: translate(10px)
+  transform: translateX(clamp(5px, calc(var(--vw) * 1), 10px));
 }
 
 .banner-minze {
-  width: clamp(80px, 8vw, 200px);
+  width: clamp(
+    calc(var(--vh) * 5 + var(--vw) * 3), 
+    calc(var(--vh) * 6 + var(--vw) * 4 + var(--font-scale-combined) * 15), 
+    calc(var(--vh) * 10 + var(--vw) * 6)
+  );
   height: auto;
-  margin-top: clamp(10%, 3vh, 20%);
+  margin-top: clamp(
+    calc(var(--vh) * 1 + var(--vw) * 0.5), 
+    calc(var(--vh) * 2 + var(--vw) * 1), 
+    calc(var(--vh) * 4 + var(--vw) * 1.5)
+  );
   transition: transform 0.5s cubic-bezier(0.2, 0.1, 0.1, 0.2);
 }
 
@@ -141,10 +154,18 @@
 }
 
 .banner-zitrone {
-  width: clamp(80px, 8vw, 200px);
+  width: clamp(
+    calc(var(--vh) * 5 + var(--vw) * 3), 
+    calc(var(--vh) * 6 + var(--vw) * 4 + var(--font-scale-combined) * 15), 
+    calc(var(--vh) * 10 + var(--vw) * 6)
+  );
   height: auto;
   transform: rotate(10deg);
-  margin-top: clamp(40%, 5vh, 50%);
+  margin-top: clamp(
+    calc(var(--vh) * 2 + var(--vw) * 1), 
+    calc(var(--vh) * 3 + var(--vw) * 1.5), 
+    calc(var(--vh) * 5 + var(--vw) * 2)
+  );
   transition: transform 0.5s cubic-bezier(0.2, 0.1, 0.1, 0.2);
 }
 
@@ -155,7 +176,7 @@
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(clamp(5px, calc(var(--vh) * 1), 10px));
   }
   100% {
     opacity: 1;
@@ -163,123 +184,366 @@
   }
 }
 
-@media (max-width: 1080px) {
+/* ===== RESPONSIVE ANPASSUNGEN - BOOTSTRAP BREAKPOINTS ===== */
+
+/* Small devices (landscape phones) - 576px and up */
+@media (min-width: 576px) {
   .header-banner {
-    height: clamp(calc(var(--vh) * 6), calc(var(--vh) * 14  ), calc(var(--vh) * 25));
+    height: clamp(
+      calc(var(--vh) * 8 + var(--vw) * 0.8), 
+      calc(var(--vh) * 9 + var(--vw) * 1.2 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 12 + var(--vw) * 1.8)
+    );
+    padding: 0 clamp(
+      calc(var(--vw) * 2 + var(--vh) * 0.2), 
+      calc(var(--vw) * 3 + var(--vh) * 0.3), 
+      calc(var(--vw) * 4 + var(--vh) * 0.5)
+    );
   }
-
-  .banner-logo img {
-    height: clamp(2.5rem, 4.444vw + 0.5rem, 3.5rem);
+  
+  .banner-content {
+    gap: clamp(
+      calc(var(--vw) * 2.5 + var(--vh) * 0.2), 
+      calc(var(--vw) * 3.5 + var(--vh) * 0.3 + var(--font-scale-combined) * 10), 
+      calc(var(--vw) * 5 + var(--vh) * 0.5)
+    );
   }
-
+  
   .banner-brand {
-    font-size: clamp(1.2rem, 2.667vw + -0rem, 1.8rem);
+    font-size: clamp(
+      calc(var(--vh) * 1.4 + var(--vw) * 1), 
+      calc(var(--vh) * 1.6 + var(--vw) * 1.4 + var(--font-scale-combined) * 12), 
+      calc(var(--vh) * 3 + var(--vw) * 2)
+    );
   }
-
-  .ingredient-container {
-    width: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
-    min-width: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
-    height: clamp(3.75rem, 11.111vw + -1.25rem, 6.25rem);
-  }
-
-  .banner-minze .banner-zitrone {
-    width: clamp(5rem, 6.667vw + 2rem, 6.5rem);
+  
+  .banner-logo img {
+    height: clamp(
+      calc(var(--vh) * 4.5 + var(--vw) * 1.2), 
+      calc(var(--vh) * 5.5 + var(--vw) * 1.8 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 8 + var(--vw) * 2.5)
+    );
   }
 }
 
-/* Mobile banner (bottom navigation) */
-@media (max-width: 567px) {
+/* Medium devices (tablets) - 768px and up */
+@media (min-width: 768px) {
   .header-banner {
-    top: auto;
-    bottom: 0;
-    width: 100%;
-    height: clamp(3.5rem, calc(var(--vh) * 7), 4.5rem);
-    background-color: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(100%);
-    padding: 0 5px;
+    top: 0;
+    bottom: auto;
+    height: clamp(
+      calc(var(--vh) * 8 + var(--vw) * 1), 
+      calc(var(--vh) * 10 + var(--vw) * 1.5 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 15 + var(--vw) * 2)
+    );
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 
+                clamp(2px, calc(var(--vh) * 0.3), 4px) 
+                clamp(4px, calc(var(--vh) * 0.8), 8px) 
+                rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    padding: 0;
   }
   
   .header-banner.visible {
     transform: translateY(0);
   }
   
+  /* Switch to Grid Layout */
   .banner-content {
-    width: 100%;
-    margin: 0 auto;
-    display: flex !important;
-    align-items: center;
-    gap: clamp(0.3rem, calc(var(--vw) * 2 ), 0.4rem);
-    justify-content: center;
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "mint home uber-vinz logo shop kontakt lemon";
+    gap: clamp(
+      calc(var(--vw) * 1 + var(--vh) * 0.2), 
+      calc(var(--vw) * 2 + var(--vh) * 0.4 + var(--font-scale-combined) * 15), 
+      calc(var(--vw) * 3 + var(--vh) * 0.6)
+    );
+    justify-content: space-between;
   }
   
-  /* Hide ingredient containers on mobile */
+  /* Show ingredients */
   .ingredient-container {
-    display: none;
-  }
-  
-  /* Make text items larger and centered for better tapping */
-  .banner-text {
-    display: 1;
+    display: flex;
+    width: clamp(
+      calc(var(--vh) * 4 + var(--vw) * 2), 
+      calc(var(--vh) * 6 + var(--vw) * 3 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 10 + var(--vw) * 4)
+    );
+    min-width: clamp(
+      calc(var(--vh) * 4 + var(--vw) * 2), 
+      calc(var(--vh) * 6 + var(--vw) * 3 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 10 + var(--vw) * 4)
+    );
+    height: clamp(
+      calc(var(--vh) * 4 + var(--vw) * 2), 
+      calc(var(--vh) * 6 + var(--vw) * 3 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 10 + var(--vw) * 4)
+    );
     align-items: center;
     justify-content: center;
-    display: flex;
-    height: 100%;
+    position: relative;
   }
-
-  /* Remove specific grid areas for mobile */
-  .banner-text.home,
-  .banner-text.uberVinz,
-  .banner-text.shop,
+  
+  .ingredient-container:first-child {
+    grid-area: mint;
+    justify-self: start;
+  }
+  
+  .ingredient-container:last-child {
+    grid-area: lemon;
+    justify-self: end;
+  }
+  
+  /* Grid areas for text elements */
+  .banner-text.home {
+    grid-area: home;
+    justify-self: center;
+  }
+  
+  .banner-text.uberVinz {
+    grid-area: uber-vinz;
+    justify-self: center;
+  }
+  
+  .banner-text.shop {
+    grid-area: shop;
+    justify-self: center;
+  }
+  
   .banner-text.contact {
-    grid-area: unset !important;
+    grid-area: kontakt;
+    justify-self: center;
   }
   
   .banner-logo {
-    grid-area: unset !important;
+    grid-area: logo;
+    justify-self: center;
+    flex: none;
   }
   
   .banner-brand {
-    font-size: clamp(1.1rem, calc(1.1rem + var(--font-scale-combined) * 10), 2.1rem);
-    padding: 8px;
-    text-align: center;
+    font-size: clamp(
+      calc(var(--vh) * 1.5 + var(--vw) * 0.5), 
+      calc(var(--vh) * 1.7 + var(--vw) * 1.5 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 2.5 + var(--vw) * 1.8)
+    );
+    padding: clamp(
+      calc(var(--vh) * 0.3 + var(--vw) * 0.3), 
+      calc(var(--vh) * 0.5 + var(--vw) * 0.5), 
+      calc(var(--vh) * 1 + var(--vw) * 1)
+    );
   }
   
-  /* Make logo smaller on mobile */
-  .banner-logo {
-    height: clamp(3rem, 8vw + 1.1rem, 4rem);
-    flex: 1;
-    justify-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .banner-logo img {
-    height: clamp(3rem, 8vw + 1.1rem, 4rem);
-    width: auto;
+    height: clamp(
+      calc(var(--vh) * 5 + var(--vw) * 1.5), 
+      calc(var(--vh) * 7 + var(--vw) * 2 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 12 + var(--vw) * 3)
+    );
+  }
+  
+  .banner-minze {
+    width: clamp(
+      calc(var(--vh) * 5 + var(--vw) * 3), 
+      calc(var(--vh) * 7 + var(--vw) * 4 + var(--font-scale-combined) * 20), 
+      calc(var(--vh) * 12 + var(--vw) * 6)
+    );
+  }
+  
+  .banner-zitrone {
+    width: clamp(
+      calc(var(--vh) * 5 + var(--vw) * 3), 
+      calc(var(--vh) * 7 + var(--vw) * 4 + var(--font-scale-combined) * 20), 
+      calc(var(--vh) * 12 + var(--vw) * 6)
+    );
   }
 }
 
-@media (max-width: 375px) {
+/* Large devices (desktops) - 992px and up */
+@media (min-width: 992px) {
   .header-banner {
-    height: 50px;
+    height: clamp(
+      calc(var(--vh) * 9 + var(--vw) * 1.2), 
+      calc(var(--vh) * 12 + var(--vw) * 1.8 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 18 + var(--vw) * 2.5)
+    );
   }
   
-  .banner-logo {
-    height: 40px;
+  .banner-content {
+    gap: clamp(
+      calc(var(--vw) * 1.5 + var(--vh) * 0.3), 
+      calc(var(--vw) * 2.5 + var(--vh) * 0.5 + var(--font-scale-combined) * 20), 
+      calc(var(--vw) * 4 + var(--vh) * 0.8)
+    );
+  }
+  
+  .ingredient-container {
+    width: clamp(
+      calc(var(--vh) * 5 + var(--vw) * 2.5), 
+      calc(var(--vh) * 7 + var(--vw) * 3.5 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 12 + var(--vw) * 5)
+    );
+    min-width: clamp(
+      calc(var(--vh) * 5 + var(--vw) * 2.5), 
+      calc(var(--vh) * 7 + var(--vw) * 3.5 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 12 + var(--vw) * 5)
+    );
+    height: clamp(
+      calc(var(--vh) * 5 + var(--vw) * 2.5), 
+      calc(var(--vh) * 7 + var(--vw) * 3.5 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 12 + var(--vw) * 5)
+    );
   }
   
   .banner-brand {
-    font-size: clamp(0.8rem, 5vw, 1.8rem);
-    padding: 4px;
+    font-size: clamp(
+      calc(var(--vh) * 1.4 + var(--vw) * 1), 
+      calc(var(--vh) * 1.8 + var(--vw) * 1.4 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 3 + var(--vw) * 2.2)
+    );
   }
   
-  .banner-minze,
-  .banner-zitrone {
-    width: clamp(60px, 6vw, 150px);
-    height: auto;
-    margin-top: clamp(10%, 3vh, 20%);
+  .banner-logo img {
+    height: clamp(
+      calc(var(--vh) * 6 + var(--vw) * 2), 
+      calc(var(--vh) * 8 + var(--vw) * 2.5 + var(--font-scale-combined) * 20), 
+      calc(var(--vh) * 15 + var(--vw) * 4)
+    );
+  }
+  
+  .banner-minze, .banner-zitrone {
+    width: clamp(
+      calc(var(--vh) * 6 + var(--vw) * 3.5), 
+      calc(var(--vh) * 8 + var(--vw) * 4.5 + var(--font-scale-combined) * 25), 
+      calc(var(--vh) * 15 + var(--vw) * 7)
+    );
+  }
+}
+
+/* Extra large devices (large desktops) - 1200px and up */
+@media (min-width: 1200px) {
+  .header-banner {
+    height: clamp(
+      calc(var(--vh) * 10 + var(--vw) * 1.5), 
+      calc(var(--vh) * 14 + var(--vw) * 2 + var(--font-scale-combined) * 20), 
+      calc(var(--vh) * 20 + var(--vw) * 3)
+    );
+  }
+  
+  .banner-content {
+    max-width: min(calc(var(--vw) * 85), 1800px);
+    margin: 0 auto;
+  }
+  
+  .banner-brand {
+    font-size: clamp(
+      calc(var(--vh) * 1.6 + var(--vw) * 1.2), 
+      calc(var(--vh) * 2 + var(--vw) * 1.6 + var(--font-scale-combined) * 12), 
+      calc(var(--vh) * 3.5 + var(--vw) * 2.5)
+    );
+  }
+  
+  .banner-logo img {
+    height: clamp(
+      calc(var(--vh) * 7 + var(--vw) * 2.5), 
+      calc(var(--vh) * 10 + var(--vw) * 3 + var(--font-scale-combined) * 25), 
+      calc(var(--vh) * 18 + var(--vw) * 5)
+    );
+  }
+}
+
+/* XXL devices (larger desktops) - 1400px and up */
+@media (min-width: 1400px) {
+  .header-banner {
+    height: clamp(
+      calc(var(--vh) * 12 + var(--vw) * 1.8), 
+      calc(var(--vh) * 16 + var(--vw) * 2.5 + var(--font-scale-combined) * 25), 
+      calc(var(--vh) * 25 + var(--vw) * 3.5)
+    );
+  }
+  
+  .banner-content {
+    max-width: min(calc(var(--vw) * 80), 2000px);
+  }
+  
+  .banner-brand {
+    font-size: clamp(
+      calc(var(--vh) * 1.8 + var(--vw) * 1.4), 
+      calc(var(--vh) * 2.2 + var(--vw) * 1.8 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 4 + var(--vw) * 3)
+    );
+  }
+}
+
+/* Sehr kleine Höhe - Landscape Mobile */
+@media (max-height: 600px) {
+  .header-banner {
+    height: clamp(
+      calc(var(--vh) * 6 + var(--vw) * 0.5), 
+      calc(var(--vh) * 8 + var(--vw) * 1), 
+      calc(var(--vh) * 12 + var(--vw) * 1.5)
+    );
+  }
+  
+  .banner-brand {
+    font-size: clamp(
+      calc(var(--vh) * 1 + var(--vw) * 0.8), 
+      calc(var(--vh) * 1.2 + var(--vw) * 1.2 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 2 + var(--vw) * 1.8)
+    );
+  }
+  
+  .banner-logo img {
+    height: clamp(
+      calc(var(--vh) * 3.5 + var(--vw) * 1), 
+      calc(var(--vh) * 4.5 + var(--vw) * 1.5 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 6 + var(--vw) * 2)
+    );
+  }
+}
+
+/* Sehr kleine Bildschirme */
+@media (max-width: 375px) {
+  .header-banner {
+    height: clamp(
+      calc(var(--vh) * 6 + var(--vw) * 0.5), 
+      calc(var(--vh) * 7 + var(--vw) * 1), 
+      calc(var(--vh) * 9 + var(--vw) * 1.5)
+    );
+    padding: 0 clamp(
+      calc(var(--vw) * 0.5 + var(--vh) * 0.1), 
+      calc(var(--vw) * 1 + var(--vh) * 0.2), 
+      calc(var(--vw) * 1.5 + var(--vh) * 0.3)
+    );
+  }
+  
+  .banner-content {
+    gap: clamp(
+      calc(var(--vw) * 1.5 + var(--vh) * 0.1), 
+      calc(var(--vw) * 2 + var(--vh) * 0.2), 
+      calc(var(--vw) * 3 + var(--vh) * 0.3)
+    );
+  }
+  
+  .banner-brand {
+    font-size: clamp(
+      calc(var(--vh) * 1.1 + var(--vw) * 0.7), 
+      calc(var(--vh) * 1.4 + var(--vw) * 1.2 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 2.2 + var(--vw) * 1.7)
+    );
+    padding: clamp(
+      calc(var(--vh) * 0.3 + var(--vw) * 0.3), 
+      calc(var(--vh) * 0.5 + var(--vw) * 0.5), 
+      calc(var(--vh) * 1 + var(--vw) * 1)
+    );
+  }
+  
+  .banner-logo img {
+    height: clamp(
+      calc(var(--vh) * 3.5 + var(--vw) * 1), 
+      calc(var(--vh) * 4 + var(--vw) * 1.5 + var(--font-scale-combined) * 6), 
+      calc(var(--vh) * 6 + var(--vw) * 2)
+    );
   }
 }

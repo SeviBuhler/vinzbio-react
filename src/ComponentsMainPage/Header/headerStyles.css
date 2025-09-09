@@ -197,7 +197,7 @@
   }
 
   .bottle-container {
-    width: clamp(7.5rem, calc(var(--vw) * 35), 12.5rem);
+    width: clamp(7.5rem, calc(var(--vw) * 15 + var(--vh) * 12), 12.5rem);
     height: auto;
     max-height: calc(var(--vh) * 80);
     left: 50%;
@@ -262,8 +262,13 @@
     justify-content: center;
     transform: translateX(-50%);
   }
+
   .oranger-punkt {
-    width: clamp(calc(var(--vw) * 20), calc(var(--vw) * 25 + var(--font-scale-combined) * 50), calc(var(--vw) * 30));
+    width: clamp(
+      calc(var(--vw) * 15 + var(--vh) * 2), 
+      calc(var(--vw) * 20 + var(--vh) * 3 + var(--font-scale-combined) * 50), 
+      calc(var(--vw) * 25 + var(--vh) * 4)
+    );
     height: auto;
   }
   
@@ -272,22 +277,22 @@
   }
 
   .apfelessig {
-    max-width: 16vw;
+    max-width: calc(var(--vw) * 12 + var(--vh) * 2);
   }
-  
+
   .honig {
-    max-width: 25vw;
+    max-width: calc(var(--vw) * 18 + var(--vh) * 2.5);
   }
-  
+
   .ingwer {
-    max-width: 25vw;
+    max-width: calc(var(--vw) * 18 + var(--vh) * 2.5);
   }
-  
+
   .zitrone {
-    max-width: 22vw;
+    max-width: calc(var(--vw) * 16 + var(--vh) * 2.3);
   }
-  
+
   .minze {
-    max-width: 25vw;
+    max-width: calc(var(--vw) * 18 + var(--vh) * 2.5);
   }
 }
