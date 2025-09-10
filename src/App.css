@@ -22,6 +22,20 @@ body, html {
   scroll-behavior: smooth;
 }
 
+.about-snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.contact-snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
 /* NEUER About-Page Scroll Container für App.js */
 .about-page-scroll-container {
   height: 100vh;
@@ -39,40 +53,4 @@ body, html {
   word-spacing: normal;
   text-rendering: optimizeLegibility;
   letter-spacing: 0.01em;
-}
-
-/* About-Page Sektionen - perfekt abgestimmt */
-.about-background {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: start;
-}
-
-.instagram-feed-container {
-  height: 100vh;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow-y: auto;
-}
-
-.instagram-feed-container h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #333;
-  flex-shrink: 0;
-}
-
-.juicer-feed {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-grow: 1;
-  overflow-y: auto;
 }

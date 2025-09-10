@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './bannerStyles.css';
 import Images from '../../images/imageImport.js';
 import { useLocation } from 'react-router-dom';
@@ -8,6 +8,17 @@ const Banner = () => {
   const [showIngredients, setShowIngredients] = useState(false);
   const timerRef = useRef(null);
   const location = useLocation(null);
+
+  // Debug funciton
+ const debugLog = useCallback((message, data = {}) => {
+    console.log(`[Banner Debug] ${message}`, {
+      pathname: location.pathname,
+      isVisible,
+      showIngredients,
+      ...data
+    });
+  }, [location.pathname, isVisible, showIngredients]);
+
 
   // Determine current page and what links to show
   const getCurrentPageConfig = () => {
@@ -23,7 +34,7 @@ const Banner = () => {
           showKontakt: true,
           showIngredients: true,
         };
-      case '/überVinz.ch':
+      case '/überVinz':
         return {
           showHome: true,
           showUberVinz: true,
@@ -58,31 +69,45 @@ const Banner = () => {
 
     // always show banner on non-home pages
     if (currentPath !== '/home' && currentPath !== '/') {
+      debugLog('Non-home page detected, showing banner and ingredients immediately.');
       setIsVisible(true);
       setShowIngredients(true);
+      return;
     }
 
     // Apply scroll-based visibility logic
     const handleScroll = () => {
       const snapContainer = document.querySelector('.snap-container');
-      if (!snapContainer) return;
-      
+      if (!snapContainer) {
+        debugLog('No snap-container found, cannot handle scroll.');
+        return;
+      }
+
       const scrollY = snapContainer.scrollTop;
       const viewportHeight = window.innerHeight;
       const threshold = viewportHeight * 0.2;
+
+      debugLog('Scroll event detected.', { scrollY, viewportHeight, threshold, shouldShow: scrollY > threshold });
       
       // Debounce the scroll updates
       if (timerRef.current) clearTimeout(timerRef.current);
       
       timerRef.current = setTimeout(() => {
         const shouldShowBanner = scrollY > threshold;
+
+        debugLog('Setting banner visibility', {
+          shouldShowBanner,
+          previousIsVisible: isVisible,
+        });
         
         if (shouldShowBanner) {
           setIsVisible(true);
           setTimeout(() => {
+            debugLog('Showing ingredients after banner is visible.');
             setShowIngredients(true);
           }, 50);
         } else {
+          debugLog('Hiding ingredients and banner.');
           setShowIngredients(false);
           setTimeout(() => {
             setIsVisible(false);
@@ -93,11 +118,15 @@ const Banner = () => {
     
     const snapContainer = document.querySelector('.snap-container');
     if (snapContainer) {
+      debugLog('Adding scroll listener to snap-container');
       snapContainer.addEventListener('scroll', handleScroll, { passive: true });
       handleScroll();
+    } else {
+      debugLog('No snap-container found on initial load.');
     }
     
     return () => {
+      debugLog('Cleaning up scroll listener and timer.');
       if (snapContainer) {
         snapContainer.removeEventListener('scroll', handleScroll);
       }
@@ -105,7 +134,7 @@ const Banner = () => {
         clearTimeout(timerRef.current);
       }
     };
-  }, [location.pathname]);
+  }, [location.pathname, debugLog, isVisible]);
 
   //Handle click on the logo to navigate to the main page or only to the top of the page
   const handleLogoClick = (e) => {
@@ -152,7 +181,7 @@ const Banner = () => {
         {/* Über Vinz link - show on non-about pages */}
         {config.showUberVinz && (
           <div className="banner-text uberVinz">
-            <a href="/überVinz.ch" className="banner-brand">über vinz.</a>
+            <a href="/überVinz" className="banner-brand">über vinz.</a>
           </div>
         )}
 

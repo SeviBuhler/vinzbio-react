@@ -1,14 +1,23 @@
 .contact-page-section {
-    display: flex;
     height: calc(var(--vh, 1vh) * 100);
+    width: calc(var(--vw, 1vw) * 100);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    scroll-snap-align: start;
+    background-color: transparent;
+    overflow: hidden;
 }
 
 .contact-page {
-    width: calc(var(--vw, 1vw) * 100);
-    max-height: calc(var(--vh, 1vh) * 100);
+    max-width: calc(var(--vw) * 95);
+    max-height: calc(var(--vh) * 90);
+    width: 100%;
+    height: 90%;
     display: flex;
     align-items: baseline;
     position: relative;
+    overflow: visible;
 }
 
 .background {

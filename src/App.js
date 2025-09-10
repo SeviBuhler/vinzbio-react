@@ -120,10 +120,10 @@ function App() {
             </AnimationContext.Provider>
           } />
 
-          <Route path="/überVinz.ch" element={
+          <Route path="/überVinz" element={
             <>
             <Banner />
-            <div className="about-page-scroll-container">
+            <div className="about-snap-container">
               <AboutBackground />
               <VinzEnjoyment />
               <VinzBottle />
@@ -135,7 +135,9 @@ function App() {
           <Route path="/kontakt" element={
             <>
               <Banner />
-              <ContactPage id='contactPage'/>
+              <div className='contact-snap-container'>
+                <ContactPage id='contactPage'/>
+              </div>
             </>
           }/>
         </Routes>
