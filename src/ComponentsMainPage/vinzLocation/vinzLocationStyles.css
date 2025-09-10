@@ -166,7 +166,7 @@
   .vinzlocation-title {
     font-size: clamp(
       calc(var(--vh) * 2.5), 
-      calc(var(--vh) * 3 + var(--font-scale-combined) * 6), 
+      calc(var(--vh) * 4 + var(--font-scale-combined) * 6), 
       calc(var(--vh) * 8)
     );
   }
@@ -174,16 +174,16 @@
   .vinzlocation-title .blue-text {
     font-size: clamp(
       calc(var(--vh) * 2), 
-      calc(var(--vh) * 2.5 + var(--font-scale-combined) * 4), 
+      calc(var(--vh) * 4 + var(--font-scale-combined) * 4), 
       calc(var(--vh) * 6)
     );
   }
   
   .vinzlocation-map {
     height: clamp(
-      calc(var(--vh) * 25), 
-      calc(var(--vh) * 35 + var(--font-scale-combined) * 20), 
-      calc(var(--vh) * 50)
+      calc(var(--vh) * 30), 
+      calc(var(--vh) * 55 + var(--font-scale-combined) * 40), 
+      calc(var(--vh) * 60)
     );
   }
   

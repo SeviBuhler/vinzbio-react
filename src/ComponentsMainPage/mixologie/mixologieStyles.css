@@ -494,15 +494,7 @@
             calc(var(--vh) * 2.5)
         );
     }
-    
-    .mixologie-drink-card {
-        max-height: clamp(
-            calc(var(--vh) * 8), 
-            calc(var(--vh) * 10), 
-            calc(var(--vh) * 12)
-        );
-    }
-    
+        
     .mixologie-drink-card.expanded-card {
         max-height: calc(var(--vh) * 75);
     }

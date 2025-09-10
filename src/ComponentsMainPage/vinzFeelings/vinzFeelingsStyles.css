@@ -193,30 +193,30 @@
 @media (max-height: 600px) {
     .vinz-feelings-section-title {
         font-size: clamp(
-            calc(var(--vh) * 2.5), 
-            calc(var(--vh) * 3 + var(--font-scale-combined) * 6), 
-            calc(var(--vh) * 8)
+            calc(var(--vh) * 2 + var(--vw) * 1), 
+            calc(var(--vh) * 2.4 + var(--vw) * 1.5 + var(--font-scale-combined) * 6), 
+            calc(var(--vh) * 8 + var(--vw) * 2)
         );
     }
     
     .vinz-feelings-section-subtitle {
         font-size: clamp(
-            calc(var(--vh) * 2), 
-            calc(var(--vh) * 2.5 + var(--font-scale-combined) * 4), 
-            calc(var(--vh) * 6)
+            calc(var(--vh) * 2 + var(--vw) * 0.3), 
+            calc(var(--vh) * 2.3 + var(--vw) * 0.8 + var(--font-scale-combined) * 4), 
+            calc(var(--vh) * 6 + var(--vw) * 2)
         );
     }
     
     .vinz-feelings-text {
         font-size: clamp(
-            calc(var(--vh) * 1.5), 
-            calc(var(--vh) * 1.8 + var(--font-scale-combined) * 6), 
-            calc(var(--vh) * 5)
+            calc(var(--vh) * 1 + var(--vw) * 0.2), 
+            calc(var(--vh) * 1.2 + var(--vw) * 0.8 + var(--font-scale-combined) * 6), 
+            calc(var(--vh) * 5 + var(--vw) * 0.4)
         );
     }
     
     .vinzinhand-image {
-        max-height: clamp(150px, calc(var(--vh) * 20), 250px);
+        max-height: clamp(115px, calc(var(--vh) * 15 + var(--vw) * 2), 250px);
     }
     
     .vinz-feelings-container {
