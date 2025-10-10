@@ -126,7 +126,6 @@ function App() {
               <AboutBackground />
               <VinzEnjoyment />
               <VinzBottle />
-              <InstagramFeedeed />
             </div>
             </>
           } />
