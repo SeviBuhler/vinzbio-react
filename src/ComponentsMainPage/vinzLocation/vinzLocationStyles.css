@@ -194,28 +194,48 @@
 
 /* Größere Bildschirme - Layout wird horizontal */
 @media (min-width: 768px) {
+  .vinzlocation-content {
+    margin-top: clamp(
+      calc(var(--vh) * 15), 
+      calc(var(--vh) * 20 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 30)
+    );
+  }
+
   .vinzlocation-wrapper {
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     gap: clamp(
+      calc(var(--vh) * 2), 
+      calc(var(--vh) * 3 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 5)
+    );
+    max-width: 60%;
+  }
+
+  .map-container {
+    box-shadow: none;
+  }
+  
+  .vinzlocation-text {
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: clamp(
       calc(var(--vw) * 2), 
-      calc(var(--vw) * 3 + var(--font-scale-combined) * 15), 
+      calc(var(--vw) * 3 + var(--font-scale-combined) * 10), 
       calc(var(--vw) * 5)
     );
   }
   
-  .vinzlocation-title-container {
-    flex: 0 0 35%;
-    max-width: 35%;
-  }
-  
-  .vinzlocation-map-container {
-    flex: 0 0 60%;
-    max-width: 60%;
+  .vinzlocation-map {
+    width: 100%;
   }
   
   .vinzlocation-title {
     text-align: left;
+    margin: 0;
   }
   
   .vinzlocation-title .blue-text {
@@ -237,16 +257,23 @@
 @media (min-width: 1200px) {
   .vinzlocation-content {
     max-width: min(calc(var(--vw) * 85), 1800px);
+    margin-top: clamp(
+      calc(var(--vh) * 10), 
+      calc(var(--vh) * 15 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 35)
+    );
   }
   
-  .vinzlocation-title-container {
-    flex: 0 0 30%;
-    max-width: 30%;
+  .vinzlocation-wrapper {
+    max-width: 60%;
   }
   
-  .vinzlocation-map-container {
-    flex: 0 0 65%;
-    max-width: 65%;
+  .vinzlocation-text {
+    width: 100%;
+  }
+  
+  .vinzlocation-map {
+    width: 100%;
   }
   
   .vinzlocation-map {

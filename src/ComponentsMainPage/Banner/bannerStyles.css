@@ -390,7 +390,7 @@
   .banner-logo img {
     height: clamp(
       calc(var(--vh) * 5 + var(--vw) * 2), 
-      calc(var(--vh) * 7 + var(--vw) * 2.5 + var(--font-scale-combined) * 20), 
+      calc(var(--vh) * 6 + var(--vw) * 2.5 + var(--font-scale-combined) * 20), 
       calc(var(--vh) * 12 + var(--vw) * 4)
     );
   }
