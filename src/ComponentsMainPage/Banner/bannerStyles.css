@@ -233,7 +233,7 @@
     bottom: auto;
     height: clamp(
       calc(var(--vh) * 8 + var(--vw) * 1), 
-      calc(var(--vh) * 10 + var(--vw) * 1.5 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 7 + var(--vw) * 1.5 + var(--font-scale-combined) * 10), 
       calc(var(--vh) * 15 + var(--vw) * 2)
     );
     background-color: rgba(255, 255, 255, 0.95);
@@ -338,7 +338,7 @@
   .banner-logo img {
     height: clamp(
       calc(var(--vh) * 5 + var(--vw) * 1.5), 
-      calc(var(--vh) * 7 + var(--vw) * 2 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 5 + var(--vw) * 2 + var(--font-scale-combined) * 15), 
       calc(var(--vh) * 12 + var(--vw) * 3)
     );
   }
@@ -360,95 +360,38 @@
   }
 }
 
-/* Large devices (desktops) - 992px and up */
-@media (min-width: 992px) {
-  .header-banner {
-    height: clamp(
-      calc(var(--vh) * 9 + var(--vw) * 1.2), 
-      calc(var(--vh) * 12 + var(--vw) * 1.8 + var(--font-scale-combined) * 15), 
-      calc(var(--vh) * 18 + var(--vw) * 2.5)
-    );
-  }
-  
-  .banner-content {
-    gap: clamp(
-      calc(var(--vw) * 1.5 + var(--vh) * 0.3), 
-      calc(var(--vw) * 2.5 + var(--vh) * 0.5 + var(--font-scale-combined) * 20), 
-      calc(var(--vw) * 4 + var(--vh) * 0.8)
-    );
-  }
-  
-  .ingredient-container {
-    width: clamp(
-      calc(var(--vh) * 5 + var(--vw) * 2.5), 
-      calc(var(--vh) * 7 + var(--vw) * 3.5 + var(--font-scale-combined) * 15), 
-      calc(var(--vh) * 12 + var(--vw) * 5)
-    );
-    min-width: clamp(
-      calc(var(--vh) * 5 + var(--vw) * 2.5), 
-      calc(var(--vh) * 7 + var(--vw) * 3.5 + var(--font-scale-combined) * 15), 
-      calc(var(--vh) * 12 + var(--vw) * 5)
-    );
-    height: clamp(
-      calc(var(--vh) * 5 + var(--vw) * 2.5), 
-      calc(var(--vh) * 7 + var(--vw) * 3.5 + var(--font-scale-combined) * 15), 
-      calc(var(--vh) * 12 + var(--vw) * 5)
-    );
-  }
-  
-  .banner-brand {
-    font-size: clamp(
-      calc(var(--vh) * 1.4 + var(--vw) * 1), 
-      calc(var(--vh) * 1.8 + var(--vw) * 1.4 + var(--font-scale-combined) * 10), 
-      calc(var(--vh) * 3 + var(--vw) * 2.2)
-    );
-  }
-  
-  .banner-logo img {
-    height: clamp(
-      calc(var(--vh) * 6 + var(--vw) * 2), 
-      calc(var(--vh) * 8 + var(--vw) * 2.5 + var(--font-scale-combined) * 20), 
-      calc(var(--vh) * 15 + var(--vw) * 4)
-    );
-  }
-  
-  .banner-minze, .banner-zitrone {
-    width: clamp(
-      calc(var(--vh) * 6 + var(--vw) * 3.5), 
-      calc(var(--vh) * 8 + var(--vw) * 4.5 + var(--font-scale-combined) * 25), 
-      calc(var(--vh) * 15 + var(--vw) * 7)
-    );
-  }
-}
-
 /* Extra large devices (large desktops) - 1200px and up */
 @media (min-width: 1200px) {
   .header-banner {
     height: clamp(
-      calc(var(--vh) * 10 + var(--vw) * 1.5), 
-      calc(var(--vh) * 14 + var(--vw) * 2 + var(--font-scale-combined) * 20), 
-      calc(var(--vh) * 20 + var(--vw) * 3)
+      calc(var(--vh) * 6 + var(--vw) * 1), 
+      calc(var(--vh) * 8 + var(--vw) * 1.5 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 12 + var(--vw) * 2)
     );
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .banner-content {
-    max-width: min(calc(var(--vw) * 85), 1800px);
     margin: 0 auto;
+    align-items: center;
+    justify-content: center;
   }
   
   .banner-brand {
     font-size: clamp(
-      calc(var(--vh) * 1.6 + var(--vw) * 1.2), 
-      calc(var(--vh) * 2 + var(--vw) * 1.6 + var(--font-scale-combined) * 12), 
-      calc(var(--vh) * 3.5 + var(--vw) * 2.5)
+      calc(var(--vh) * 1.2 + var(--vw) * 0.8), 
+      calc(var(--vh) * 1.5 + var(--vw) * 1.2 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 2.3 + var(--vw) * 1.6)
     );
   }
   
   .banner-logo img {
     height: clamp(
-      calc(var(--vh) * 7 + var(--vw) * 2.5), 
-      calc(var(--vh) * 10 + var(--vw) * 3 + var(--font-scale-combined) * 25), 
-      calc(var(--vh) * 18 + var(--vw) * 5)
+      calc(var(--vh) * 5 + var(--vw) * 2), 
+      calc(var(--vh) * 7 + var(--vw) * 2.5 + var(--font-scale-combined) * 20), 
+      calc(var(--vh) * 12 + var(--vw) * 4)
     );
   }
 }
@@ -457,21 +400,25 @@
 @media (min-width: 1400px) {
   .header-banner {
     height: clamp(
-      calc(var(--vh) * 12 + var(--vw) * 1.8), 
-      calc(var(--vh) * 16 + var(--vw) * 2.5 + var(--font-scale-combined) * 25), 
-      calc(var(--vh) * 25 + var(--vw) * 3.5)
+      calc(var(--vh) * 7 + var(--vw) * 1.2), 
+      calc(var(--vh) * 9 + var(--vw) * 1.8 + var(--font-scale-combined) * 15), 
+      calc(var(--vh) * 14 + var(--vw) * 2.5)
     );
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .banner-content {
-    max-width: min(calc(var(--vw) * 80), 2000px);
+    align-items: center;
+    justify-content: center;
   }
   
   .banner-brand {
     font-size: clamp(
-      calc(var(--vh) * 1.8 + var(--vw) * 1.4), 
-      calc(var(--vh) * 2.2 + var(--vw) * 1.8 + var(--font-scale-combined) * 15), 
-      calc(var(--vh) * 4 + var(--vw) * 3)
+      calc(var(--vh) * 1.4 + var(--vw) * 1), 
+      calc(var(--vh) * 1.8 + var(--vw) * 1.4 + var(--font-scale-combined) * 12), 
+      calc(var(--vh) * 3 + var(--vw) * 2.2)
     );
   }
 }
