@@ -272,7 +272,7 @@
     );
     min-width: clamp(
       calc(var(--vh) * 4 + var(--vw) * 2), 
-      calc(var(--vh) * 6 + var(--vw) * 3 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 8 + var(--vw) * 3 + var(--font-scale-combined) * 10), 
       calc(var(--vh) * 10 + var(--vw) * 4)
     );
     height: clamp(

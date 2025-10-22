@@ -459,96 +459,165 @@
     }
 }
 
-/* Medium devices (tablets) - 768px and up */
+/* Größere Bildschirme - Layout wird horizontal */
 @media (min-width: 768px) {
     .vinz-shop-container {
         display: grid;
         grid-template-areas:
             "image title title"
-            "image products button";
-        grid-template-columns: 30% 1fr auto;
+            "image products products"
+            "image button button";
+        grid-template-columns: 25% 1fr auto;
         grid-template-rows: auto 1fr;
         gap: clamp(
-            calc(var(--vw) * 1.5), 
-            calc(var(--vw) * 2.5 + var(--font-scale-combined) * 10), 
-            calc(var(--vw) * 4)
+            calc(var(--vw) * 1), 
+            calc(var(--vw) * 1.2 + var(--font-scale-combined) * 8), 
+            calc(var(--vw) * 2)
         );
         align-items: start;
+        min-height: clamp(
+            calc(var(--vh) * 30), 
+            calc(var(--vh) * 40 + var(--font-scale-combined) * 15), 
+            calc(var(--vh) * 60)
+        );
+        padding: 0;
+        position: relative;
+    }
+    
+    .vinz-shop-section-content {
+        max-width: min(calc(var(--vw) * 90), 1400px);
+        margin-top: clamp(
+            calc(var(--vh) * 8), 
+            calc(var(--vh) * 12 + var(--font-scale-combined) * 12), 
+            calc(var(--vh) * 25)
+        );
     }
     
     .vinz-shop-image-column {
         grid-area: image;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
-        min-height: clamp(
-            calc(var(--vh) * 50), 
-            calc(var(--vh) * 60), 
-            calc(var(--vh) * 70)
+        overflow: hidden;
+        border-radius: clamp(
+            calc(var(--vw) * 2), 
+            calc(var(--vw) * 3), 
+            calc(var(--vw) * 4)
+        ) 0 0 clamp(
+            calc(var(--vw) * 2), 
+            calc(var(--vw) * 3), 
+            calc(var(--vw) * 4)
         );
     }
     
     .vinz-shop-image {
-        object-position: center 40%;
+        width: 120%;
+        height: 120%;
+        object-fit: cover;
+        object-position: center;
     }
     
     .vinz-shop-header {
         grid-area: title;
         padding: clamp(
+            calc(var(--vw) * 1), 
+            calc(var(--vw) * 2 + var(--font-scale-combined) * 8), 
+            calc(var(--vw) * 3)
+        );
+        padding-bottom: 0;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .vinz-shop-title {
+        text-align: left;
+        font-size: clamp(
+            calc(var(--vh) * 2.5 + var(--vw) * 0.8), 
+            calc(var(--vh) * 3.2 + var(--vw) * 1.2 + var(--font-scale-combined) * 8), 
+            calc(var(--vh) * 7 + var(--vw) * 2)
+        );
+    }
+    
+    .vinz-shop-intro {
+        text-align: left;
+        max-width: min(calc(var(--vw) * 50), 600px);
+        padding: 0;
+        font-size: clamp(
+            calc(var(--vh) * 1.2 + var(--vw) * 0.4), 
+            calc(var(--vh) * 1.5 + var(--vw) * 0.8 + var(--font-scale-combined) * 6), 
+            calc(var(--vh) * 3.5 + var(--vw) * 0.6)
+        );
+    }
+    
+    .vinz-product-display-container {
+        grid-area: products;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        border-radius: 0 clamp(
             calc(var(--vw) * 2), 
-            calc(var(--vw) * 3 + var(--font-scale-combined) * 10), 
+            calc(var(--vw) * 3), 
             calc(var(--vw) * 4)
         ) clamp(
             calc(var(--vw) * 2), 
             calc(var(--vw) * 3), 
             calc(var(--vw) * 4)
         ) 0;
-    }
-    
-    .vinz-shop-title {
-        text-align: left;
-        font-size: clamp(
-            calc(var(--vh) * 2.8 + var(--vw) * 1.2), 
-            calc(var(--vh) * 3.5 + var(--vw) * 1.8 + var(--font-scale-combined) * 10), 
-            calc(var(--vh) * 10 + var(--vw) * 2.5)
-        );
-    }
-    
-    .vinz-shop-intro {
-        text-align: left;
-        max-width: min(calc(var(--vw) * 45), 600px);
-        padding: 0;
-    }
-    
-    .vinz-product-display-container {
-        grid-area: products;
+        margin-bottom: 0;
     }
     
     .vinz-product-display {
-        padding-left: clamp(
-            calc(var(--vw) * 3), 
-            calc(var(--vw) * 4), 
-            calc(var(--vw) * 5)
+        padding: clamp(
+            calc(var(--vh) * 1), 
+            calc(var(--vh) * 2), 
+            calc(var(--vh) * 3)
+        ) clamp(
+            calc(var(--vw) * 1), 
+            calc(var(--vw) * 2), 
+            calc(var(--vw) * 3)
         );
-        padding-right: clamp(
-            calc(var(--vw) * 3), 
-            calc(var(--vw) * 4), 
-            calc(var(--vw) * 5)
-        );
+        padding-right: 0;
+        overflow-x: auto;
+        overflow-y: visible;
+        gap: clamp(
+            calc(var(--vw) * 2), 
+            calc(var(--vw) * 3) + var(--font-scale-combined) * 6, 
+            calc(var(--vw) * 7)
+        ); 
     }
     
     .vinz-product-card {
-        scroll-snap-align: start;
         width: clamp(
-            calc(var(--vw) * 22), 
-            calc(var(--vw) * 26 + var(--font-scale-combined) * 10), 
-            calc(var(--vw) * 30)
+            calc(var(--vw) * 18), 
+            calc(var(--vw) * 22 + var(--font-scale-combined) * 8), 
+            calc(var(--vw) * 28)
+        );
+        scroll-snap-align: start;
+    }
+    
+    .vinz-product-image {
+        height: clamp(
+            calc(var(--vh) * 15), 
+            calc(var(--vh) * 18 + var(--font-scale-combined) * 10), 
+            calc(var(--vh) * 25)
+        );
+    }
+
+    .vinz-product-details {
+        padding: clamp(
+            calc(var(--vw) * 1), 
+            calc(var(--vw) * 2 + var(--font-scale-combined) * 8), 
+            calc(var(--vw) * 3)
         );
     }
     
     .vinz-product-card:last-child {
         margin-right: clamp(
+            calc(var(--vw) * 2), 
             calc(var(--vw) * 3), 
-            calc(var(--vw) * 4), 
-            calc(var(--vw) * 5)
+            calc(var(--vw) * 4)
         );
     }
     
@@ -557,23 +626,29 @@
         background-color: transparent;
         align-self: end;
         justify-content: flex-end;
+        position: relative;
+        z-index: 2;
         padding: 0 clamp(
-            calc(var(--vw) * 3), 
-            calc(var(--vw) * 5 + var(--font-scale-combined) * 15), 
-            calc(var(--vw) * 8)
+            calc(var(--vw) * 2), 
+            calc(var(--vw) * 3 + var(--font-scale-combined) * 10), 
+            calc(var(--vw) * 5)
         ) clamp(
+            calc(var(--vh) * 1), 
             calc(var(--vh) * 2), 
-            calc(var(--vh) * 3), 
-            calc(var(--vh) * 4)
-        ) 0;
+            calc(var(--vh) * 3)
+        );
     }
     
     .vinz-shop-button {
         width: auto;
         max-width: none;
+        font-size: clamp(
+            calc(var(--vh) * 1.4 + var(--vw) * 0.3), 
+            calc(var(--vh) * 1.8 + var(--vw) * 0.5 + var(--font-scale-combined) * 6), 
+            calc(var(--vh) * 2.8 + var(--vw) * 0.4)
+        );
     }
     
-    /* Show navigation arrows */
     .slider-nav {
         display: flex;
         position: absolute;
@@ -616,17 +691,17 @@
     
     .slider-nav.prev {
         left: clamp(
+            calc(var(--vw) * 0.5), 
             calc(var(--vw) * 1), 
-            calc(var(--vw) * 1.5), 
-            calc(var(--vw) * 2)
+            calc(var(--vw) * 1.5)
         );
     }
     
     .slider-nav.next {
         right: clamp(
+            calc(var(--vw) * 0.5), 
             calc(var(--vw) * 1), 
-            calc(var(--vw) * 1.5), 
-            calc(var(--vw) * 2)
+            calc(var(--vw) * 1.5)
         );
     }
     
@@ -640,43 +715,41 @@
     }
 }
 
-/* Large devices (desktops) - 992px and up */
-@media (min-width: 992px) {
-    .vinz-shop-section-content {
-        max-width: min(calc(var(--vw) * 85), 1800px);
-    }
-    
+/* Desktop - Optimierungen für große Bildschirme */
+@media (min-width: 1200px) {
     .vinz-shop-container {
-        grid-template-columns: 28% 1fr auto;
-        gap: clamp(
-            calc(var(--vw) * 2), 
-            calc(var(--vw) * 3 + var(--font-scale-combined) * 15), 
-            calc(var(--vw) * 5)
+        grid-template-columns: 25% 1fr auto;
+        min-height: clamp(
+            calc(var(--vh) * 25), 
+            calc(var(--vh) * 35 + var(--font-scale-combined) * 15), 
+            calc(var(--vh) * 50)
         );
     }
     
-    .vinz-product-card {
-        width: clamp(
-            calc(var(--vw) * 18), 
-            calc(var(--vw) * 22 + var(--font-scale-combined) * 8), 
-            calc(var(--vw) * 26)
+    .vinz-shop-section-content {
+        max-width: min(calc(var(--vw) * 85), 1800px);
+        margin-top: clamp(
+            calc(var(--vh) * 5), 
+            calc(var(--vh) * 15 + var(--font-scale-combined) * 10), 
+            calc(var(--vh) * 20)
+        );
+    }
+    
+    .vinz-shop-title {
+        font-size: clamp(
+            calc(var(--vh) * 2 + var(--vw) * 0.6), 
+            calc(var(--vh) * 2.8 + var(--vw) * 1 + var(--font-scale-combined) * 6), 
+            calc(var(--vh) * 5 + var(--vw) * 1.5)
         );
     }
     
     .vinz-shop-intro {
-        max-width: min(calc(var(--vw) * 40), 700px);
-    }
-}
-
-/* Extra large devices (large desktops) - 1200px and up */
-@media (min-width: 1200px) {
-    .vinz-shop-section-content {
-        max-width: min(calc(var(--vw) * 80), 2000px);
-    }
-    
-    .vinz-shop-container {
-        grid-template-columns: 25% 1fr auto;
-        max-height: min(calc(var(--vh) * 75), 900px);
+        max-width: min(calc(var(--vw) * 45), 700px);
+        font-size: clamp(
+            calc(var(--vh) * 1 + var(--vw) * 0.3), 
+            calc(var(--vh) * 1.3 + var(--vw) * 0.6 + var(--font-scale-combined) * 5), 
+            calc(var(--vh) * 2.8 + var(--vw) * 0.5)
+        );
     }
     
     .vinz-product-card {
@@ -687,26 +760,13 @@
         );
     }
     
-    .vinz-shop-intro {
-        max-width: min(calc(var(--vw) * 35), 800px);
-    }
-}
 
-/* XXL devices (larger desktops) - 1400px and up */
-@media (min-width: 1400px) {
-    .vinz-shop-section-content {
-        max-width: min(calc(var(--vw) * 75), 2200px);
-    }
     
-    .vinz-shop-container {
-        max-height: min(calc(var(--vh) * 70), 1000px);
-    }
-    
-    .vinz-product-card {
-        width: clamp(
-            calc(var(--vw) * 12), 
-            calc(var(--vw) * 15 + var(--font-scale-combined) * 5), 
-            calc(var(--vw) * 18)
+    .vinz-shop-button {
+        font-size: clamp(
+            calc(var(--vh) * 1.2 + var(--vw) * 0.2), 
+            calc(var(--vh) * 1.5 + var(--vw) * 0.4 + var(--font-scale-combined) * 5), 
+            calc(var(--vh) * 2.2 + var(--vw) * 0.3)
         );
     }
 }

@@ -375,7 +375,7 @@
         max-width: min(calc(var(--vw) * 85), 1800px);
         margin-top: clamp(
           calc(var(--vh) * 5), 
-          calc(var(--vh) * 12 + var(--font-scale-combined) * 10), 
+          calc(var(--vh) * 15 + var(--font-scale-combined) * 10), 
           calc(var(--vh) * 20)
         );
     }
