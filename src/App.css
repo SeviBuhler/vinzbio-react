@@ -14,12 +14,17 @@ body, html {
   overflow-y: auto;
 }
 
-/* Main-Page Container - BLEIBT UNVERÄNDERT */
 .snap-container {
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none;
 }
 
 .about-snap-container {
@@ -27,6 +32,12 @@ body, html {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+.about-snap-container::-webkit-scrollbar {
+  display: none;
 }
 
 .contact-snap-container {
@@ -34,14 +45,8 @@ body, html {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-}
-
-/* NEUER About-Page Scroll Container für App.js */
-.about-page-scroll-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
 
 .text-justified {

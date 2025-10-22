@@ -57,7 +57,7 @@
 }
 
 .map-tip {
-  display: none; /* Hidden on mobile */
+  display: none;
 }
 
 .map-error {
