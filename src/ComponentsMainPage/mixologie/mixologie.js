@@ -1,17 +1,42 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 import './mixologieStyles.css';
 import Images from '../../images/imageImport.js';
 
+const CARDS_DATA = [
+    {
+        id: 'davinz',
+        titleLeft: 'da -',
+        titleBrand: 'vinz.',
+        image: Images.JanamKochen,
+        alt: 'vinz.-da-vinz',
+        description: 'Leicht, frisch und schmeckt nach Sommer',
+        ingredients: ['1 Flasche vinz.', '1 Orangenschnitz', '2 cl Vodka'],
+        preparation: `Trinke zwei Schlücke aus deinem vinz. um die erste Erfrischung zu erhalten. Danach füllst du den Vodka in die Flasche und drückst den Saft eines Orangen-Schnitzes in das vinz. Abschliessend nimmst du noch einen weiteren Schnitz Orange und gibst ihn ins vinz. Fertig ist deine Erfrischung`
+    },
+    {
+        id: 'spritz',
+        titleLeft: '',
+        titleBrand: 'vinz.',
+        titleRight: 'Spritz',
+        image: Images.JanamKochen,
+        alt: 'vinz.-spritz',
+        description: 'Erfrischend mit einer floralen Note',
+        ingredients: ['4cl vinz.', '1 Orangenschnitz', 'Prosecco'],
+        preparation: `Fülle 4cl vinz. in ein Prosecco-Glas. Fülle es mit Prosecco auf. Fertig ist dein vinz. um auf die grossen Erfolge im Leben anzustossen.`
+    }
+];
+
+
 const Mixologie = memo(({ id }) => {
     const [expandedCard, setExpandedCard] = useState(null);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const smallMobile = window.innerWidth <= 375;
+    const [isExpandable, setIsExpandable] = useState(window.innerWidth < 1200);
+    const cardRefs = useRef({});
 
     // Handle window resize
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-            if (window.innerWidth >= 768) {
+            setIsExpandable(window.innerWidth < 1200);
+            if (window.innerWidth >= 1200) {
                 setExpandedCard(null);
             }
         };
@@ -20,19 +45,40 @@ const Mixologie = memo(({ id }) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Auto expand the first card on mobile during inital load
-    useEffect(() => {
-        if (isMobile && !smallMobile) {
-            setExpandedCard('davinz');
-        }
-    }, [isMobile, smallMobile])
-
-    // toggle card expansion
     const toggleCard = (cardId) => {
-        if (isMobile) {
-            setExpandedCard(expandedCard === cardId ? null : cardId);
+        const newExpandedCard = expandedCard === cardId ? null : cardId;
+        setExpandedCard(newExpandedCard);
+
+        if (newExpandedCard && cardRefs.current[cardId]) {
+            setTimeout(() => {
+                const cardElement = cardRefs.current[cardId];
+                const yOffset = -100; 
+                const y = cardElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }, 250);
         }
     };
+
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        const onKey = (e) => {
+            if (e.key === 'Escape' && expandedCard) setExpandedCard(null);
+        };
+
+        if (expandedCard) {
+            document.body.style.overflow = 'hidden';
+            window.addEventListener('keydown', onKey);
+            setTimeout(() => modalRef.current?.focus?.(), 80);
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+            window.removeEventListener('keydown', onKey);
+        };
+    }, [expandedCard]);
 
     return (
         <section id={id} className='mixologie-section'>
@@ -42,76 +88,68 @@ const Mixologie = memo(({ id }) => {
                         <h2>Mixologie</h2>
                     </div>
                     <div className='mixologie-cards-container'>
-                        {/* First Card: da vinz */}
-                        <div
-                            className={`mixologie-drink-card ${expandedCard === 'davinz' ? 'expanded-card' : ''}`}
-                            onClick={() => toggleCard('davinz')}
-                        >   
-                            <div className='mixologie-drink-card-title'>
-                                <p></p>
-                                <div>
-                                    <span className='daVinz'>da - </span> <span className="vinz-brand">vinz.</span>
-                                </div>
-                                {isMobile && <span className='expand-icon'>{expandedCard === 'davinz' ? '−' : '+'}</span>}   
-                            </div>
-                            <img src={Images.JanamKochen} alt='vinz.-da-vinz' loading="lazy" />
-                            <div className='mixologie-drink-card-content'>
-                                <div className='mixologie-drink-card-description'>
-                                    <p>Leicht, frisch und schmeckt nach Sommer</p>
-                                </div>
-                                <div className='mixologie-drink-card-ingredients'>
-                                    <p>Zutaten</p>
-                                    <ul>
-                                        <li>1 Flasche <span className='vinz-brand'>vinz.</span></li>
-                                        <li>1 Orangenschnitz</li>
-                                        <li>2 cl Vodka</li>
-                                    </ul>
-                                </div>
-                                <div className='mixologie-drink-card-zubereitung'>
-                                    <p>Zubereitung</p>
-                                    <p>Trinke zwei Schlücke aus deinem <span className='vinz-brand'>vinz.</span> um die erste Erfrischung zu erhalten. 
-                                        Danach füllst du den Vodka in die Flasche und drückst den Saft eines Orangen-Schnitzes in das <span className='vinz-brand'>vinz.</span> 
-                                        Abschliessend nimmst du noch einen weiteren Schnitz Orange und gibst ihn ins <span className='vinz-brand'>vinz</span>. 
-                                        Fertig ist deine Erfrischung
-                                    </p>
+                        {CARDS_DATA.map(card => (
+                            <div
+                                ref={el => cardRefs.current[card.id] = el}
+                                className={`mixologie-drink-card`}
+                                onClick={() => toggleCard(card.id)}
+                            >
+                                <div className='mixologie-drink-card-title'>
+                                    <p></p>
+                                    <div>
+                                        {card.titleLeft && <span className='daVinz'>{card.titleLeft} </span>}
+                                        <span className="vinz-brand">{card.titleBrand}</span>
+                                        {card.titleRight && <span className='spritz'> {card.titleRight}</span>}
+                                    </div>
+                                    {isExpandable && <span className={`expand-icon ${expandedCard === card.id ? 'expanded' : ''}`}>{expandedCard === card.id ? '−' : '+'}</span>}
                                 </div>
                             </div>
-                        </div>
-                        {/* Second Card: Spritz */}
-                        <div
-                            className={`mixologie-drink-card ${expandedCard === 'spritz' ? 'expanded-card' : ''}`}
-                            onClick={() => toggleCard('spritz')}
-                        >   
-                            <div className='mixologie-drink-card-title'>
-                                <p></p>
-                                <div>
-                                    <span className="vinz-brand">vinz.</span> <span className='spritz'>Spritz</span>
+                        ))}
+
+                        {/* single modal renderer - findet die aktive Card in CARDS_DATA */}
+                        {expandedCard && (() => {
+                            const active = CARDS_DATA.find(card => card.id === expandedCard);
+                            
+                            if (!active) return null;
+
+                            return (
+                                <div className='mixologie-modal-overlay' onClick={() => setExpandedCard(null)}>
+                                    <div
+                                        className='mixologie-modal'
+                                        role='dialog'
+                                        aria-modal='true'
+                                        tabIndex='-1'
+                                        ref={modalRef}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <button className='mixologie-modal-close' aria-label='Close' onClick={() => setExpandedCard(null)}>×</button>
+                                        <div className='mixologie-modal-inner'>
+                                            <img src={active.image} alt={active.alt} loading="lazy" />
+                                            <h3 className='mixologie-modal-title'>
+                                                {active.titleLeft && <span className='daVinz'>{active.titleLeft} </span>}
+                                                <span className="vinz-brand">{active.titleBrand}</span>
+                                                {active.titleRight && <span className='spritz'> {active.titleRight}</span>}
+                                            </h3>
+                                            <div className='mixologie-drink-card-content'>
+                                                <div className='mixologie-drink-card-description'>
+                                                    <p>{active.description}</p>
+                                                </div>
+                                                <div className='mixologie-drink-card-ingredients'>
+                                                    <p>Zutaten</p>
+                                                    <ul>
+                                                        {active.ingredients.map((ing, i) => <li key={i} dangerouslySetInnerHTML={{__html: ing.replace(/vinz\./g, `<span class='vinz-brand'>vinz.</span>`)}} />)}
+                                                    </ul>
+                                                </div>
+                                                <div className='mixologie-drink-card-zubereitung'>
+                                                    <p>Zubereitung</p>
+                                                    <p dangerouslySetInnerHTML={{__html: active.preparation.replace(/vinz\./g, `<span class='vinz-brand'>vinz.</span>`)}} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                {isMobile && <span className='expand-icon'>{expandedCard === 'spritz' ? '−' : '+'}</span>}
-                            </div>
-                            <img src={Images.JanamKochen} alt='vinz.-spritz' />
-                            <div className='mixologie-drink-card-content'>
-                                
-                                <div className='mixologie-drink-card-description'>
-                                    <p>Erfrischend mit einer floralen Note</p>
-                                </div>
-                                <div className='mixologie-drink-card-ingredients'>
-                                    <p>Zutaten</p>
-                                    <ul>
-                                        <li>4cl <span className='vinz-brand'>vinz.</span></li>
-                                        <li>1 Orangenschnitz</li>
-                                        <li>Prosecco</li>
-                                    </ul>
-                                </div>
-                                <div className='mixologie-drink-card-zubereitung'>
-                                    <p>Zubereitung</p>
-                                    <p>Fülle 4cl <span className='vinz-brand'>vinz.</span> in ein Prosecco-Glas. 
-                                        Fülle es mit Prosecco auf.
-                                        Fertig ist dein <span className='vinz-brand'>vinz.</span> um auf die grossen Erfolge im Leben anzustossen.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                            );
+                        })()}
                     </div>
                 </div>
             </div>

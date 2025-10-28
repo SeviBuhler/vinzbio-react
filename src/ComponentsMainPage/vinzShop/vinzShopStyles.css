@@ -160,7 +160,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: clamp(20px, calc(var(--vw) * 8), 40px);
+    width: clamp(10px, calc(var(--vw) * 6), 30px);
     height: 100%;
     background: linear-gradient(
         to left, 
@@ -178,7 +178,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: clamp(20px, calc(var(--vw) * 8), 40px);
+    width: clamp(10px, calc(var(--vw) * 6), 30px);
     height: 100%;
     background: linear-gradient(
         to right, 
@@ -791,7 +791,7 @@
     }
     
     .vinz-shop-section-content {
-        max-width: min(calc(var(--vw) * 85), 1800px);
+        max-width: min(calc(var(--vw) * 85), 2400px);
         margin-top: clamp(
             calc(var(--vh) * 5), 
             calc(var(--vh) * 15 + var(--font-scale-combined) * 10), 
