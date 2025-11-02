@@ -29,21 +29,8 @@ const CARDS_DATA = [
 
 const Mixologie = memo(({ id }) => {
     const [expandedCard, setExpandedCard] = useState(null);
-    const [isExpandable, setIsExpandable] = useState(window.innerWidth < 1200);
+    const [isClosing, setIsClosing] = useState(false);
     const cardRefs = useRef({});
-
-    // Handle window resize
-    useEffect(() => {
-        const handleResize = () => {
-            setIsExpandable(window.innerWidth < 1200);
-            if (window.innerWidth >= 1200) {
-                setExpandedCard(null);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     const toggleCard = (cardId) => {
         const newExpandedCard = expandedCard === cardId ? null : cardId;
@@ -59,11 +46,19 @@ const Mixologie = memo(({ id }) => {
         }
     };
 
+    const closeModal = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setExpandedCard(null);
+            setIsClosing(false);
+        }, 250);
+    };
+
     const modalRef = useRef(null);
 
     useEffect(() => {
         const onKey = (e) => {
-            if (e.key === 'Escape' && expandedCard) setExpandedCard(null);
+            if (e.key === 'Escape' && expandedCard) closeModal();
         };
 
         if (expandedCard) {
@@ -79,6 +74,7 @@ const Mixologie = memo(({ id }) => {
             window.removeEventListener('keydown', onKey);
         };
     }, [expandedCard]);
+
 
     return (
         <section id={id} className='mixologie-section'>
@@ -101,7 +97,7 @@ const Mixologie = memo(({ id }) => {
                                         <span className="vinz-brand">{card.titleBrand}</span>
                                         {card.titleRight && <span className='spritz'> {card.titleRight}</span>}
                                     </div>
-                                    {isExpandable && <span className={`expand-icon ${expandedCard === card.id ? 'expanded' : ''}`}>{expandedCard === card.id ? '−' : '+'}</span>}
+                                    <span className={`expand-icon ${expandedCard === card.id ? 'expanded' : ''}`}>{expandedCard === card.id ? '−' : '+'}</span>
                                 </div>
                             </div>
                         ))}
@@ -113,7 +109,7 @@ const Mixologie = memo(({ id }) => {
                             if (!active) return null;
 
                             return (
-                                <div className='mixologie-modal-overlay' onClick={() => setExpandedCard(null)}>
+                                <div className={`mixologie-modal-overlay ${isClosing ? 'closing' : ''}`} onClick={closeModal}>
                                     <div
                                         className='mixologie-modal'
                                         role='dialog'
@@ -122,7 +118,7 @@ const Mixologie = memo(({ id }) => {
                                         ref={modalRef}
                                         onClick={(e) => e.stopPropagation()}
                                     >
-                                        <button className='mixologie-modal-close' aria-label='Close' onClick={() => setExpandedCard(null)}>×</button>
+                                        <button className='mixologie-modal-close' aria-label='Close' onClick={closeModal}>×</button>
                                         <div className='mixologie-modal-inner'>
                                             <img src={active.image} alt={active.alt} loading="lazy" />
                                             <h3 className='mixologie-modal-title'>

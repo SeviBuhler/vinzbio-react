@@ -1,3 +1,44 @@
+/* ===== ANIMATIONEN ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+}
+
 /* ===== DYNAMISCH RESPONSIVES MIXOLOGIE - MOBILE FIRST ===== */
 .mixologie-section {
     height: calc(var(--vh, 1vh) * 100);
@@ -146,6 +187,11 @@
     justify-content: center;
     z-index: 9999;
     padding: clamp(12px, 2vw, 40px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.mixologie-modal-overlay.closing {
+    animation: fadeOut 0.25s ease-in;
 }
 
 .mixologie-modal {
@@ -156,6 +202,11 @@
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     overflow: hidden;
     position: relative;
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mixologie-modal-overlay.closing .mixologie-modal {
+    animation: slideDown 0.25s cubic-bezier(0.7, 0, 0.84, 0);
 }
 
 .mixologie-modal-close {
@@ -214,7 +265,7 @@
     );
     display: flex;
     flex-direction: column;
-    flex: 1;
+    justify-content: center;
     overflow-y: auto;
 }
 
@@ -229,7 +280,7 @@
 }
 
 .mixologie-drink-card-content .vinz-brand {
-    color: #3965B5;
+    color: #000000;
     font-weight: 400;
     font-family: 'Times New Roman', Times, serif;
     font-size: inherit;
@@ -358,7 +409,6 @@
         );
     }
 
-    /* Kleinere Card-Titel ab 768px */
     .mixologie-drink-card-title {
         font-size: clamp(
             calc(var(--vh) * 1.2 + var(--vw) * 1), 
@@ -404,7 +454,6 @@
     }
 
     .mixologie-modal-inner {
-        padding: clamp(10px, 1.5vw, 20px);
         overflow: auto;
         display: grid;
         grid-template-areas:
@@ -418,6 +467,7 @@
         grid-area: image;
         width: 100%;
         height: 100%;
+        max-height: none;
         object-fit: cover;
         object-position: center;
         border-radius: 0;
@@ -426,8 +476,13 @@
     .mixologie-modal-title {
         grid-area: title;
         margin: 0;
+        padding: clamp( calc(var(--vh) * 0.8 + var(--vw) * 0.8),
+                        calc(var(--vh) * 1 + var(--vw) * 1 + var(--font-scale-combined) * 5),
+                        calc(var(--vh) * 2 + var(--vw) * 1.5));
         color: #3965B5;
-        font-size: clamp(16px, 1.8vh + 0.8vw, 22px);
+        font-size: clamp(calc(var(--vh) * 2 + var(--vw) * 1), 
+                        calc(var(--vh) * 2.5 + var(--vw) * 2.5 + var(--font-scale-combined) * 7), 
+                        calc(var(--vh) * 4 + var(--vw) * 2.5));
         display: flex;
         align-items: center;
         gap: 6px;
@@ -435,25 +490,47 @@
 
     .mixologie-drink-card-content {
         grid-area: content;
+        padding: clamp( calc(var(--vh) * 0.8 + var(--vw) * 0.8),
+                        calc(var(--vh) * 0.9 + var(--vw) * 0.9 + var(--font-scale-combined) * 5),
+                        calc(var(--vh) * 2 + var(--vw) * 1.5));
+        
     }
     
     .mixologie-modal .mixologie-drink-card-description p {
-        font-size: clamp(12px, 1.2vh + 0.6vw, 16px);
-        margin-bottom: clamp(6px, 0.8vh, 10px);
+        font-size: clamp(calc(var(--vh) * 1 + var(--vw) * 0.8), 
+                        calc(var(--vh) * 1.2 + var(--vw) * 1 + var(--font-scale-combined) * 4), 
+                        calc(var(--vh) * 2.5 + var(--vw) * 1.5));
+        margin-bottom: clamp(calc(var(--vh) * 0.8), 
+                            calc(var(--vh) * 1.2), 
+                            calc(var(--vh) * 2)
+        );
     }
     
     .mixologie-modal .mixologie-drink-card-ingredients p,
     .mixologie-modal .mixologie-drink-card-zubereitung p:first-child {
-        font-size: clamp(13px, 1.3vh + 0.65vw, 17px);
-        margin-bottom: clamp(4px, 0.6vh, 8px);
-        margin-top: clamp(4px, 0.6vh, 8px);
+        font-size: clamp(calc(var(--vh) * 0.8 + var(--vw) * 0.9), 
+                        calc(var(--vh) * 1 + var(--vw) * 1 + var(--font-scale-combined) * 3), 
+                        calc(var(--vh) * 2 + var(--vw) * 1.6));
+        margin-bottom: clamp(calc(var(--vh) * 0.4), 
+                            calc(var(--vh) * 0.6), 
+                            calc(var(--vh) * 1)
+        );
+        margin-top: clamp(calc(var(--vh) * 0.4), 
+                         calc(var(--vh) * 0.6), 
+                         calc(var(--vh) * 1)
+        );
     }
     
     .mixologie-modal .mixologie-drink-card-ingredients li,
     .mixologie-modal .mixologie-drink-card-zubereitung p:last-child {
-        font-size: clamp(11px, 1.1vh + 0.55vw, 15px);
+        font-size: clamp(calc(var(--vh) * 0.6 + var(--vw) * 0.4), 
+                        calc(var(--vh) * 1 + var(--vw) * 0.8 + var(--font-scale-combined) * 3), 
+                        calc(var(--vh) * 2 + var(--vw) * 1.5));
         line-height: 1.4;
-        margin-bottom: clamp(2px, 0.4vh, 4px);
+        margin-bottom: clamp(calc(var(--vh) * 0.3), 
+                            calc(var(--vh) * 0.5), 
+                            calc(var(--vh) * 1)
+        );
     }
     
     .mixologie-modal .mixologie-drink-card-ingredients ul {
@@ -477,6 +554,11 @@
 @media (min-width: 1200px) {
     .mixologie-section-content {
         max-width: min(calc(var(--vw) * 80), 2000px);
+        margin-top: clamp(
+            calc(var(--vh) * 5), 
+            calc(var(--vh) * 15 + var(--font-scale-combined) * 5), 
+            calc(var(--vh) * 20)
+        );
     }
     
     /* Ab 1200px: Cards nebeneinander */
@@ -484,9 +566,9 @@
         flex-direction: column;
         align-items: center;
         gap: clamp(
-            calc(var(--vw) * 2 + var(--vh) * 0.5), 
-            calc(var(--vw) * 3 + var(--vh) * 1 + var(--font-scale-combined) * 15), 
-            calc(var(--vw) * 5 + var(--vh) * 1.5)
+            calc(var(--vw) * 1 + var(--vh) * 0.5), 
+            calc(var(--vw) * 2 + var(--vh) * 1 + var(--font-scale-combined) * 10), 
+            calc(var(--vw) * 4 + var(--vh) * 1.5)
         );
     }
     
@@ -511,95 +593,58 @@
     .mixologie-drink-card-title {
         font-size: clamp(
             calc(var(--vh) * 1.5 + var(--vw) * 1.3), 
-            calc(var(--vh) * 2 + var(--vw) * 1.8 + var(--font-scale-combined) * 6), 
+            calc(var(--vh) * 1.5 + var(--vw) * 1.5 + var(--font-scale-combined) * 6), 
             calc(var(--vh) * 3.5 + var(--vw) * 2.2)
         );
-        padding: clamp(
-            calc(var(--vh) * 1.5 + var(--vw) * 1), 
-            calc(var(--vh) * 2 + var(--vw) * 1.5 + var(--font-scale-combined) * 8), 
-            calc(var(--vh) * 3 + var(--vw) * 2)
-        );
-        justify-content: space-between;
     }
     
     .expand-icon {
         display: inline-flex;
     }
-}
 
-/* XXL devices (larger desktops) - 1400px and up */
-@media (min-width: 1400px) {
-    .mixologie-section-content {
-        max-width: min(calc(var(--vw) * 75), 2200px);
+    .mixologie-modal {
+        width: min(1200px, calc(var(--vw, 1vw) * 75));
     }
-    
-    .mixologie-drink-card {
-        max-width: clamp(
-            calc(var(--vw) * 28), 
-            calc(var(--vw) * 35 + var(--font-scale-combined) * 10), 
-            calc(var(--vw) * 42)
-        );
-        max-height: clamp(
-            calc(var(--vh) * 60), 
-            calc(var(--vh) * 75 + var(--font-scale-combined) * 35), 
-            calc(var(--vh) * 90)
-        );
-    }
-}
 
-/* Sehr kleine Höhe - Mobile Browser mit URL-Leiste */
-@media (max-height: 600px) {
-    .mixologie-section-title {
+    .mixologie-modal-title {
         font-size: clamp(
-            calc(var(--vh) * 2.5 + var(--vw) * 1), 
-            calc(var(--vh) * 3 + var(--vw) * 1.5 + var(--font-scale-combined) * 6), 
-            calc(var(--vh) * 6 + var(--vw) * 2)
-        );
-        margin-bottom: clamp(
-            calc(var(--vh) * 1), 
-            calc(var(--vh) * 1.5), 
-            calc(var(--vh) * 2.5)
-        );
+            calc(var(--vh) * 2 + var(--vw) * 1), 
+            calc(var(--vh) * 2.5 + var(--vw) * 1.5 + var(--font-scale-combined) * 7), 
+            calc(var(--vh) * 4 + var(--vw) * 2.5)
+        )
     }
-        
-    .mixologie-drink-card.expanded-card {
-        max-height: calc(var(--vh) * 75);
-    }
-}
 
-/* Sehr kleine Bildschirme */
-@media (max-width: 375px) {
-    .mixologie-section-content {
-        padding: 0 clamp(
-            calc(var(--vw) * 1 + var(--vh) * 0.2), 
-            calc(var(--vw) * 2 + var(--vh) * 0.3), 
-            calc(var(--vw) * 3 + var(--vh) * 0.5)
-        );
-    }
-    
-    .mixologie-section-title {
+    .mixologie-modal .mixologie-drink-card-description p {
         font-size: clamp(
-            calc(var(--vh) * 2.8 + var(--vw) * 1), 
-            calc(var(--vh) * 3.5 + var(--vw) * 1.5 + var(--font-scale-combined) * 6), 
-            calc(var(--vh) * 7 + var(--vw) * 2)
+            calc(var(--vh) * 0.5 + var(--vw) * 0.8), 
+            calc(var(--vh) * 1 + var(--vw) * 1 + var(--font-scale-combined) * 4), 
+            calc(var(--vh) * 2.5 + var(--vw) * 1.5)
         );
-        margin-bottom: clamp(
-            calc(var(--vh) * 1), 
-            calc(var(--vh) * 1.5), 
-            calc(var(--vh) * 3)
+        margin-bottom: clamp(6px, 0.8vh, 10px);
+    }
+    
+    .mixologie-modal .mixologie-drink-card-ingredients p,
+    .mixologie-modal .mixologie-drink-card-zubereitung p:first-child {
+        font-size: clamp(calc(var(--vh) * 0.6 + var(--vw) * 0.9), 
+                        calc(var(--vh) * 1 + var(--vw) * 1 + var(--font-scale-combined) * 3), 
+                        calc(var(--vh) * 2 + var(--vw) * 1.6));
+        margin-bottom: clamp(calc(var(--vh) * 0.5 + var(--vw) * 0.5),
+                        calc(var(--vh) * 0.6 + var(--vw) * 0.6 + var(--font-scale-combined) * 2),
+                        calc(var(--vh) * 2 + var(--vw) * 1.5)
         );
     }
     
-    .mixologie-drink-card-description p {
-        font-size: clamp(
-            calc(var(--vh) * 1 + var(--vw) * 0.8), 
-            calc(var(--vh) * 1.2 + var(--vw) * 1.2 + var(--font-scale-combined) * 3), 
-            calc(var(--vh) * 2.2 + var(--vw) * 1.4)
-        );
-        margin-bottom: 0;
+    .mixologie-modal .mixologie-drink-card-ingredients li,
+    .mixologie-modal .mixologie-drink-card-zubereitung p:last-child {
+        font-size: clamp(calc(var(--vh) * 0.4 + var(--vw) * 0.4), 
+                        calc(var(--vh) * 0.6 + var(--vw) * 0.6 + var(--font-scale-combined) * 1.5), 
+                        calc(var(--vh) * 2.2 + var(--vw) * 1.3));
+        line-height: 1.4;
+        margin-bottom: clamp(2px, 0.4vh, 4px);
     }
     
-    .mixologie-drink-card-ingredients ul {
-        margin-bottom: 0;
+    .mixologie-modal .mixologie-drink-card-ingredients ul {
+        margin-bottom: clamp(6px, 0.8vh, 10px);
     }
+    
 }
