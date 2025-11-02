@@ -372,11 +372,11 @@
     }
     
     .vinz-feelings-section-content {
-        max-width: min(calc(var(--vw) * 85), 1800px);
+        max-width: min(calc(var(--vw) * 85), 2400px);
         margin-top: clamp(
           calc(var(--vh) * 5), 
           calc(var(--vh) * 15 + var(--font-scale-combined) * 10), 
-          calc(var(--vh) * 20)
+          calc(var(--vh) * 18)
         );
     }
 

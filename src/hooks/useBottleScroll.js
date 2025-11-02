@@ -18,9 +18,9 @@ const basePositions = {
   largeDesktop: {
     header: { x: 0, y: 0, scale: 1, rotation: 0 },
     vinzOriginal: { x: 240, y: -20, scale: 0.7, rotation: 5 },
-    vinzLocation: { x: 280, y: -8, scale: 0.8, rotation: -5 },
+    vinzLocation: { x: 250, y: -8, scale: 0.8, rotation: -5 },
     vinzFeelings: { x: 280, y: -0, scale: 0.8, rotation: 5 },
-    vinzShop: { x: 320, y: -10, scale: 0.7, rotation: -15 },
+    vinzShop: { x: 340, y: -50, scale: 0.7, rotation: -25 },
     mixologie: { x: -350, y: -30, scale: 0.7, rotation: 45 }
   },
   desktop: {
@@ -33,18 +33,18 @@ const basePositions = {
   },
   largeLaptop: {
     header: { x: 0, y: 0, scale: 1.3, rotation: 0 },
-    vinzOriginal: { x: 400, y: -20, scale: 0.8, rotation: 5 },
-    vinzLocation: { x: 350, y: -5, scale: 0.9, rotation: -5 },
-    vinzFeelings: { x: 350, y: -5, scale: 0.9, rotation: 5 },
-    vinzShop: { x: 400, y: -20, scale: 0.7, rotation: -15 },
+    vinzOriginal: { x: 300, y: -20, scale: 0.8, rotation: 5 },
+    vinzLocation: { x: 300, y: -5, scale: 0.9, rotation: -5 },
+    vinzFeelings: { x: 400, y: -5, scale: 0.9, rotation: 5 },
+    vinzShop: { x: 400, y: -50, scale: 0.7, rotation: -15 },
     mixologie: { x: -450, y: -50, scale: 0.6, rotation: 45 }
   },
   laptop: {
     header: { x: 0, y: 0, scale: 1.5, rotation: 0 },
-    vinzOriginal: { x: 420, y: -20, scale: 1, rotation: 5 },
-    vinzLocation: { x: 350, y: -5, scale: 1, rotation: -5 },
-    vinzFeelings: { x: 420, y: -0, scale: 1, rotation: 5 },
-    vinzShop: { x: 400, y: -40, scale: 0.6, rotation: 15 },
+    vinzOriginal: { x: 400, y: -20, scale: 1, rotation: 5 },
+    vinzLocation: { x: 300, y: -5, scale: 1, rotation: -5 },
+    vinzFeelings: { x: 480, y: -0, scale: 1, rotation: 5 },
+    vinzShop: { x: 470, y: -60, scale: 0.6, rotation: 15 },
     mixologie: { x: -520, y: -50, scale: 0.7, rotation: 45 }
   },
   tablet: {
@@ -58,16 +58,16 @@ const basePositions = {
   mobile: {
     header: { x: 0, y: 0, scale: 4, rotation: 0 },
     vinzOriginal: { x: 430, y: 10, scale: 2.5, rotation: 10 },
-    vinzLocation: { x: -390, y: 50, scale: 2, rotation: -10 },
-    vinzFeelings: { x: 400, y: 60, scale: 2, rotation: 45, },
+    vinzLocation: { x: -390, y: 30, scale: 2, rotation: -10 },
+    vinzFeelings: { x: 400, y: 50, scale: 2, rotation: 45, },
     vinzShop: { x: 120, y: -40, scale: 0, rotation: -10, opacity: 0 },
-    mixologie: { x: -400, y: -110, scale: 2, rotation: 30 }
+    mixologie: { x: -400, y: -100, scale: 2, rotation: 30 }
   },
   smallMobile: {
     header: { x: 0, y: 0, scale: 4, rotation: 0 },
     vinzOriginal: { x: 550, y: 10, scale: 3, rotation: 10 },
     vinzLocation: { x: -420, y: 45, scale: 2.5, rotation: -10 },
-    vinzFeelings: { x: 470, y: 60, scale: 2, rotation: 30 },
+    vinzFeelings: { x: 570, y: 60, scale: 2, rotation: 30 },
     vinzShop: { x: 90, y: -30, scale: 0, rotation: -10, opacity: 0 },
     mixologie: { x: -80, y: -15, scale: 0.3, rotation: 45, opacity: 0 }
   },

@@ -397,23 +397,7 @@
 }
 
 /* XXL devices (larger desktops) - 1400px and up */
-@media (min-width: 1400px) {
-  .header-banner {
-    height: clamp(
-      calc(var(--vh) * 7 + var(--vw) * 1.2), 
-      calc(var(--vh) * 9 + var(--vw) * 1.8 + var(--font-scale-combined) * 15), 
-      calc(var(--vh) * 14 + var(--vw) * 2.5)
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .banner-content {
-    align-items: center;
-    justify-content: center;
-  }
-  
+@media (min-width: 1400px) {  
   .banner-brand {
     font-size: clamp(
       calc(var(--vh) * 1.4 + var(--vw) * 1), 
