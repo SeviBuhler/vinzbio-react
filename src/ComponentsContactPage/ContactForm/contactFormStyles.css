@@ -337,3 +337,47 @@
         margin-bottom: clamp(0.7rem, calc(var(--vh) * 25), 2rem)
     }
 }
+
+@media (max-width: 768px) {
+    /* Verhindere Zoom auf iOS bei Focus */
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 16px !important;
+        touch-action: manipulation;
+    }
+
+    /* Formular bei Keyboard-Öffnung anpassen */
+    .contact-form:focus-within {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        overflow-y: auto;
+        z-index: 9999;
+        border-radius: 0;
+        padding: 1rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Parent-Container bei Focus anpassen */
+    .contact-page-section:has(.contact-form:focus-within) {
+        scroll-snap-align: none;
+        overflow: hidden;
+    }
+
+    .message {
+        height: calc(var(--vh, 1vh) * 5);
+    }
+
+    .message2 {
+        height: calc(var(--vh, 1vh) * 8);
+    }
+}
+
+body:has(.contact-form:focus-within) {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
