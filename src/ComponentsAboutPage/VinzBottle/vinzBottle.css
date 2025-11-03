@@ -440,7 +440,175 @@
   line-height: 1.6;
   margin: 0;
   text-align: justify;
-  text-justify: distribute;
   hyphens: auto;
   overflow-wrap: break-word;
+}
+
+
+@media (min-width: 768px) {
+  .about-bottle-background-wrapper {
+    margin-top: clamp(
+      calc(var(--vh) * 2), 
+      calc(var(--vh) * 4.5 + var(--font-scale-combined) * 20), 
+      calc(var(--vh) * 6.5)
+    );
+    padding: clamp(
+      calc(var(--vw) * 1), 
+      calc(var(--vw) * 2 + var(--font-scale-combined) * 30), 
+      calc(var(--vw) * 7)
+    );
+  }
+
+  .about-bottle-title {
+    font-size: clamp(
+        calc(var(--vh) * 4),
+        calc(var(--vh) * 4.5 + var(--font-scale-combined) * 8), 
+        calc(var(--vh) * 18)
+      );
+  }
+
+  .about-bottle-display {
+    top: 12%;
+  }
+
+  .about-bottle-image {
+    max-width: clamp(
+      calc(var(--vw) * 3 + var(--vh) * 4),  
+      calc(var(--vw) * 7 + var(--vh) * 6 + var(--font-scale-combined) * 30), 
+      calc(var(--vw) * 8 + var(--vh) * 14)   
+    );
+  }
+
+  .about-ingredient-line-honig {
+    top: 32%;
+    left: 28%;
+    width: 20%;
+    height: 4px;
+    transform: rotate(15deg);
+  }
+
+  .about-ingredient-line-apfelessig {
+    bottom: 25%;
+    left: 28%;
+    width: 20%;
+    height: 4px;
+    transform: rotate(-8deg);
+  }
+
+  .about-ingredient-line-zitrone {
+    top: 18%;
+    right: 28%;
+    width: 20%;
+    height: 4px;
+    transform: rotate(-20deg);
+  }
+
+  .about-ingredient-line-ingwer {
+    top:  50%;
+    right: 28%;
+    width: 20%;
+    height: 4px;
+    transform: rotate(0deg);
+  }
+
+  .about-ingredient-line-minze {
+    bottom: 15%;
+    right: 27%;
+    width: 20%;
+    height: 4px;
+    transform: rotate(15deg);
+  }
+
+  .about-ingredient-honig {
+    top: 65%;
+    left: 20%;
+  }
+
+  .about-ingredient-apfelessig {
+    bottom: 50%;
+    left: 20%;
+  }
+
+  .about-ingredient-zitrone {
+    top: 5%;
+    right: 20%;
+  }
+
+  .about-ingredient-ingwer {
+    top: 55%;
+    right: 20%;
+  }
+
+  .about-ingredient-minze {
+    bottom: -5%;
+    right: 20%;
+  }
+
+  .about-ingredient-container {
+    width: clamp(
+      calc(var(--vw) * 5 + var(--vh) * 4), 
+      calc(var(--vw) * 6 + var(--vh) * 6 + var(--font-scale-combined) * 25), 
+      calc(var(--vw) * 5 + var(--vh) * 10)    
+    );
+    height: clamp(
+      calc(var(--vw) * 5 + var(--vh) * 4), 
+      calc(var(--vw) * 6 + var(--vh) * 6 + var(--font-scale-combined) * 25), 
+      calc(var(--vw) * 5 + var(--vh) * 10)    
+    );
+  }
+
+  .ingredient-modal-content {
+    max-width: 85%;
+    max-height: 90vh;
+  }
+
+  .ingredient-modal-body {
+    padding: clamp(
+      calc(var(--vw) * 1 + var(--vh) * 1), 
+      calc(var(--vw) * 3 + var(--font-scale-combined) * 15), 
+      calc(var(--vw) * 8)
+    );
+  }
+
+  .ingredient-modal-text {
+    font-size: clamp(
+      calc(var(--vw) * 2 + var(--vh) * 1),
+      calc(var(--vw) * 1.5 + var(--vh) * 1.5 + var(--font-scale-combined) * 10), 
+      calc(var(--vw) * 1 + var(--vh) * 2.5)
+    );
+  }
+
+  .ingredient-modal-close {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .about-bottle-display {
+    top: 10%;
+  }
+
+  .about-bottle-image {
+    max-width: clamp(
+      calc(var(--vw) * 3 + var(--vh) * 4),  
+      calc(var(--vw) * 7 + var(--vh) * 5 + var(--font-scale-combined) * 30), 
+      calc(var(--vw) * 8 + var(--vh) * 14)   
+    );
+  }
+
+  .ingredient-modal-text {
+    font-size: clamp(
+      calc(var(--vw) * 1.5 + var(--vh) * 1),
+      calc(var(--vw) * 1.3 + var(--vh) * 1.3 + var(--font-scale-combined) * 8), 
+      calc(var(--vw) * 1 + var(--vh) * 2.5)
+    );
+  }
+
+  .ingredient-modal-close {
+    font-size: 2.2rem;
+    width: 45px;
+    height: 45px;
+  }
 }
