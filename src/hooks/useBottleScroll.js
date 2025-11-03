@@ -18,7 +18,7 @@ const basePositions = {
   largeDesktop: {
     header: { x: 0, y: 0, scale: 1, rotation: 0 },
     vinzOriginal: { x: 240, y: -20, scale: 0.7, rotation: 5 },
-    vinzLocation: { x: 250, y: -8, scale: 0.8, rotation: -5 },
+    vinzLocation: { x: 280, y: -8, scale: 0.8, rotation: -5 },
     vinzFeelings: { x: 280, y: -0, scale: 0.8, rotation: 5 },
     vinzShop: { x: 340, y: -50, scale: 0.7, rotation: -25 },
     mixologie: { x: -350, y: -30, scale: 0.7, rotation: 45 }

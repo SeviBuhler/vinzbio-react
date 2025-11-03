@@ -9,6 +9,14 @@
   overflow: hidden;
 }
 
+.enjoyment-wrapper {
+  margin: clamp(
+    calc(var(--vw) * 2), 
+    calc(var(--vw) * 3), 
+    calc(var(--vw) * 4)
+  );
+}
+
 .about-container {
   background-color: #EBF2FF;
   border-radius: clamp(
@@ -20,11 +28,6 @@
     calc(var(--vw) * 2), 
     calc(var(--vw) * 4 + var(--font-scale-combined) * 20), 
     calc(var(--vw) * 6)
-  );
-  margin: clamp(
-    calc(var(--vw) * 2), 
-    calc(var(--vw) * 3), 
-    calc(var(--vw) * 4)
   );
   box-shadow: 0 
               clamp(2px, calc(var(--vh) * 0.3), 6px) 
@@ -55,9 +58,9 @@
 
 h1 .vinz-enjoyment {
   font-size: clamp(
-    calc(var(--vh) * 2), /* Mobile: ~2vw (8px bei 400px) */
-    calc(var(--vh) * 2.8 + var(--font-scale-combined) * 8), /* Tablet: ~5vw (20px bei 400px) */
-    calc(var(--vh) * 10) /* Desktop: ~10vw (40px bei 400px) */
+    calc(var(--vh) * 2), 
+    calc(var(--vh) * 2.8 + var(--font-scale-combined) * 8), 
+    calc(var(--vh) * 10) 
   );
   font-family: "Times New Roman", serif;
   color: #000;
@@ -72,9 +75,9 @@ h1 .vinz-enjoyment {
 
 h1 .title {
   font-size: clamp(
-    calc(var(--vh) * 2), /* Mobile: ~2vw (8px bei 400px) */
-    calc(var(--vh) * 2.8 + var(--font-scale-combined) * 8), /* Tablet: ~5vw (20px bei 400px) */
-    calc(var(--vh) * 10) /* Desktop: ~10vw (40px bei 400px) */
+    calc(var(--vh) * 2), 
+    calc(var(--vh) * 2.8 + var(--font-scale-combined) * 8), 
+    calc(var(--vh) * 10)
   );
   color: #3965B5;
   letter-spacing: clamp(
@@ -98,9 +101,9 @@ h1 .title {
 
 .about-content {
   font-size: clamp(
-    calc(var(--vh) * 1.8),      /* Mobile: ~3vw (12px bei 400px) */
-    calc(var(--vh) * 1.5 + var(--font-scale-combined) * 8), /* Responsive middle */
-    calc(var(--vh) * 10)       /* Desktop: ~1vw (16px bei 1600px) */
+    calc(var(--vh) * 1.8),     
+    calc(var(--vh) * 1.5 + var(--font-scale-combined) * 8), 
+    calc(var(--vh) * 10)      
   );
   line-height: 1.3;
   color: #426CB8;
@@ -138,7 +141,94 @@ h1 .title {
   max-width: 320px;
   height: auto;
   object-fit: cover;
-  border-radius: 10px;
   margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+  .enjoyment-wrapper {
+    margin-top: clamp(
+      calc(var(--vh) * 1) + calc(var(--vw) * 1),
+      calc(var(--vh) * 4.5) + calc(var(--vw) * 4.5) + var(--font-scale-combined) * 15,
+      calc(var(--vh) * 5.5) + calc(var(--vw) * 5)
+    )
+  }
+
+  .about-container {
+    margin-top: clamp(
+      calc(var(--vh) * 2), 
+      calc(var(--vh) * 3), 
+      calc(var(--vh) * 4)
+    );
+    display: grid;
+    grid-template-areas: "title image"
+                         "content image";
+    grid-template-columns: 1fr auto;
+    padding: 0;
+  }
+
+  .title-inside-container {
+    grid-area: title;
+    margin: clamp(
+      calc(var(--vh) * 1), 
+      calc(var(--vh) * 2 + var(--font-scale-combined) * 5), 
+      calc(var(--vh) * 3)
+    ) 0 clamp(
+      calc(var(--vh) * 2), 
+      calc(var(--vh) * 3 + var(--font-scale-combined) * 8), 
+      calc(var(--vh) * 4)
+    ) 0;
+  }
+
+  h1 .vinz-enjoyment, .title {
+    font-size: clamp(
+      calc(var(--vh) * 3), 
+      calc(var(--vh) * 4 + var(--font-scale-combined) * 10), 
+      calc(var(--vh) * 12)
+    );
+  }
+
+  .about-content {
+    grid-area: content;
+    font-size: clamp(
+      calc(var(--vh) * 0.5 + var(--vw) * 0.25 + var(--font-scale-combined) * 4), 
+      calc(var(--vh) * 0.8 + var(--vw) * 0.8 + var(--font-scale-combined) * 5), 
+      calc(var(--vh) * 8 + var(--vw) * 5 + var(--font-scale-combined) * 15)
+    );
+    margin-bottom: 0;
+    padding: clamp(
+      calc(var(--vw) * 1 + var(--font-scale-combined) * 10), 
+      calc(var(--vw) * 2.5 + var(--font-scale-combined) * 15), 
+      calc(var(--vw) * 3.5 + var(--font-scale-combined) * 20)
+    );
+  }
+
+  .about-image-container {
+    grid-area: image;
+    display: block;
+    align-self: stretch;
+    justify-self: stretch;
+    width: clamp(
+      calc(var(--vw) * 20), 
+      calc(var(--vw) * 25 + var(--font-scale-combined) * 20), 
+      calc(var(--vw) * 30)
+    );
+    overflow: hidden;
+  }
+
+  .about-story-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    max-width: none;
+    border-radius: 0 clamp(
+      calc(var(--vw) * 2), 
+      calc(var(--vw) * 3), 
+      calc(var(--vw) * 4)
+    ) clamp(
+      calc(var(--vw) * 2), 
+      calc(var(--vw) * 3), 
+      calc(var(--vw) * 4)
+    ) 0;
+  }
+}
