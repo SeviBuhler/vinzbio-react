@@ -8,6 +8,7 @@ const Banner = () => {
   const [showIngredients, setShowIngredients] = useState(false);
   const timerRef = useRef(null);
   const location = useLocation(null);
+  const scrollHandlerRef = useRef(null);
 
   // Debug funciton
  const debugLog = useCallback((message, data = {}) => {
@@ -85,7 +86,7 @@ const Banner = () => {
 
       const scrollY = snapContainer.scrollTop;
       const viewportHeight = window.innerHeight;
-      const threshold = viewportHeight * 0.2;
+      const threshold = viewportHeight * 1.0;
 
       debugLog('Scroll event detected.', { scrollY, viewportHeight, threshold, shouldShow: scrollY > threshold });
       
@@ -102,16 +103,10 @@ const Banner = () => {
         
         if (shouldShowBanner) {
           setIsVisible(true);
-          setTimeout(() => {
-            debugLog('Showing ingredients after banner is visible.');
-            setShowIngredients(true);
-          }, 50);
+          setShowIngredients(true);
         } else {
-          debugLog('Hiding ingredients and banner.');
           setShowIngredients(false);
-          setTimeout(() => {
-            setIsVisible(false);
-          }, 100);
+          setIsVisible(false);
         }
       }, 10);
     };
@@ -134,7 +129,7 @@ const Banner = () => {
         clearTimeout(timerRef.current);
       }
     };
-  }, [location.pathname, debugLog, isVisible]);
+  }, [location.pathname, debugLog]);
 
   //Handle click on the logo to navigate to the main page or only to the top of the page
   const handleLogoClick = (e) => {
