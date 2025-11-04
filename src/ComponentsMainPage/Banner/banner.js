@@ -76,57 +76,70 @@ const Banner = () => {
       return;
     }
 
-    // Apply scroll-based visibility logic
-    const handleScroll = () => {
-      const snapContainer = document.querySelector('.snap-container');
-      if (!snapContainer) {
-        debugLog('No snap-container found, cannot handle scroll.');
-        return;
-      }
+    // Beobachte die ERSTE Section (Title Page) 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          debugLog('Intersection detected', { 
+            isIntersecting: entry.isIntersecting,
+            intersectionRatio: entry.intersectionRatio,
+            boundingTop: entry.boundingClientRect.top
+          });
 
-      const scrollY = snapContainer.scrollTop;
-      const viewportHeight = window.innerHeight;
-      const threshold = viewportHeight * 1.0;
-
-      debugLog('Scroll event detected.', { scrollY, viewportHeight, threshold, shouldShow: scrollY > threshold });
-      
-      // Debounce the scroll updates
-      if (timerRef.current) clearTimeout(timerRef.current);
-      
-      timerRef.current = setTimeout(() => {
-        const shouldShowBanner = scrollY > threshold;
-
-        debugLog('Setting banner visibility', {
-          shouldShowBanner,
-          previousIsVisible: isVisible,
+          // Wenn die ERSTE Section NICHT mehr sichtbar ist, zeige Banner
+          if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+            setIsVisible(true);
+            setShowIngredients(true);
+          } 
+          // Wenn wir zurück zur ersten Section scrollen, verstecke Banner
+          else if (entry.isIntersecting) {
+            setIsVisible(false);
+            setShowIngredients(false);
+          }
         });
-        
-        if (shouldShowBanner) {
-          setIsVisible(true);
-          setShowIngredients(true);
-        } else {
-          setShowIngredients(false);
-          setIsVisible(false);
-        }
-      }, 10);
-    };
-
-    scrollHandlerRef.current = handleScroll;
-    
-    const snapContainer = document.querySelector('.snap-container');
-    if (snapContainer) {
-      debugLog('Adding scroll listener to snap-container');
-      snapContainer.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll();
-    } else {
-      debugLog('No snap-container found on initial load.');
-    }
-    
-    return () => {
-      debugLog('Cleaning up scroll listener and timer.');
-      if (snapContainer && scrollHandlerRef.current) {
-        snapContainer.removeEventListener('scroll', scrollHandlerRef.current);
+      },
+      {
+        threshold: [0, 0.5],
+        rootMargin: '-100px 0px 0px 0px'
       }
+    );
+
+    // Warte kurz, damit DOM vollständig geladen ist
+    const setupObserver = () => {
+    const snapContainer = document.querySelector('.snap-container');
+      
+    if (snapContainer) {
+      const sections = Array.from(snapContainer.children);
+      const targetSection = sections[0]; // Erste Section = Vinz Original
+
+      if (targetSection) {
+        debugLog('Observing section', { 
+          sectionFound: true, 
+          sectionIndex: 0,
+          totalSections: sections.length,
+          targetId: targetSection.id || 'no-id',
+          targetClass: targetSection.className || 'no-class'
+        });
+        observer.observe(targetSection);
+      } else {
+        debugLog('Target section not found, retrying...', { 
+          totalSections: sections.length 
+        });
+        setTimeout(setupObserver, 200);
+      }
+    } else {
+      debugLog('Snap-container not found, retrying...');
+      setTimeout(setupObserver, 200);
+    }
+  };
+
+    // Starte nach kurzem Delay
+    const timeoutId = setTimeout(setupObserver, 100);
+
+    return () => {
+      debugLog('Cleaning up intersection observer.');
+      observer.disconnect();
+      clearTimeout(timeoutId);
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
