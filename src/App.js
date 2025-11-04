@@ -19,6 +19,8 @@ import InstagramFeedeed from './ComponentsAboutPage/InstagramFeed/instagramFeed.
 import VinzBottle from './ComponentsAboutPage/VinzBottle/vinzBottle.js';
 /* contactPage */
 import ContactPage from './ComponentsContactPage/ContactPage/contactPage.js';
+/* page transition */
+import PageTransition from './pageTransition/PageTransition.js';
 
 /* hooks */
 import useScrollNavigation from './hooks/useScrollNavigation';
@@ -79,46 +81,48 @@ function App() {
 
   return (
       <Router>
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={
-            <AnimationContext.Provider value={{ allowSectionAnimations }}>
-              <div className={`App ${showWaves ? 'show-waves' : ''}`}>
-                <Banner />
-                <BackgroundWaves />
-                <div className="snap-container">
-                  <Header />
-                  <VinzOriginal id='vinzOriginal' />
-                  <VinzLocation id='vinzLocation' />
-                  <VinzFeelings id='vinzFeelings'/>
-                  <VinzShop id='vinzShop' />
-                  <Mixologie id='mixologie'/>
+        <Banner />
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={
+              <AnimationContext.Provider value={{ allowSectionAnimations }}>
+                <div className={`App ${showWaves ? 'show-waves' : ''}`}>
+                  <BackgroundWaves />
+                  <div className="snap-container">
+                    <Header />
+                    <VinzOriginal id='vinzOriginal' />
+                    <VinzLocation id='vinzLocation' />
+                    <VinzFeelings id='vinzFeelings'/>
+                    <VinzShop id='vinzShop' />
+                    <Mixologie id='mixologie'/>
+                  </div>
                 </div>
-              </div>
-            </AnimationContext.Provider>
-          } />
+              </AnimationContext.Provider>
+            } />
 
-          <Route path="/überVinz" element={
-            <>
-            <Banner />
-            <div className="about-snap-container">
-              <AboutBackground />
-              <VinzEnjoyment />
-              <VinzBottle />
-              <InstagramFeedeed />
-            </div>
-            </>
-          } />
-
-          <Route path="/kontakt" element={
-            <>
+            <Route path="/überVinz" element={
+              <>
               <Banner />
-              <div className='contact-snap-container'>
-                <ContactPage id='contactPage'/>
+              <div className="about-snap-container">
+                <AboutBackground />
+                <VinzEnjoyment />
+                <VinzBottle />
+                <InstagramFeedeed />
               </div>
-            </>
-          }/>
-        </Routes>
+              </>
+            } />
+
+            <Route path="/kontakt" element={
+              <>
+                <Banner />
+                <div className='contact-snap-container'>
+                  <ContactPage id='contactPage'/>
+                </div>
+              </>
+            }/>
+          </Routes>
+        </PageTransition>
       </Router>
     );
 }
