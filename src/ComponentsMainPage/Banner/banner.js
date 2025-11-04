@@ -8,7 +8,6 @@ const Banner = () => {
   const [showIngredients, setShowIngredients] = useState(false);
   const timerRef = useRef(null);
   const location = useLocation(null);
-  const scrollHandlerRef = useRef(null);
 
   // Debug funciton
  const debugLog = useCallback((message, data = {}) => {
@@ -67,6 +66,7 @@ const Banner = () => {
   // Effect to handle scroll events and visibility of the banner
   useEffect(() => {
     const currentPath = location.pathname;
+    const currentTimer = timerRef.current;
 
     // always show banner on non-home pages
     if (currentPath !== '/home' && currentPath !== '/') {
@@ -140,8 +140,8 @@ const Banner = () => {
       debugLog('Cleaning up intersection observer.');
       observer.disconnect();
       clearTimeout(timeoutId);
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
+      if (currentTimer) {
+        clearTimeout(currentTimer);
       }
     };
   }, [location.pathname, debugLog]);
