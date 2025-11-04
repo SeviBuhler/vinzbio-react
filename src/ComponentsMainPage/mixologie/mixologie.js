@@ -86,6 +86,7 @@ const Mixologie = memo(({ id }) => {
                     <div className='mixologie-cards-container'>
                         {CARDS_DATA.map(card => (
                             <div
+                                key={card.id}
                                 ref={el => cardRefs.current[card.id] = el}
                                 className={`mixologie-drink-card`}
                                 onClick={() => toggleCard(card.id)}
