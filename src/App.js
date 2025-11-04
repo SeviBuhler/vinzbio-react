@@ -30,31 +30,38 @@ export const AnimationContext = createContext();
 function App() {
   const [showWaves, setShowWaves] = useState(false);
   const [allowSectionAnimations, setAllowSectionAnimations] = useState(false);
-  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   useScrollNavigation();
   useBottleScroll();
 
-  // Add this effect to handle initial load state
+
+  // Viewport Height Update
   useEffect(() => {
-    // Check if we're already scrolled down on initial load
-    const snapContainer = document.querySelector('.snap-container');
-    if (snapContainer) {
-      const scrollY = snapContainer.scrollTop;
-      const viewportHeight = window.innerHeight;
+    function updateViewportHeight() {
+      const vh = window.innerHeight * 0.01;
+      const vw = window.innerWidth * 0.01;
       
-      // Set initial states based on where the page loaded
-      setShowWaves(scrollY > viewportHeight * 0.3);
-      setAllowSectionAnimations(scrollY > viewportHeight * 0.5);
-      setInitialLoadComplete(true);
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      document.documentElement.style.setProperty('--vw', `${vw}px`);
     }
+
+    updateViewportHeight();
+    
+    window.addEventListener('resize', updateViewportHeight);
+    window.addEventListener('orientationchange', updateViewportHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateViewportHeight);
+      window.removeEventListener('orientationchange', updateViewportHeight);
+    };
   }, []);
 
+  // Scroll Handler für Waves und Animations
   useEffect(() => {
-    const handleScroll = () => {
-      const snapContainer = document.querySelector('.snap-container');
-      if (!snapContainer) return;
+    const snapContainer = document.querySelector('.snap-container');
+    if (!snapContainer) return;
 
+    const handleScroll = () => {
       const scrollY = snapContainer.scrollTop;
       const viewportHeight = window.innerHeight;
 
@@ -62,40 +69,11 @@ function App() {
       setAllowSectionAnimations(scrollY > viewportHeight * 0.5);
     };
 
-    const snapContainer = document.querySelector('.snap-container');
-    if (snapContainer) {
-      snapContainer.addEventListener('scroll', handleScroll);
-      handleScroll();
-    }
+    // Initial state setzen UND Listener hinzufügen
+    handleScroll();
+    snapContainer.addEventListener('scroll', handleScroll);
 
-    return () => {
-      if (snapContainer) {
-        snapContainer.removeEventListener('scroll', handleScroll);
-      }
-    }
-  }, [initialLoadComplete]);
-
-
-  useEffect(() => {
-      function updateViewportHeight() {
-        const vh = window.innerHeight * 0.01;
-        const vw = window.innerWidth * 0.01;
-        
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        document.documentElement.style.setProperty('--vw', `${vw}px`);
-    }
-
-    updateViewportHeight();
-
-    window.addEventListener('resize', updateViewportHeight);
-    window.addEventListener('orientationchange', () => {
-      setTimeout(updateViewportHeight, 150);
-    });
-
-    return () => {
-      window.removeEventListener('resize', updateViewportHeight);
-      window.removeEventListener('orientationchange', updateViewportHeight);
-    }
+    return () => snapContainer.removeEventListener('scroll', handleScroll);
   }, []);
   
 

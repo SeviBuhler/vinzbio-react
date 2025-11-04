@@ -4,7 +4,6 @@
   overflow: hidden;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
 }
 
 body, html {
@@ -12,41 +11,25 @@ body, html {
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  height: 100dvh;
 }
 
-.snap-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
-}
-
-.snap-container::-webkit-scrollbar {
-  display: none;
-}
-
-.about-snap-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
-}
-
-.about-snap-container::-webkit-scrollbar {
-  display: none;
-}
-
+.snap-container,
+.about-snap-container,
 .contact-snap-container {
-  height: 100vh;
+  height: 100dvh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   -ms-overflow-style: none; 
-  scrollbar-width: none; 
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-container::-webkit-scrollbar,
+.about-snap-container::-webkit-scrollbar,
+.contact-snap-container::-webkit-scrollbar {
+  display: none;
 }
 
 .text-justified {
