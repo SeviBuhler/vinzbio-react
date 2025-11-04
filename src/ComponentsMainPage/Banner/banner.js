@@ -110,6 +110,8 @@ const Banner = () => {
         }
       }, 10);
     };
+
+    scrollHandlerRef.current = handleScroll;
     
     const snapContainer = document.querySelector('.snap-container');
     if (snapContainer) {
@@ -122,8 +124,8 @@ const Banner = () => {
     
     return () => {
       debugLog('Cleaning up scroll listener and timer.');
-      if (snapContainer) {
-        snapContainer.removeEventListener('scroll', handleScroll);
+      if (snapContainer && scrollHandlerRef.current) {
+        snapContainer.removeEventListener('scroll', scrollHandlerRef.current);
       }
       if (timerRef.current) {
         clearTimeout(timerRef.current);
