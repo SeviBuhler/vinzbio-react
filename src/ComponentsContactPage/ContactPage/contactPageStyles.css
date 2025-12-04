@@ -44,6 +44,13 @@
     align-items: center;
 }
 
+.contact-page-title {
+    margin-bottom: clamp(0.3rem, calc(var(--vh) * 1.5), 1rem);
+    text-align: center;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+}
+
+
 .contactdates {
     width: 100%;
     margin-bottom: clamp(0.2rem, calc(var(--vh) * 4), 5rem);
@@ -187,13 +194,7 @@
         grid-area: title;
         margin-bottom: 0;
     }
-
-    .contact-page-title h2 {
-        font-size: clamp(2rem, 8vw + -1.6rem, 3.8rem);
-    }
-
     
-
     .address, .phonenumber, .email {
         margin: clamp(0.313rem, 1.387vw + -0.311rem, 0.625rem) 0;
         text-align: center;
@@ -273,11 +274,20 @@
     .contact-page-title {
         grid-area: title;
     }
+
     .contactdates {
         grid-area: dates;
         text-align: center;
         flex-direction: column;
         margin-top: 0;
+    }
+
+    .contactdates strong {
+        display: block;
+        font-size: clamp(calc(1rem + var(--font-scale-combined) * 10), 1.7rem, 3rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #333;
     }
 
     .address, .phonenumber, .email {
@@ -342,11 +352,20 @@
         grid-area: title;
     }
 
+
     .contactdates {
         grid-area: dates;
         text-align: center;
         flex-direction: column;
         margin-top: 0;
+    }
+
+    .contactdates strong {
+        display: block;
+        font-size: clamp(calc(1.5rem + var(--font-scale-combined) * 10), 2rem, 3rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #333;
     }
 
     .address, .phonenumber, .email {
