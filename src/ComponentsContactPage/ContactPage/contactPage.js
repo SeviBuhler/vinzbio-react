@@ -33,7 +33,6 @@ const ContactPage = () => {
 
         <div className='contact-page-content'>
           <header className='contact-page-title'>
-            <h1 id="contact-title">Kontakt</h1>
           </header>
 
           <ContactForm />

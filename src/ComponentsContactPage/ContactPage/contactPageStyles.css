@@ -44,16 +44,6 @@
     align-items: center;
 }
 
-.contact-page-title {
-    margin-bottom: clamp(0.3rem, calc(var(--vh) * 1.5), 1rem);
-    text-align: center;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
-}
-
-.contact-page-title h2 {
-    font-size: clamp(1.5rem, calc(1.5rem + var(--font-scale-combined) * 70), 4rem);
-}
-
 .contactdates {
     width: 100%;
     margin-bottom: clamp(0.2rem, calc(var(--vh) * 4), 5rem);
@@ -283,11 +273,6 @@
     .contact-page-title {
         grid-area: title;
     }
-
-    .contact-page-title h2 {
-        font-size: clamp(3rem, 1.905vw + 1.714rem, 4rem);
-    }
-
     .contactdates {
         grid-area: dates;
         text-align: center;
@@ -357,10 +342,6 @@
         grid-area: title;
     }
 
-    .contact-page-title h2 {
-        font-size: clamp(3rem, 1.905vw + 1.714rem, 5rem);
-    }
-
     .contactdates {
         grid-area: dates;
         text-align: center;
@@ -427,10 +408,6 @@
 
     .contact-page-title {
         grid-area: title;
-    }
-
-    .contact-page-title h2 {
-        font-size: clamp(3rem, (3rem + calc(var(--font-scale-combined) * 30)) , 7rem);
     }
 
     .contactdates {
