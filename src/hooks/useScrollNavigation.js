@@ -2,27 +2,33 @@ import { useEffect } from 'react';
 
 const useScrollNavigation = () => {
   useEffect(() => {
+    const navLinks = document.querySelectorAll('nav a');
+    
     const handleNavClick = (e) => {
-      const navLinks = document.querySelectorAll('nav a');
+      const link = e.currentTarget;
+      const targetId = link.getAttribute('href');
       
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          const targetId = link.getAttribute('href');
-          const targetSection = document.querySelector(targetId);
-          
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
+      // Only handle hash links (anchor links on same page)
+      if (!targetId || !targetId.startsWith('#')) {
+        return; // Let React Router or browser handle the navigation
+      }
+      
+      e.preventDefault();
+      
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
     };
 
-    handleNavClick();
+    // Attach event listeners
+    navLinks.forEach(link => {
+      link.addEventListener('click', handleNavClick);
+    });
     
+    // Cleanup function
     return () => {
-      const navLinks = document.querySelectorAll('nav a');
       navLinks.forEach(link => {
         link.removeEventListener('click', handleNavClick);
       });

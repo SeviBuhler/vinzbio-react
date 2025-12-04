@@ -50,9 +50,6 @@
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
 }
 
-.contact-page-title h2 {
-    font-size: clamp(1.5rem, calc(1.5rem + var(--font-scale-combined) * 70), 4rem);
-}
 
 .contactdates {
     width: 100%;
@@ -197,13 +194,7 @@
         grid-area: title;
         margin-bottom: 0;
     }
-
-    .contact-page-title h2 {
-        font-size: clamp(2rem, 8vw + -1.6rem, 3.8rem);
-    }
-
     
-
     .address, .phonenumber, .email {
         margin: clamp(0.313rem, 1.387vw + -0.311rem, 0.625rem) 0;
         text-align: center;
@@ -284,15 +275,19 @@
         grid-area: title;
     }
 
-    .contact-page-title h2 {
-        font-size: clamp(3rem, 1.905vw + 1.714rem, 4rem);
-    }
-
     .contactdates {
         grid-area: dates;
         text-align: center;
         flex-direction: column;
         margin-top: 0;
+    }
+
+    .contactdates strong {
+        display: block;
+        font-size: clamp(calc(1rem + var(--font-scale-combined) * 10), 1.7rem, 3rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #333;
     }
 
     .address, .phonenumber, .email {
@@ -357,15 +352,20 @@
         grid-area: title;
     }
 
-    .contact-page-title h2 {
-        font-size: clamp(3rem, 1.905vw + 1.714rem, 5rem);
-    }
 
     .contactdates {
         grid-area: dates;
         text-align: center;
         flex-direction: column;
         margin-top: 0;
+    }
+
+    .contactdates strong {
+        display: block;
+        font-size: clamp(calc(1.5rem + var(--font-scale-combined) * 10), 2rem, 3rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #333;
     }
 
     .address, .phonenumber, .email {
@@ -427,10 +427,6 @@
 
     .contact-page-title {
         grid-area: title;
-    }
-
-    .contact-page-title h2 {
-        font-size: clamp(3rem, (3rem + calc(var(--font-scale-combined) * 30)) , 7rem);
     }
 
     .contactdates {

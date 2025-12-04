@@ -1,146 +1,98 @@
-import React, { useRef, useEffect, useState, useMemo, memo } from 'react';
+import React, { useRef, useEffect, useState, memo } from 'react';
 import './headerStyles.css';
 import Images from '../../images/imageImport.js';
 import useIngredientsAnimation from '../../hooks/useIngredientsAnimation';
+import Ingredient from '../../components/common/Ingredient/Ingredient';
+import { INGREDIENT_CONFIG, getIngredientPositions } from '../../config/ingredientConfig';
+import { animateText, animateElement, hasScrolledPastSection } from '../../utils/animations';
+
+// Animation timing constants
+const ANIMATION_TIMING = {
+  BOTTLE_DELAY: 300,
+  ARCH_DELAY: 1000,
+  DOT_DELAY: 1500,
+  VINZ_TEXT_DELAY: 1000,
+  VINZ_TEXT_INTERVAL: 150,
+  ORIGINAL_TEXT_DELAY: 2000,
+  ORIGINAL_TEXT_INTERVAL: 120
+};
+
+// Animation styles
+const ARCH_STYLES = {
+  initial: { transform: 'translateY(-300px)', opacity: '0' },
+  animated: { 
+    transition: 'transform 1.5s ease-out, opacity 0.5s ease-in',
+    transform: 'translateY(0)', 
+    opacity: '1' 
+  }
+};
+
+const DOT_STYLES = {
+  initial: { opacity: '0', transform: 'scale(0.2)' },
+  animated: { 
+    transition: 'transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease-in',
+    transform: 'scale(1)', 
+    opacity: '1' 
+  }
+};
 
 const Header = memo(() => {
-  const bottleRef = useRef(null);
-  const blauerBogenRef = useRef(null);
-  const orangerPunktRef = useRef(null);
+  const archRef = useRef(null);
+  const dotRef = useRef(null);
+  
   const [vinzText, setVinzText] = useState('');
   const [originalText, setOriginalText] = useState('');
-  const fullVinzText = 'vinz.';
-  const fullOriginalText = 'Original';
 
-  // Single source of truth for ingredient positions
-  const ingredientPositions = useMemo(() => ({
-    apfelessig: {
-      initial: { transform: 'translate(-50%, -50%) rotate(-15deg)', opacity: '0' },
-      animated: { transform: 'translate(calc(var(--vw) * 3), calc(var(--vh) * -20)) rotate(20deg)', opacity: '1' }
-    },
-    honig: {
-      initial: { transform: 'translate(-50%, -50%) rotate(-20deg)', opacity: '0' },
-      animated: { transform: 'translate(calc(var(--vw) * 3), calc(var(--vh) * 5)) rotate(20deg)', opacity: '1' }
-    },
-    ingwer: {
-      initial: { transform: 'translate(-50%, -50%) rotate(15deg)', opacity: '0',},
-      animated: { transform: 'translate(calc(var(--vw) * -12), calc(var(--vh) * 6)) rotate(5deg)', opacity: '1' }
-    },
-    zitrone: {
-      initial: { transform: 'translate(-50%, -50%) rotate(45deg)', opacity: '0',},
-      animated: { transform: 'translate(calc(var(--vw) * -12), calc(var(--vh) * -10)) rotate(15deg)', opacity: '1' }
-    },
-    minze: {
-      initial: { transform: 'translate(-50%, -50%) rotate(0deg)', opacity: '0',},
-      animated: { transform: 'translate(calc(var(--vw) * -12), calc(var(--vh) * 20)) rotate(-20deg)', opacity: '1' }
-    }
-  }), []);
-
-  // Use the extracted ingredient animation hook
+  const ingredientPositions = getIngredientPositions();
   useIngredientsAnimation(ingredientPositions);
 
-  // Animation for the bottle, arch and orange dot
+  // Initial animations
   useEffect(() => {
-    // Check if we're already scrolled down
-    const snapContainer = document.querySelector('.snap-container');
-    if (snapContainer && snapContainer.scrollTop > window.innerHeight * 0.5) {
-      return;
-    }
+    if (hasScrolledPastSection(0.5)) return;
 
-    const bottle = bottleRef.current;
-    const blauerBogen = blauerBogenRef.current;
-    const orangerPunkt = orangerPunktRef.current;
+    const arch = archRef.current;
+    const dot = dotRef.current;
 
-    // Force reflow before setting initial states
-    void document.body.offsetHeight;
+    // Set initial states for arch and dot
+    Object.entries(ARCH_STYLES.initial).forEach(([key, value]) => {
+      if (arch) arch.style[key] = value;
+    });
+    Object.entries(DOT_STYLES.initial).forEach(([key, value]) => {
+      if (dot) dot.style[key] = value;
+    });
 
-    // Initial states
-    if (bottle) {
-      bottle.style.transform = 'translate(-50%, -250vh)';
-      bottle.style.opacity = '1';
-      void bottle.offsetHeight;
-    }
-    
-    if (blauerBogen) {
-      blauerBogen.style.transform = 'translateY(-300px)';
-      blauerBogen.style.opacity = '0';
-      void blauerBogen.offsetHeight;
-    }
-    
-    if (orangerPunkt) {
-      orangerPunkt.style.opacity = '0';
-      orangerPunkt.style.transform = 'scale(0.2)';
-      void orangerPunkt.offsetHeight;
-    }
-
-    // Animation sequence
-    // 1. Bottle flies in
-    setTimeout(() => {
-      if (bottle) bottle.style.transform = 'translate(-50%, -50%)';
-    }, 300);
-
-    // 2. Blue arch appears
-    setTimeout(() => {
-      if (blauerBogen) {
-        blauerBogen.style.transition = 'transform 1.5s ease-out, opacity 0.5s ease-in';
-        blauerBogen.style.transform = 'translateY(0)';
-        blauerBogen.style.opacity = '1';
-      }
-    }, 1000);
-    
-    // 3. Orange dot appears
-    setTimeout(() => {
-      if (orangerPunkt) {
-        orangerPunkt.style.transition = 'transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease-in';
-        orangerPunkt.style.transform = 'scale(1)';
-        orangerPunkt.style.opacity = '1';
-      }
-    }, 1500);
+    // Animate elements with delays
+    animateElement(arch, ARCH_STYLES.animated, ANIMATION_TIMING.ARCH_DELAY);
+    animateElement(dot, DOT_STYLES.animated, ANIMATION_TIMING.DOT_DELAY);
   }, []);
 
-  // Text animation for "vinz."
+  // Text animations
   useEffect(() => {
-    let currentIndex = 0;
-    const startDelay = 1000;
-
-    setTimeout(() => {
-      const interval = setInterval(() => {
-        if (currentIndex < fullVinzText.length) {
-          setVinzText(fullVinzText.substring(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 150)
-
-      return () => clearInterval(interval);
-    }, startDelay);
-  }, []);
-
-  // Text animation for "Original"
-  useEffect(() => {
-    let currentIndex = 0;
-    const startDelay = 2000;
+    const cleanupVinz = animateText(
+      'vinz.', 
+      setVinzText, 
+      ANIMATION_TIMING.VINZ_TEXT_DELAY, 
+      ANIMATION_TIMING.VINZ_TEXT_INTERVAL
+    );
     
-    setTimeout(() => {
-      const interval = setInterval(() => {
-        if (currentIndex < fullOriginalText.length) {
-          setOriginalText(fullOriginalText.substring(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 120); 
+    const cleanupOriginal = animateText(
+      'Original', 
+      setOriginalText, 
+      ANIMATION_TIMING.ORIGINAL_TEXT_DELAY, 
+      ANIMATION_TIMING.ORIGINAL_TEXT_INTERVAL
+    );
 
-      return () => clearInterval(interval);
-    }, startDelay);
+    return () => {
+      cleanupVinz();
+      cleanupOriginal();
+    };
   }, []);
 
   return (
     <header id="home" className="header-fullpage">
+      {/* Bottle - ✅ Keine refs mehr nötig */}
       <div className='bottle-container'>
         <img
-          ref={bottleRef}
           src={Images.vinzFlasche}
           alt='Bottle of vinzOriginal'
           className='animated-bottle'
@@ -148,20 +100,22 @@ const Header = memo(() => {
         />
       </div>
 
+      {/* Ingredients */}
       <div className='ingredients-container'>
-        {/* Right side ingredients */}
-        <img src={Images.Apfelessig} alt="Ingredients Apfelessig" className="apfelessig" loading="lazy" />
-        <img src={Images.Honig} alt='Ingredients Honig' className='honig' loading="lazy" />
-        
-        {/* Left side ingredients */}
-        <img src={Images.Ingwer} alt='Ingredients Ingwer' className='ingwer' loading="lazy" />
-        <img src={Images.Zitrone} alt='Ingredients Zitrone' className='zitrone' loading="lazy" />
-        <img src={Images.Minze} alt='Ingredients Minze' className='minze' loading="lazy" />
+        {INGREDIENT_CONFIG.map((ingredient) => (
+          <Ingredient
+            key={ingredient.id}
+            src={ingredient.src}
+            alt={ingredient.alt}
+            className={ingredient.id}
+          />
+        ))}
       </div>
 
+      {/* Blue Arch */}
       <div className='blauer-bogen-container'>
         <img
-          ref={blauerBogenRef}
+          ref={archRef}
           src={Images.BlauerBogen}
           alt='Blauer Bogen'
           className='blauer-bogen'
@@ -169,9 +123,10 @@ const Header = memo(() => {
         />
       </div>
 
+      {/* Orange Dot */}
       <div className='oranger-punkt-container'>
         <img
-          ref={orangerPunktRef}
+          ref={dotRef}
           src={Images.OrangerPunkt} 
           alt='Oranger Punkt'
           className='oranger-punkt'
@@ -179,6 +134,7 @@ const Header = memo(() => {
         />
       </div>
       
+      {/* Text */}
       <div className='header-text'>
         <div className="header-text-content">
           <div className='vinz-title'>
@@ -194,5 +150,7 @@ const Header = memo(() => {
     </header>
   );
 });
+
+Header.displayName = 'Header';
 
 export default Header;

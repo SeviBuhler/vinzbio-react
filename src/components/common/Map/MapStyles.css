@@ -123,7 +123,7 @@
 
 /* ===== RESPONSIVE ANPASSUNGEN ===== */
 
-/* Sehr kleine Höhe (Mobile Browser mit URL-Leiste) */
+/* Sehr kleine Höhe */
 @media (max-height: 600px) {
   .map-section {
     padding: clamp(
@@ -139,28 +139,10 @@
       calc(var(--vh) * 60), 
       calc(var(--vh) * 70)
     );
-    border-radius: clamp(
-      calc(var(--vw) * 0.5), 
-      calc(var(--vw) * 1), 
-      calc(var(--vw) * 1.5)
-    );
-  }
-
-  .map-error, .map-loading {
-    font-size: clamp(
-      calc(var(--vh) * 1.8), 
-      calc(var(--vh) * 2.2), 
-      calc(var(--vh) * 2.8)
-    );
-    padding: clamp(
-      calc(var(--vw) * 3), 
-      calc(var(--vw) * 4), 
-      calc(var(--vw) * 5)
-    );
   }
 }
 
-/* Größere Bildschirme - 768px und aufwärts */
+/* Tablet und größer */
 @media (min-width: 768px) {
   .map-section {
     padding: clamp(
@@ -232,33 +214,12 @@
     opacity: 0;
   }
 
-  /* Show Google Maps controls on larger screens */
   .gmnoprint {
     display: block !important;
   }
-
-  /* Make map controls bigger for better usability */
-  .map .gmnoprint .gm-style-mtc button,
-  .map .gmnoprint .gm-style-mtc div {
-    height: clamp(
-      calc(var(--vh) * 3), 
-      calc(var(--vh) * 3.5), 
-      calc(var(--vh) * 4)
-    ) !important;
-    min-width: clamp(
-      calc(var(--vh) * 3), 
-      calc(var(--vh) * 3.5), 
-      calc(var(--vh) * 4)
-    ) !important;
-    padding: clamp(
-      calc(var(--vh) * 0.8), 
-      calc(var(--vh) * 1), 
-      calc(var(--vh) * 1.2)
-    ) !important;
-  }
 }
 
-/* Desktop - 1200px und aufwärts */
+/* Desktop */
 @media (min-width: 1200px) {
   .map-section {
     padding: clamp(
@@ -315,43 +276,317 @@
       calc(var(--vh) * 1.6), 
       calc(var(--vh) * 1.8)
     );
-    border-radius: clamp(
-      calc(var(--vw) * 0.8), 
-      calc(var(--vw) * 1), 
-      calc(var(--vw) * 1.2)
-    );
+  }
+}
+
+
+/* ===== CUSTOM INFO WINDOW STYLES ===== */
+
+/* Container */
+.custom-info-window {
+  position: absolute;
+  z-index: 9999 !important;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.custom-info-window.visible {
+  opacity: 1;
+  pointer-events: all;
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.365, 1.55);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 15px)) scale(0.3);
+  }
+  50% {
+    transform: translate(-50%, calc(-100% - 15px)) scale(1.15);
+  }
+  70% {
+    transform: translate(-50%, calc(-100% - 15px)) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 15px)) scale(1);
+  }
+}
+
+/* Close Button */
+.custom-info-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.custom-info-close:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.custom-info-close:active {
+  transform: scale(0.95);
+}
+
+.custom-info-close svg {
+  display: block;
+}
+
+/* Content Wrapper */
+.custom-info-content {
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Arrow/Tail */
+.custom-info-arrow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid white;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+.custom-info-arrow::before {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: -12px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Inner Content */
+.custom-info-inner {
+  max-width: 80vw;
+  min-width: 260px;
+  box-sizing: border-box;
+}
+
+.custom-info-inner.mobile {
+  max-width: 80vw;
+  min-width: 260px;
+}
+
+.custom-info-inner.desktop {
+  max-width: min(380px, 28vw);
+  min-width: 300px;
+}
+
+/* Header */
+.custom-info-header {
+  background: #E7AA4E;
+  padding: 8px 32px 8px 10px;
+  box-sizing: border-box;
+}
+
+.custom-info-header h3 {
+  margin: 0;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Body */
+.custom-info-body {
+  background: white;
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+/* Address */
+.custom-info-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.custom-info-address .info-icon {
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.custom-info-address p {
+  margin: 0;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex: 1;
+}
+
+/* Description */
+.custom-info-description {
+  margin: 0;
+  font-size: 10px;
+  color: #777;
+  line-height: 1.4;
+  font-style: italic;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  border-top: 1px solid #eee;
+  padding-top: 6px;
+}
+
+/* Buttons */
+.custom-info-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.custom-info-buttons.single {
+  grid-template-columns: 1fr;
+}
+
+.custom-info-btn {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  padding: 7px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  min-height: 32px;
+}
+
+.custom-info-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.custom-info-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.btn-website {
+  background-color: #E7AA4E;
+}
+
+.btn-route {
+  background-color: #4285F4;
+}
+
+.custom-info-btn .btn-icon {
+  font-size: 12px;
+}
+
+/* ===== RESPONSIVE - DESKTOP ===== */
+@media (min-width: 768px) {
+  .custom-info-close {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
   }
 
-  .map-error, .map-loading {
-    font-size: clamp(
-      calc(var(--vh) * 1.6), 
-      calc(var(--vh) * 2), 
-      calc(var(--vh) * 2.4)
-    );
-    padding: clamp(
-      calc(var(--vw) * 3), 
-      calc(var(--vw) * 4), 
-      calc(var(--vw) * 5)
-    );
+  .custom-info-content {
+    border-radius: 12px;
   }
 
-  /* Enhanced map controls for desktop */
-  .map .gmnoprint .gm-style-mtc button,
-  .map .gmnoprint .gm-style-mtc div {
-    height: clamp(
-      calc(var(--vh) * 3.5), 
-      calc(var(--vh) * 4), 
-      calc(var(--vh) * 4.5)
-    ) !important;
-    min-width: clamp(
-      calc(var(--vh) * 3.5), 
-      calc(var(--vh) * 4), 
-      calc(var(--vh) * 4.5)
-    ) !important;
-    padding: clamp(
-      calc(var(--vh) * 1), 
-      calc(var(--vh) * 1.2), 
-      calc(var(--vh) * 1.5)
-    ) !important;
+  .custom-info-header {
+    padding: 10px 36px 10px 14px;
+  }
+
+  .custom-info-header h3 {
+    font-size: 14px;
+  }
+
+  .custom-info-body {
+    padding: 12px 14px 14px;
+    gap: 8px;
+  }
+
+  .custom-info-address .info-icon {
+    font-size: 16px;
+  }
+
+  .custom-info-address p {
+    font-size: 12px;
+  }
+
+  .custom-info-description {
+    font-size: 11px;
+    padding-top: 8px;
+  }
+
+  .custom-info-buttons {
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .custom-info-btn {
+    padding: 9px 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  .custom-info-btn .btn-icon {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .custom-info-header h3 {
+    font-size: 15px;
+  }
+
+  .custom-info-address p {
+    font-size: 13px;
+  }
+
+  .custom-info-description {
+    font-size: 12px;
+  }
+
+  .custom-info-btn {
+    font-size: 13px;
   }
 }

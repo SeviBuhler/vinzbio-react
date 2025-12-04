@@ -1,20 +1,21 @@
 import React, { memo } from 'react';
 import './vinzLocationStyles.css';
-import VinzMap from './VinzMap';
+import Map from '../../components/common/Map/Map';
+import { LOCATIONS } from '../../config/locationsConfig';
 
 const VinzLocation = memo(({ id }) => {
   return (
     <section id={id} className="section">
       <div className="vinzlocation-content">
         <div className="vinzlocation-wrapper">
-          {/* Map on the left side */}
           <div className="vinzlocation-map">
-            <VinzMap />
+            <Map locations={LOCATIONS} />
           </div>
-          {/* Text content on the right side */}
+          
           <div className="vinzlocation-text">
             <h2 className="vinzlocation-title">
-              <span className="blue-text">Wo git's</span> <span className="black-text">vinz.</span>
+              <span className="blue-text">Wo git's</span>{' '}
+              <span className="black-text">vinz.</span>
             </h2>
           </div>
         </div>
@@ -22,5 +23,7 @@ const VinzLocation = memo(({ id }) => {
     </section>
   );
 });
+
+VinzLocation.displayName = 'VinzLocation';
 
 export default VinzLocation;

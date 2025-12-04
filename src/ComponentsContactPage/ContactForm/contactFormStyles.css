@@ -24,15 +24,11 @@
 }
 
 .message {
-    height: calc(var(--vh, 1vh) * 5);
-    min-height: 1.5rem;
-    max-height: 3.5rem;
+    height: calc(var(--vh, 1vh) * 8);
 }
 
 .message2 {
     height: calc(var(--vh, 1vh) * 8);
-    min-height: 1.5rem;
-    max-height: 5.5rem;
 }
 
 .contact-form input,
@@ -117,8 +113,7 @@
 
 @media (max-height: 799px) {
     .contact-form {
-        min-height: calc(var(--vh, 1vh) * 10);
-        max-height: calc(var(--vh, 1vh) * 50);
+        min-height: calc(var(--vh, 2vh) * 15);
         padding: clamp(0.5rem, calc(0.5rem + var(--font-scale-combined) * 5), 1rem);
     }
 
@@ -141,19 +136,16 @@
 
     .message {
         height: calc(var(--vh, 1vh) * 3);
-        min-height: 1.2rem;
         max-height: 2.5rem;
     }
 
     .message2 {
-        height: calc(var(--vh, 1vh) * 5);
-        min-height: 1.5rem;
-        max-height: 3rem;
+        height: calc(var(--vh, 1vh) * 6);
     }
 
     .button-container {
-        margin-top: clamp(0.5rem, calc(var(--vh) * 1), 0.8rem);
-        margin-bottom: clamp(0.5rem, calc(var(--vh) * 1), 0.8rem);
+        margin-top: clamp(0.2rem, calc(var(--vh) * 1), 0.8rem);
+        margin-bottom: clamp(0.2rem, calc(var(--vh) * 1), 0.8rem);
     }
 
     .contact-form button {
@@ -235,7 +227,7 @@
     }
 
     .message2 {
-        height: clamp(4rem, 5.714vw + 0.143rem, 7rem);
+        height: clamp(3rem, 4.714vw + 0.143rem, 6rem);
     }
 
     .contact-form input,
@@ -269,12 +261,12 @@
     }
     
     .message {
-        height: clamp(2.5rem, calc(var(--vh) * 25), 6rem);
+        height: clamp(2.5rem, calc(var(--vh) * 20), 5rem);
         max-height: 6rem;
     }
 
     .message2 {
-        height: clamp(4rem, calc(var(--vh) * 25), 10rem);
+        height: clamp(3rem, calc(var(--vh) * 20), 8rem);
         max-height: 10rem;
     }
 
@@ -287,8 +279,8 @@
     }
 
     .button-container {
-        margin-top: clamp(0.7rem, calc(var(--vh) * 25), 2rem);
-        margin-bottom: clamp(0.7rem, calc(var(--vh) * 25), 2rem)
+        margin-top: clamp(0.2rem, calc(var(--vh) * 10), 1rem);
+        margin-bottom: clamp(0.2rem, calc(var(--vh) * 10), 1rem)
     }
 
     .contact-form button {
@@ -320,7 +312,7 @@
     }
 
     .message2 {
-        height: clamp(4rem, calc(var(--vh) * 25), 10rem);
+        height: clamp(3rem, calc(var(--vh) * 20), 10rem);
         max-height: 10rem;
     }
 
@@ -368,7 +360,7 @@
     }
 
     .message {
-        height: calc(var(--vh, 1vh) * 5);
+        height: calc(var(--vh, 1vh) * 8);
     }
 
     .message2 {

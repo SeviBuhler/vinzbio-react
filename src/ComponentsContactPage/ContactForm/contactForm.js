@@ -1,72 +1,92 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import './contactFormStyles.css';
 import Swal from 'sweetalert2';
 
+const WEB3FORMS_API = "https://api.web3forms.com/submit";
 
-const ContactForm = () => {
-    const [isSubmitting, setIsSubmitting] = React.useState(false);
+const ContactForm = memo(() => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-    // Viewport-Höhe dynamisch anpassen bei Keyboard-Öffnung
-    React.useEffect(() => {
-        const handleResize = () => {
+    useEffect(() => {
+        const updateViewportHeight = () => {
             const vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
         };
 
-        // Initial setzen
-        handleResize();
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+            updateViewportHeight();
+        };
 
-        // Bei Resize aktualisieren
+        updateViewportHeight();
+
         window.addEventListener('resize', handleResize);
-        window.addEventListener('orientationchange', handleResize);
+        window.addEventListener('orientationchange', updateViewportHeight);
 
-        // iOS-spezifisch: visualViewport API
         if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', handleResize);
+            window.visualViewport.addEventListener('resize', updateViewportHeight);
         }
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            window.removeEventListener('orientationchange', handleResize);
+            window.removeEventListener('orientationchange', updateViewportHeight);
             if (window.visualViewport) {
-                window.visualViewport.removeEventListener('resize', handleResize);
+                window.visualViewport.removeEventListener('resize', updateViewportHeight);
             }
         };
     }, []);
 
-    // Scroll-Snap bei Focus deaktivieren
-    const handleFocus = (e) => {
+    const handleFocus = useCallback((e) => {
+        // Nur auf Mobile-Geräten scrollen
+        if (!isMobile) return;
+
         const contactSection = document.querySelector('.contact-page-section');
         if (contactSection) {
             contactSection.style.scrollSnapAlign = 'none';
         }
 
-        // Sanftes Scrollen zum Input-Feld (optional)
         setTimeout(() => {
             e.target.scrollIntoView({ 
                 behavior: 'smooth', 
                 block: 'center' 
             });
         }, 300);
-    };
+    }, [isMobile]);
 
-    const handleBlur = () => {
+    const handleBlur = useCallback(() => {
+        // Nur auf Mobile-Geräten zurücksetzen
+        if (!isMobile) return;
+
         const contactSection = document.querySelector('.contact-page-section');
         if (contactSection) {
             contactSection.style.scrollSnapAlign = 'start';
         }
-    };
+    }, [isMobile]);
 
-    const onSubmit = async (event) => {
+    const showAlert = useCallback((title, text, icon) => {
+        Swal.fire({
+            title,
+            text,
+            icon,
+            customClass: {
+                popup: 'custom-swal-popup',
+                title: 'custom-swal-title',
+                content: 'custom-swal-content',
+                confirmButton: 'custom-swal-button'
+            },
+            buttonsStyling: false,
+        });
+    }, []);
+
+    const onSubmit = useCallback(async (event) => {
         event.preventDefault();
 
         if (isSubmitting) return;
         setIsSubmitting(true);
 
         const formData = new FormData(event.target);
-
         formData.append("access_key", process.env.REACT_APP_WEB3FORMS_KEY);
-
         formData.append('botcheck', '');
 
         const message1 = formData.get("message1");
@@ -77,71 +97,63 @@ const ContactForm = () => {
         formData.delete("message2");
         formData.append("message", combinedMessage);
 
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
+        const json = JSON.stringify(Object.fromEntries(formData));
+
         try {
-            const res = await fetch("https://api.web3forms.com/submit", {
+            const res = await fetch(WEB3FORMS_API, {
                 method: "POST",
                 headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
                 },
                 body: json
-            }).then((res) => res.json());
+            });
 
-            if (res.success) {
-              console.log("Success", res);
-              Swal.fire({
-                  title: 'Vielen Dank!',
-                  text: 'Deine Nachricht wurde erfolgreich gesendet.',
-                  icon: 'success',
-                  customClass: {
-                    popup: 'custom-swal-popup',
-                    title: 'custom-swal-title',
-                    content: 'custom-swal-content',
-                    confirmButton: 'custom-swal-button'
-                  },
-                  buttonsStyling: false,
-              })
-              event.target.reset();
+            const data = await res.json();
+
+            if (data.success) {
+                showAlert(
+                    'Vielen Dank!',
+                    'Deine Nachricht wurde erfolgreich gesendet.',
+                    'success'
+                );
+                event.target.reset();
             } else {
-                Swal.fire({
-                    title: 'Fehler!',
-                    text: res.message || 'Es gab ein Problem beim Senden deiner Nachricht.',
-                    icon: 'error',
-                    customClass: {
-                        popup: 'custom-swal-popup',
-                        title: 'custom-swal-title',
-                        content: 'custom-swal-content',
-                        confirmButton: 'custom-swal-button'
-                    },
-                    buttonsStyling: false,
-                });
+                showAlert(
+                    'Fehler!',
+                    data.message || 'Es gab ein Problem beim Senden deiner Nachricht.',
+                    'error'
+                );
             }
         } catch (error) {
             console.error("Error:", error);
-            Swal.fire({
-                title: 'Fehler!',
-                text: 'Es gab ein Problem beim Senden deiner Nachricht. Bitte versuche es später erneut.',
-                icon: 'error',
-                customClass: {
-                    popup: 'custom-swal-popup',
-                    title: 'custom-swal-title',
-                    content: 'custom-swal-content',
-                    confirmButton: 'custom-swal-button'
-                },
-                buttonsStyling: false,
-            });
+            showAlert(
+                'Fehler!',
+                'Es gab ein Problem beim Senden deiner Nachricht. Bitte versuche es später erneut.',
+                'error'
+            );
         } finally {
             setIsSubmitting(false);
         }
-    };
+    }, [isSubmitting, showAlert]);
 
     return (
-        <form onSubmit={onSubmit} className='contact-form' autoComplete="on">
-            <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex="-1" aria-hidden="true" />
+        <form 
+            onSubmit={onSubmit} 
+            className='contact-form' 
+            autoComplete="on"
+            noValidate
+        >
+            <input 
+                type="checkbox" 
+                name="botcheck" 
+                style={{ display: 'none' }} 
+                tabIndex="-1" 
+                aria-hidden="true" 
+            />
 
             <h3>Hast du eine Frage oder möchtest du uns etwas mitteilen?</h3>
+
             <div className='input-Box'>
                 <label htmlFor="name-input">Name</label>
                 <input
@@ -154,22 +166,26 @@ const ContactForm = () => {
                     autoComplete="name"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    aria-required="true"
                 />
             </div>
+
             <div className='input-Box'>
-                <label htmlFor="email-input">Email</label>
+                <label htmlFor="email-input">E-Mail</label>
                 <input
                     id="email-input"
                     name='email'
                     type="email"
-                    placeholder='Gib deine Email ein'
+                    placeholder='Gib deine E-Mail ein'
                     className='field'
                     required
                     autoComplete="email"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    aria-required="true"
                 />
             </div>
+
             <div className='response-message1'>
                 <label htmlFor="message1-input">Was möchtest du uns mitteilen?</label>
                 <textarea
@@ -181,26 +197,36 @@ const ContactForm = () => {
                     autoComplete="off"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    aria-required="true"
                 />
             </div>
+
             <div className='response-message2'>
                 <label htmlFor="message2-input">Goethe leg los!</label>
                 <textarea 
                     id="message2-input"
                     name='message2'
-                    placeholder='Rosen sind rot - Feilchen sind blau - Ich brauch jetzt ein vinz. sonst wird mir flau'
+                    placeholder='Rosen sind rot - Veilchen sind blau - Ich brauch jetzt ein vinz. sonst wird mir flau'
                     className='field message2'
                     autoComplete="off"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                 />
             </div>
+
             <div className='button-container'>
-                <button type="submit" disabled={isSubmitting}>
+                <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    aria-label={isSubmitting ? 'Nachricht wird gesendet' : 'Nachricht senden'}
+                >
                     {isSubmitting ? 'Wird gesendet...' : 'senden'}
                 </button>
             </div>
         </form>
-    )
-}
+    );
+});
+
+ContactForm.displayName = 'ContactForm';
+
 export default ContactForm;

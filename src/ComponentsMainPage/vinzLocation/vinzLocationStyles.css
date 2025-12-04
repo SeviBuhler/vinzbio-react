@@ -33,10 +33,8 @@
     calc(var(--vh) * 2 + var(--font-scale-combined) * 5), 
     calc(var(--vh) * 4)
   );
-  
 }
 
-/* Mobile First - Title Container */
 .vinzlocation-text {
   border-radius: clamp(
     calc(var(--vw) * 2), 
@@ -70,9 +68,9 @@
 
 .vinzlocation-title {
   font-size: clamp(
-    calc(var(--vh) * 3), /* Mobile: responsive zu Höhe */
+    calc(var(--vh) * 3), 
     calc(var(--vh) * 4 + var(--font-scale-combined) * 8), 
-    calc(var(--vh) * 12) /* Desktop: große Titel */
+    calc(var(--vh) * 12)
   );
   margin: clamp(
     calc(var(--vh) * 1), 
@@ -118,22 +116,6 @@
   display: block;
 }
 
-/* Mobile First - Map Container */
-.map-container {
-  box-shadow: 0 
-              clamp(2px, calc(var(--vh) * 0.3), 6px) 
-              clamp(4px, calc(var(--vh) * 0.8), 12px) 
-              rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: clamp(calc(var(--vh) * 40), calc(var(--vh) * 60), calc(var(--vh) * 80));
-  height: auto;
-  overflow: visible;
-}
-
 .vinzlocation-map {
   width: 100%;
   height: clamp(
@@ -151,17 +133,8 @@
   z-index: 5;
 }
 
-.vinzlocation-map .leaflet-container {
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: inherit;
-}
+/* ===== RESPONSIVE ANPASSUNGEN ===== */
 
-
-
-/* ===== RESPONSIVE ANPASSUNGEN FÜR GRÖSSERE BILDSCHIRME ===== */
-
-/* Sehr kleine Höhe (Mobile Browser mit URL-Leiste) */
 @media (max-height: 600px) {
   .vinzlocation-title {
     font-size: clamp(
@@ -186,13 +159,8 @@
       calc(var(--vh) * 60)
     );
   }
-  
-  .vinzlocation-map-container {
-    min-height: clamp(calc(var(--vh) * 30), calc(var(--vh) * 45), calc(var(--vh) * 60));
-  }
 }
 
-/* Größere Bildschirme - Layout wird horizontal */
 @media (min-width: 768px) {
   .vinzlocation-content {
     margin-top: clamp(
@@ -211,10 +179,6 @@
       calc(var(--vh) * 5)
     );
     max-width: 60%;
-  }
-
-  .map-container {
-    box-shadow: none;
   }
   
   .vinzlocation-text {
@@ -253,7 +217,6 @@
   }
 }
 
-/* Desktop - Optimierungen für große Bildschirme */
 @media (min-width: 1200px) {
   .vinzlocation-content {
     max-width: min(calc(var(--vw) * 85), 1800px);
@@ -263,7 +226,6 @@
       calc(var(--vh) * 35)
     );
   }
-  
   
   .vinzlocation-wrapper {
     max-width: 60%;
@@ -275,9 +237,6 @@
   
   .vinzlocation-map {
     width: 100%;
-  }
-  
-  .vinzlocation-map {
     height: clamp(
       calc(var(--vh) * 45), 
       calc(var(--vh) * 65 + var(--font-scale-combined) * 40), 
