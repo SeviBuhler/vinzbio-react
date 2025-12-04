@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-/* Bottle styles - ✅ WICHTIG: Startet UNSICHTBAR außerhalb viewport */
+/* Bottle styles */
 .bottle-container {
   position: fixed;
   left: 50%;
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: none; /* ✅ Keine CSS transition - JS macht das */
+  transition: none; 
 }
 
 .animated-bottle {
@@ -31,7 +31,7 @@
   max-height: 110%;
   height: auto;
   object-fit: contain;
-  transition: none; /* ✅ Keine CSS transition - JS macht das */
+  transition: none; 
   filter: drop-shadow(0 clamp(5px, calc(var(--vh) * 1), 15px) clamp(10px, calc(var(--vh) * 1.5), 20px) rgba(0, 0, 0, 0.3));
   will-change: transform, opacity;
 }
@@ -61,7 +61,8 @@
 }
 
 .original-title {
-  left: clamp(10%, calc(10% + var(--vw) * 15), 60%);
+  right: clamp(50%, calc(55% + var(--vw) * 2), 70%);
+  left: auto;
   top: clamp(12%, calc(12% + var(--vh) * 0.2), 20%);
   display: flex;
   position: absolute;
@@ -88,6 +89,9 @@
 .original {
   text-align: right;
   position: absolute;
+  max-width: 90vw;
+  word-break: keep-all;
+  white-space: nowrap;
 }
 
 /* Blue arch */
@@ -153,10 +157,10 @@
   max-width: clamp(2.5rem, calc(var(--vw) * 9), 15rem);
 }
 
-/* Ultra-wide and 4K screens */
-@media (min-width: 2300px) {
+@media (min-width: 1950px) {
   .original-title {
-    left: min(40%, calc(35em + 1rem), 80%);
+    right: clamp(40%, calc(55% + var(--vw) * 2), 70%);
+    left: auto;
   }
   
   .vinz-title {
@@ -169,8 +173,64 @@
   }
 }
 
-/* Mobile design */
-@media (max-width: 567px) {
+@media (max-width: 1024px) {
+  .original-title {
+    right: 5%;
+  }
+  
+  .vinz-title {
+    left: 5%;
+  }
+  
+  .vinz, 
+  .original {
+    font-size: clamp(2rem, 5vw, 6rem);
+  }
+}
+
+@media (max-width: 500px) {
+  .header-text {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 8vh;
+  }
+
+  .header-text-content, 
+  .header-text-content2 {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+  }
+
+  .vinz-title {
+    position: relative;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1vh;
+  }
+
+  .original-title {
+    position: relative;
+    right: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .vinz, 
+  .original {
+    position: relative;
+    text-align: center;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    max-width: 90vw;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 567px) {
   .header-fullpage {
     flex-direction: column;
   }
@@ -190,18 +250,37 @@
   }
 
   .vinz-title {
-    left: clamp(15%, calc(15% + var(--vw) * 0.5), 50%);
-    top: clamp(10%, calc(10% + var(--vh) * 0.3), 20%);
+    left: 8%;
+    top: clamp(8%, calc(8% + var(--vh) * 0.3), 15%);
+    position: absolute;
   }
 
   .original-title {
-    left: clamp(-10%, calc(-10% + var(--vw) * 0.5), 10%);
-    top: clamp(10%, calc(10% + var(--vh) * 0.3), 20%);
+    right: 8%;
+    left: auto;
+    top: clamp(8%, calc(8% + var(--vh) * 0.3), 15%);
+    position: absolute;
   }
 
   .vinz, 
   .original {
-    font-size: clamp(1.5rem, calc(1.5rem + var(--font-scale-combined) * 200), 3.5rem);
+    font-size: clamp(2rem, 6vw, 4rem);
+    max-width: 42vw;
+    position: absolute;
+  }
+}
+
+@media (max-width: 567px) {
+  .header-fullpage {
+    flex-direction: column;
+  }
+
+  .bottle-container {
+    width: clamp(7.5rem, calc(var(--vw) * 15 + var(--vh) * 12), 12.5rem);
+    height: auto;
+    max-height: calc(var(--vh) * 80);
+    left: 50%;
+    top: clamp(55%, calc(55% + var(--vh) * 5), 65%);
   }
 
   .blauer-bogen-container {

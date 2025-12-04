@@ -99,7 +99,6 @@ const getResponsivePosition = (screenWidth, screenHeight, basePositions) => {
     positions = basePositions.largeDesktop;
   }
   
-  // ✅ Verwende Werte DIREKT - keine Multiplikation
   return positions;
 };
 
@@ -117,7 +116,6 @@ const useBottleScroll = () => {
     const bottleContainer = document.querySelector('.bottle-container');
     
     if (!bottleContainer || !bottle) {
-      console.log('❌ Bottle elements not found');
       return;
     }
     
@@ -127,17 +125,14 @@ const useBottleScroll = () => {
       return;
     }
 
-    // ✅ Funktion die immer aktuelle positions holt
     const getPositions = () => {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
       return getResponsivePosition(screenWidth, screenHeight, basePositions);
     };
 
-    // ✅ INITIAL FLY-IN ANIMATION
     const initialPositions = getPositions();
     const pos = initialPositions.header;
-    console.log('🚀 Starting bottle fly-in with scale:', pos.scale, 'screenWidth:', window.innerWidth);
     
     // Setze Startposition (oben außerhalb)
     bottleContainer.style.transform = 'translate(-50%, -250vh)';
@@ -153,18 +148,15 @@ const useBottleScroll = () => {
     
     // Fly in nach 300ms
     setTimeout(() => {
-      console.log('🎯 Bottle flying in now');
       bottleContainer.style.transition = 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease';
       bottleContainer.style.transform = 'translate(-50%, -50%)';
       bottleContainer.style.opacity = '1';
       
-      // Nach fly-in: smooth transitions für scroll
       setTimeout(() => {
         bottle.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
       }, 1200);
     }, 300);
 
-    // ✅ Define animations als Funktion die aktuelle positions verwendet
     const getSectionAnimations = (responsivePositions) => ({
       header: {
         transform: (scrollY, viewportHeight, progress) => {
@@ -262,7 +254,6 @@ const useBottleScroll = () => {
         if (scrollY === lastScrollY) return;
         lastScrollY = scrollY;
         
-        // ✅ Hole AKTUELLE positions
         const currentPositions = getPositions();
         const sectionAnimations = getSectionAnimations(currentPositions);
         
@@ -313,8 +304,7 @@ const useBottleScroll = () => {
     snapContainer.addEventListener('scroll', debouncedHandleScroll, { passive: true });
     
     const updateResponsivePositions = () => {
-      console.log('📐 Window resized, updating positions');
-      handleScroll(); // ✅ handleScroll holt sich selbst die neuen positions
+      handleScroll(); 
     };
 
     const debouncedResize = debounce(updateResponsivePositions, 150);
