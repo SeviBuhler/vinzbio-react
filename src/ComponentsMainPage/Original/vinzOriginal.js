@@ -1,118 +1,50 @@
-import React, { useState, useEffect, useContext, memo } from 'react';
+import React, { useContext, memo } from 'react';
 import './vinzOriginalStyles.css';
-import Images from '../../images/imageImport.js';
 import { AnimationContext } from '../../App.js';
+import InfoCard from '../../components/common/InfoCard/InfoCard';
+import { VINZ_ORIGINAL_CONFIG, INFO_ELEMENTS } from '../../config/vinzOriginalConfig';
+import { useStaggeredAnimation } from '../../hooks/useStaggeredAnimation';
 
 const VinzOriginal = memo(({ id }) => {
-  const [animationStarted, setAnimationStarted] = useState(false);
   const { allowSectionAnimations } = useContext(AnimationContext);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-
-  const infoElements = [
-    {
-      id: 'bio',
-      image: Images.Bio,
-      title: '100% Bio',
-      description: 'Aus biologischem Anbau',
-      delay: 0
-    },
-    {
-      id: 'natural',
-      image: Images.Natural,
-      title: 'Natural',
-      description: 'Nur natürliche Zutaten',
-      delay: 300
-    },
-    {
-      id: 'lowCalorie',
-      image: Images.LowCalorie,
-      title: 'Low Calories',
-      description: 'Weniger als 10 Kalorien pro 100ml',
-      delay: 600
-    },
-    {
-      id: 'noSugar',
-      image: Images.NoSugar,
-      title: 'No Added Sugar',
-      description: 'Ohne zugesetzten Zucker',
-      delay: 900
-    }
-  ];
-
-  // Animation for info elements
-  useEffect(() => {
-    if (!allowSectionAnimations || hasAnimated) {
-      if (hasAnimated) {
-        setAnimationStarted(true);
-      }
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setTimeout(() => {
-            setAnimationStarted(true);
-            setHasAnimated(true);
-          }, 400);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const section = document.getElementById(id);
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, [id, allowSectionAnimations, hasAnimated]);
+  const [animationStarted] = useStaggeredAnimation(id, allowSectionAnimations);
 
   return (
     <section id={id} className="original-section">
       <div className="original-section-content">
-        <div className="background-container">
-          <div className="background-blue-card"></div>
-        </div>
         <div className="vinz-original-wrapper">
           <div className='vinz-original-container'>
             <h2 className="original-section-title">
-              <span className="vinz-text">Vinz. </span><span className="original-text">- Original</span>
+              <span className="vinz-text">{VINZ_ORIGINAL_CONFIG.title.vinz}</span>
+              <span className="original-text">{VINZ_ORIGINAL_CONFIG.title.original}</span>
             </h2>
+            
             <p className="section-description">
-              Frisch, natürlich und kompromisslos. Die Kombination aus Zitrone, Honig, Apfelessig, Ingwer und Minze schmeckt nicht nur hervorragend, sondern gibt dir genau dass, was dein Körper verdient. 
-              <br /> 
-              <span className="vinz-brand">vinz.</span> wird in der Schweiz hergestellt und ausschliesslich mit frischen Zutaten welche aus 100% biologischer Landwirtschaft stammen. Dazu verzichten wir auf Zusatzstoffe wie Zucker, Aroma, oder Konzentrate, sodass nicht nur du sondern auch dein Körper es einfach nur geniessen könnt.
-              Also erfrisch di mit vinz. – Fühlsch es?
+              {VINZ_ORIGINAL_CONFIG.description}
             </p>
+            
             <a
-              href='https://vinz.sumupstore.com/'
+              href={VINZ_ORIGINAL_CONFIG.shopUrl}
               className='shop-button'
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
+              aria-label="Vinz Original jetzt im Shop bestellen"
             >
-              Bestell jetzt
+              {VINZ_ORIGINAL_CONFIG.shopButtonText}
             </a>
           </div>
           
-          <div className={`info-container ${animationStarted ? 'animation-started' : ''}`}>
-            {infoElements.map((info) => (
-              <div 
+          <div 
+            className={`info-container ${animationStarted ? 'animation-started' : ''}`}
+            role="list"
+            aria-label="Produkteigenschaften"
+          >
+            {INFO_ELEMENTS.map((info, index) => (
+              <InfoCard
                 key={info.id}
-                className='info-element'
-              >
-                <div className='info-image-container'>
-                  <img src={info.image} alt={info.title} className='info-image' />
-                </div>
-                <div className='info-text'>
-                  <h3>{info.title}</h3>
-                </div>
-              </div>
+                image={info.image}
+                className={`info-element-${index + 1}`}
+              />
             ))}
           </div>
         </div>
@@ -120,5 +52,7 @@ const VinzOriginal = memo(({ id }) => {
     </section>
   );
 });
+
+VinzOriginal.displayName = 'VinzOriginal';
 
 export default VinzOriginal;

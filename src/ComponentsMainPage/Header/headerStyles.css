@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-/* Bottle styles */
+/* Bottle styles - ✅ WICHTIG: Startet UNSICHTBAR außerhalb viewport */
 .bottle-container {
   position: fixed;
   left: 50%;
@@ -19,11 +19,11 @@
   will-change: transform, opacity;
   width: clamp(5rem, calc(var(--vw) * 30), 25rem); 
   height: clamp(15rem, calc(var(--vh) * 60), 37.5rem);
-  transform: translate(-50%, -50%);
+  opacity: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: z-index 0.1s;
+  transition: none; /* ✅ Keine CSS transition - JS macht das */
 }
 
 .animated-bottle {
@@ -31,11 +31,12 @@
   max-height: 110%;
   height: auto;
   object-fit: contain;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  transition: none; /* ✅ Keine CSS transition - JS macht das */
   filter: drop-shadow(0 clamp(5px, calc(var(--vh) * 1), 15px) clamp(10px, calc(var(--vh) * 1.5), 20px) rgba(0, 0, 0, 0.3));
   will-change: transform, opacity;
 }
 
+/* Text container */
 .header-text {
   display: flex;
   width: 100%;
@@ -43,13 +44,15 @@
   position: relative;
 }
 
-.header-text-content, .header-text-content2 {
+.header-text-content, 
+.header-text-content2 {
   display: flex;
   width: 100%;
   height: 100%;
   position: relative;
 }
 
+/* Titles positioning */
 .vinz-title {
   left: clamp(20%, calc(20% + var(--vw) * 0.5), 40%);
   top: clamp(60%, calc(60% + var(--vh) * 0.8), 80%);
@@ -57,20 +60,6 @@
   position: relative;
 }
 
-/* Style for vinz text */
-.vinz {
-  font-size: clamp(1.8rem, calc(1.8rem + var(--font-scale-combined) * 200), 8rem);
-  margin: 0;
-  text-align: left;
-  position: absolute;
-  font-weight: 700;
-  color: rgb(61, 61, 61);
-  z-index: 5;
-  pointer-events: none;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-/* Style for original text */
 .original-title {
   left: clamp(10%, calc(10% + var(--vw) * 15), 60%);
   top: clamp(12%, calc(12% + var(--vh) * 0.2), 20%);
@@ -78,22 +67,30 @@
   position: absolute;
 }
 
+/* Typography */
+.vinz, 
 .original {
-  font-size: clamp(1.8rem, calc(1.8rem + var(--font-scale-combined) * 200), 8rem);;
-  text-align: right;
+  font-size: clamp(1.8rem, calc(1.8rem + var(--font-scale-combined) * 200), 8rem);
+  margin: 0;
   font-weight: 700;
   color: rgb(61, 61, 61);
   z-index: 5;
-  position: absolute;
   pointer-events: none;
   font-family: 'Times New Roman', Times, serif;
-}
-
-.vinz, .original {
   display: inline-block;
 }
 
-/* Style für Blauer Bogen */
+.vinz {
+  text-align: left;
+  position: absolute;
+}
+
+.original {
+  text-align: right;
+  position: absolute;
+}
+
+/* Blue arch */
 .blauer-bogen-container {
   position: absolute;
   pointer-events: none;
@@ -104,11 +101,11 @@
 }
 
 .blauer-bogen {
-  width: clamp(calc(var(--vw) * 30), calc(var(--vw) * 37 + var(--font-scale-combined) * 200), calc(var(--vw) * 50));
+  width: 100%;
   height: auto;
 }
 
-/* Style für oranger Punkt */
+/* Orange dot */
 .oranger-punkt-container {
   position: absolute;
   pointer-events: none;
@@ -123,76 +120,58 @@
   height: auto;
 }
 
-/* Style für Ingredients */
+/* Ingredients container */
 .ingredients-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: calc(var(--vw, 1vw) * 100);
-  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 2;
   filter: drop-shadow(0 clamp(5px, calc(var(--vh) * 1), 15px) clamp(10px, calc(var(--vh) * 1.5), 20px) rgba(0, 0, 0, 0.3));
 }
 
-/* Base styles for all ingredients - they all start centered */
-.ingredients-container img {
-  position: absolute;
-  object-fit: contain;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Individual ingredient sizes - no positioning here */
+/* Individual ingredient sizes */
 .apfelessig {
   max-width: clamp(2.5rem, calc(var(--vw) * 9), 12rem);
-  height: auto;
 }
 
 .honig {
   max-width: clamp(3.75rem, calc(var(--vw) * 12), 18rem);
-  height: auto;
 }
 
 .ingwer {
   max-width: clamp(3.125rem, calc(var(--vw) * 9), 15rem);
-  height: auto;
 }
 
 .zitrone {
   max-width: clamp(2.7rem, calc(var(--vw) * 10), 15rem);
-  height: auto;
 }
 
 .minze {
   max-width: clamp(2.5rem, calc(var(--vw) * 9), 15rem);
-  height: auto;
 }
 
-
-/* styles for extra wide screen and 4k */
+/* Ultra-wide and 4K screens */
 @media (min-width: 2300px) {
   .original-title {
     left: min(40%, calc(35em + 1rem), 80%);
   }
+  
   .vinz-title {
     left: min(40%, calc(30em + 1rem), 80%);
   }
-  .vinz {
-    font-size: clamp(2.5rem, calc(7vw + 1rem), 10rem);
-  }
+  
+  .vinz, 
   .original {
     font-size: clamp(2.5rem, calc(7vw + 1rem), 10rem);
   }
 }
 
-/* phone design */
+/* Mobile design */
 @media (max-width: 567px) {
   .header-fullpage {
-    height: calc(var(--vh, 1vh) * 100);
     flex-direction: column;
   }
 
@@ -202,18 +181,11 @@
     max-height: calc(var(--vh) * 80);
     left: 50%;
     top: clamp(55%, calc(55% + var(--vh) * 5), 65%);
-    transform: translate(-50%, -50%);
-  }
-
-  .animated-bottle {
-    max-width: 100%;
-    max-height: 100%;
   }
 
   .header-text {
     width: 100%;
     height: 90%;
-    position: relative;
     flex-direction: row;
   }
 
@@ -227,39 +199,28 @@
     top: clamp(10%, calc(10% + var(--vh) * 0.3), 20%);
   }
 
-  .vinz, .original {
+  .vinz, 
+  .original {
     font-size: clamp(1.5rem, calc(1.5rem + var(--font-scale-combined) * 200), 3.5rem);
   }
 
   .blauer-bogen-container {
-    position: absolute;
-    pointer-events: none;
-    z-index: 1;
     right: auto; 
     left: 50%; 
     top: clamp(calc(var(--vh) * 18), calc(var(--vh) * 22 + var(--font-scale-combined) * 50), calc(var(--vh) * 28));
     width: clamp(calc(var(--vw) * 80), calc(var(--vw) * 90 + var(--font-scale-combined) * 200), calc(var(--vw) * 100));
-    height: auto;
-    display: flex;
-    justify-content: center;
     transform: translateX(-50%);
   }
+  
   .blauer-bogen {
     width: clamp(calc(var(--vw) * 70), calc(var(--vw) * 90 + var(--font-scale-combined) * 200), calc(var(--vw) * 100));
-    height: auto;
   }
 
   .oranger-punkt-container {
-    position: absolute;
-    pointer-events: none;
-    z-index: 3;
     right: auto; 
     left: 70%; 
     top: clamp(calc(var(--vh) * 22), calc(var(--vh) * 28 + var(--font-scale-combined) * 50), calc(var(--vh) * 35));
     width: clamp(calc(var(--vw) * 25), calc(var(--vw) * 30 + var(--font-scale-combined) * 100), calc(var(--vw) * 35));
-    height: auto;
-    display: flex;
-    justify-content: center;
     transform: translateX(-50%);
   }
 
@@ -269,7 +230,6 @@
       calc(var(--vw) * 20 + var(--vh) * 3 + var(--font-scale-combined) * 50), 
       calc(var(--vw) * 25 + var(--vh) * 4)
     );
-    height: auto;
   }
   
   .ingredients-container img {

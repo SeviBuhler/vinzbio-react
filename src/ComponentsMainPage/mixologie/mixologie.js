@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef } from 'react';
+import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
 import './mixologieStyles.css';
 import Images from '../../images/imageImport.js';
 
@@ -8,7 +8,7 @@ const CARDS_DATA = [
         titleLeft: 'da -',
         titleBrand: 'vinz.',
         image: Images.JanamKochen,
-        alt: 'vinz.-da-vinz',
+        alt: 'vinz da-vinz Cocktail Rezept - erfrischender Sommerdrink',
         description: 'Leicht, frisch und schmeckt nach Sommer',
         ingredients: ['1 Flasche vinz.', '1 Orangenschnitz', '2 cl Vodka'],
         preparation: `Trinke zwei Schlücke aus deinem vinz. um die erste Erfrischung zu erhalten. Danach füllst du den Vodka in die Flasche und drückst den Saft eines Orangen-Schnitzes in das vinz. Abschliessend nimmst du noch einen weiteren Schnitz Orange und gibst ihn ins vinz. Fertig ist deine Erfrischung`
@@ -19,20 +19,20 @@ const CARDS_DATA = [
         titleBrand: 'vinz.',
         titleRight: 'Spritz',
         image: Images.JanamKochen,
-        alt: 'vinz.-spritz',
+        alt: 'vinz Spritz Cocktail Rezept - erfrischend mit floraler Note',
         description: 'Erfrischend mit einer floralen Note',
         ingredients: ['4cl vinz.', '1 Orangenschnitz', 'Prosecco'],
         preparation: `Fülle 4cl vinz. in ein Prosecco-Glas. Fülle es mit Prosecco auf. Fertig ist dein vinz. um auf die grossen Erfolge im Leben anzustossen.`
     }
 ];
 
-
 const Mixologie = memo(({ id }) => {
     const [expandedCard, setExpandedCard] = useState(null);
     const [isClosing, setIsClosing] = useState(false);
     const cardRefs = useRef({});
+    const modalRef = useRef(null);
 
-    const toggleCard = (cardId) => {
+    const toggleCard = useCallback((cardId) => {
         const newExpandedCard = expandedCard === cardId ? null : cardId;
         setExpandedCard(newExpandedCard);
 
@@ -44,17 +44,15 @@ const Mixologie = memo(({ id }) => {
                 window.scrollTo({ top: y, behavior: 'smooth' });
             }, 250);
         }
-    };
+    }, [expandedCard]);
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setIsClosing(true);
         setTimeout(() => {
             setExpandedCard(null);
             setIsClosing(false);
         }, 250);
-    };
-
-    const modalRef = useRef(null);
+    }, []);
 
     useEffect(() => {
         const onKey = (e) => {
@@ -73,56 +71,101 @@ const Mixologie = memo(({ id }) => {
             document.body.style.overflow = '';
             window.removeEventListener('keydown', onKey);
         };
-    }, [expandedCard]);
-
+    }, [expandedCard, closeModal]);
 
     return (
-        <section id={id} className='mixologie-section'>
+        <section 
+            id={id} 
+            className='mixologie-section'
+            aria-labelledby="mixologie-heading"
+        >
             <div className='mixologie-section-content'>
                 <div className='mixologie-section-wrapper'>
-                    <div className='mixologie-section-title'>
-                        <h2>Mixologie</h2>
-                    </div>
-                    <div className='mixologie-cards-container'>
+                    <header className='mixologie-section-title'>
+                        <h2 id="mixologie-heading">Mixologie</h2>
+                    </header>
+                    <div 
+                        className='mixologie-cards-container'
+                        role="list"
+                        aria-label="Cocktail Rezepte"
+                    >
                         {CARDS_DATA.map(card => (
-                            <div
+                            <article
                                 key={card.id}
                                 ref={el => cardRefs.current[card.id] = el}
-                                className={`mixologie-drink-card`}
+                                className='mixologie-drink-card'
                                 onClick={() => toggleCard(card.id)}
+                                role="button"
+                                tabIndex="0"
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        toggleCard(card.id);
+                                    }
+                                }}
+                                aria-label={`${card.titleLeft || ''}${card.titleBrand}${card.titleRight || ''} Cocktail Rezept öffnen`}
+                                aria-expanded={expandedCard === card.id}
                             >
                                 <div className='mixologie-drink-card-title'>
-                                    <p></p>
+                                    <span></span>
                                     <div>
                                         {card.titleLeft && <span className='daVinz'>{card.titleLeft} </span>}
                                         <span className="vinz-brand">{card.titleBrand}</span>
                                         {card.titleRight && <span className='spritz'> {card.titleRight}</span>}
                                     </div>
-                                    <span className={`expand-icon ${expandedCard === card.id ? 'expanded' : ''}`}>{expandedCard === card.id ? '−' : '+'}</span>
+                                    <span 
+                                        className={`expand-icon ${expandedCard === card.id ? 'expanded' : ''}`}
+                                        aria-hidden="true"
+                                    >
+                                        {expandedCard === card.id ? '−' : '+'}
+                                    </span>
                                 </div>
-                            </div>
+                            </article>
                         ))}
 
-                        {/* single modal renderer - findet die aktive Card in CARDS_DATA */}
+                        {/* Modal Overlay */}
                         {expandedCard && (() => {
                             const active = CARDS_DATA.find(card => card.id === expandedCard);
                             
                             if (!active) return null;
 
                             return (
-                                <div className={`mixologie-modal-overlay ${isClosing ? 'closing' : ''}`} onClick={closeModal}>
-                                    <div
+                                <div 
+                                    className={`mixologie-modal-overlay ${isClosing ? 'closing' : ''}`} 
+                                    onClick={closeModal}
+                                    role="presentation"
+                                >
+                                    <article
                                         className='mixologie-modal'
                                         role='dialog'
                                         aria-modal='true'
+                                        aria-labelledby="modal-title"
                                         tabIndex='-1'
                                         ref={modalRef}
                                         onClick={(e) => e.stopPropagation()}
                                     >
-                                        <button className='mixologie-modal-close' aria-label='Close' onClick={closeModal}>×</button>
+                                        <button 
+                                            className='mixologie-modal-close' 
+                                            aria-label='Rezept schließen' 
+                                            onClick={closeModal}
+                                            type="button"
+                                        >
+                                            ×
+                                        </button>
                                         <div className='mixologie-modal-inner'>
-                                            <img src={active.image} alt={active.alt} loading="lazy" />
-                                            <h3 className='mixologie-modal-title'>
+                                            <figure className='mixologie-modal-image'>
+                                                <img 
+                                                    src={active.image} 
+                                                    alt={active.alt}
+                                                    loading="lazy"
+                                                    width="800"
+                                                    height="600"
+                                                />
+                                            </figure>
+                                            <h3 
+                                                id="modal-title"
+                                                className='mixologie-modal-title'
+                                            >
                                                 {active.titleLeft && <span className='daVinz'>{active.titleLeft} </span>}
                                                 <span className="vinz-brand">{active.titleBrand}</span>
                                                 {active.titleRight && <span className='spritz'> {active.titleRight}</span>}
@@ -132,18 +175,29 @@ const Mixologie = memo(({ id }) => {
                                                     <p>{active.description}</p>
                                                 </div>
                                                 <div className='mixologie-drink-card-ingredients'>
-                                                    <p>Zutaten</p>
+                                                    <h4>Zutaten</h4>
                                                     <ul>
-                                                        {active.ingredients.map((ing, i) => <li key={i} dangerouslySetInnerHTML={{__html: ing.replace(/vinz\./g, `<span class='vinz-brand'>vinz.</span>`)}} />)}
+                                                        {active.ingredients.map((ing, i) => (
+                                                            <li 
+                                                                key={i}
+                                                                dangerouslySetInnerHTML={{
+                                                                    __html: ing.replace(/vinz\./g, `<span class='vinz-brand'>vinz.</span>`)
+                                                                }} 
+                                                            />
+                                                        ))}
                                                     </ul>
                                                 </div>
                                                 <div className='mixologie-drink-card-zubereitung'>
-                                                    <p>Zubereitung</p>
-                                                    <p dangerouslySetInnerHTML={{__html: active.preparation.replace(/vinz\./g, `<span class='vinz-brand'>vinz.</span>`)}} />
+                                                    <h4>Zubereitung</h4>
+                                                    <p 
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: active.preparation.replace(/vinz\./g, `<span class='vinz-brand'>vinz.</span>`)
+                                                        }} 
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </article>
                                 </div>
                             );
                         })()}
@@ -153,5 +207,7 @@ const Mixologie = memo(({ id }) => {
         </section>
     );
 });
+
+Mixologie.displayName = 'Mixologie';
 
 export default Mixologie;
